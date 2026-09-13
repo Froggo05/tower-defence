@@ -1,5 +1,7 @@
-extends CharacterBody2D
+extends RigidBody2D
 class_name Enemy
+
+@export var hitbox: Area2D
 
 var health = 1.0
 var damage = 1.0
@@ -12,6 +14,7 @@ var canMove: bool = true
 var impulse: float = 500.0
 var frictionConstant: float = 5.0
 var movementToggle: bool = true
+var velocity: Vector2 = Vector2.ZERO
 
 func timer(delta)->void:
 	if canMove:
@@ -47,13 +50,12 @@ func attack(target: Area2D)-> void:
 
 func _takeDamage(incomingDamage: float)-> void:
 	health -= incomingDamage
-	Global.projectileCount -= 1
 
 
 func updatePosition(delta)->void:
-	#position += velocity * delta
-	
 	applyFriction(delta)
+	position += velocity * delta
+	
 	applyImpulse(delta)
 
 

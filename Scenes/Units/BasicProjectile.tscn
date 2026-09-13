@@ -26,13 +26,13 @@ script = ExtResource("1_vr1wd")
 Ray = NodePath("RayCast2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1789567249]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.1, 0.1)
 texture = SubResource("GradientTexture2D_vr1wd")
 
-[node name="ForwardMark" type="Sprite2D" parent="." unique_id=205632568]
+[node name="ForwardMark" type="Sprite2D" parent="Sprite2D" unique_id=205632568]
 visible = false
-position = Vector2(16, 0)
-scale = Vector2(0.5, 0.09375)
+position = Vector2(32, 0)
+scale = Vector2(1, 0.1875)
 texture = SubResource("GradientTexture2D_whhts")
 
 [node name="Attackbox" type="Area2D" parent="." unique_id=1183665927]
@@ -50,7 +50,5 @@ collide_with_bodies = false
 
 [node name="Timer" type="Timer" parent="." unique_id=1694354960]
 wait_time = 3.0
-one_shot = true
-autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_timeout"]

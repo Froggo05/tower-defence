@@ -19,7 +19,7 @@ func _process(_delta: float) -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
-	print("L: ",LeftclickPressed, " R: ", RightclickPressed)
+	#print("L: ",LeftclickPressed, " R: ", RightclickPressed)
 	if LeftclickPressed:
 		spawnUnit(get_global_mouse_position())
 	if RightclickPressed:

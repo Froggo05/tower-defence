@@ -13,7 +13,7 @@ var projectileScene: PackedScene
 var direction: Vector2
 var currentTarget: Enemy
 #clock settings
-var attackSpeed: float = 5
+@export var attackSpeed: float = 0.2
 var clock: float = 0.0
 var canAttack: bool = true
 
@@ -37,8 +37,6 @@ func attack(target: Enemy)->void:
 
 
 func fireProjectile(targetPosition: Vector2)->void:
-	
-	Global.projectileCount += 1
 	
 	var newProj: Projectile = projectileScene.instantiate()
 	

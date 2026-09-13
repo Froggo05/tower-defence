@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://m4llt3qg2jeo"]
 
 [ext_resource type="Script" uid="uid://dm8j8dqql1s2w" path="res://Scenes/Core/core.gd" id="1_fo4am"]
-[ext_resource type="Script" uid="uid://dr1qwtpv6prb7" path="res://Scenes/Core/CoreCollider.gd" id="2_a6qhf"]
 
 [sub_resource type="Gradient" id="Gradient_8frii"]
 offsets = PackedFloat32Array(0, 0.14047287, 0.2684284, 0.276, 0.308, 0.34, 0.4923505)
@@ -41,7 +40,6 @@ shape = SubResource("CircleShape2D_axljd")
 position = Vector2(-57, 0)
 collision_layer = 4
 physics_material_override = SubResource("PhysicsMaterial_fo4am")
-script = ExtResource("2_a6qhf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1183924818]
 shape = SubResource("WorldBoundaryShape2D_a6qhf")
