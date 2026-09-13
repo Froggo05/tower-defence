@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://b27eegnueu6ys"]
+
+[ext_resource type="Script" uid="uid://b1m43ohc3x17a" path="res://Scenes/Enemies/BasicEnemy/basic_enemy.gd" id="1_11u8t"]
+
+[sub_resource type="Gradient" id="Gradient_vi3op"]
+offsets = PackedFloat32Array(0, 0.25511432, 0.26233453)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_axljd"]
+gradient = SubResource("Gradient_vi3op")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_bey7i"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m8s3d"]
+gradient = SubResource("Gradient_bey7i")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_plxga"]
+radius = 23.021729
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_axljd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m8s3d"]
+radius = 23.021729
+
+[node name="BasicEnemy" type="CharacterBody2D" unique_id=1004660887]
+collision_mask = 4
+script = ExtResource("1_11u8t")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=20866943]
+scale = Vector2(0.5, 0.5)
+texture = SubResource("GradientTexture2D_axljd")
+
+[node name="ForwardMark" type="Sprite2D" parent="." unique_id=312506769]
+position = Vector2(16, 0)
+scale = Vector2(0.5, 0.09375)
+texture = SubResource("GradientTexture2D_m8s3d")
+
+[node name="EnemyCollider" type="CollisionShape2D" parent="." unique_id=2049285933]
+shape = SubResource("CircleShape2D_plxga")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1707923409]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=832608950]
+shape = SubResource("CircleShape2D_axljd")
+
+[node name="AttackRange" type="Area2D" parent="." unique_id=1912617483]
+position = Vector2(24, 0)
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange" unique_id=680707655]
+shape = SubResource("CircleShape2D_m8s3d")
+
+[connection signal="area_entered" from="AttackRange" to="." method="_attack_range_entered"]

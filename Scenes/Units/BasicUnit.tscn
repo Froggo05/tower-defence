@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://do5p2oo1evqfk"]
+
+[ext_resource type="Script" uid="uid://uql0fqvddu8v" path="res://Scenes/Units/basic_unit.gd" id="1_3ptfe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3ptfe"]
+radius = 23.021729
+
+[sub_resource type="Gradient" id="Gradient_3ptfe"]
+offsets = PackedFloat32Array(0, 0.25, 0.26233453, 1)
+colors = PackedColorArray(0, 0.59607846, 1, 1, 2.4065375e-06, 0.5801636, 0.7970768, 1, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_78lln"]
+gradient = SubResource("Gradient_3ptfe")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_78lln"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6kvvk"]
+gradient = SubResource("Gradient_78lln")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_whhts"]
+radius = 48.0
+
+[node name="BasicUnit" type="CharacterBody2D" unique_id=1211809047]
+script = ExtResource("1_3ptfe")
+
+[node name="EnemyCollider" type="CollisionShape2D" parent="." unique_id=1327838859]
+shape = SubResource("CircleShape2D_3ptfe")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1030028238]
+scale = Vector2(0.5, 0.5)
+texture = SubResource("GradientTexture2D_78lln")
+
+[node name="ForwardMark" type="Sprite2D" parent="." unique_id=116781923]
+position = Vector2(16, 0)
+scale = Vector2(0.5, 0.09375)
+texture = SubResource("GradientTexture2D_6kvvk")
+
+[node name="AttackRange" type="Area2D" parent="." unique_id=2142669396]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange" unique_id=666868868]
+position = Vector2(50, 0)
+shape = SubResource("CircleShape2D_whhts")
+
+[node name="AttackTimer" type="Timer" parent="." unique_id=167258846]

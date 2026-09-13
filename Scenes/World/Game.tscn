@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://c5sxfgo7qf6vx"]
+
+[ext_resource type="Script" uid="uid://ip0jpdgd1w8w" path="res://Scenes/World/game.gd" id="1_bvkne"]
+[ext_resource type="Texture2D" uid="uid://f5w4rl0arx6m" path="res://Scenes/Assets/HealthBarGreyScale.png" id="1_ih2u4"]
+[ext_resource type="Script" uid="uid://cbehnju1nbo8d" path="res://Scenes/World/fortress_health_bar.gd" id="2_bvkne"]
+[ext_resource type="PackedScene" uid="uid://m4llt3qg2jeo" path="res://Scenes/Core/Core.tscn" id="3_ih2u4"]
+[ext_resource type="Script" uid="uid://7bi3v0m038kw" path="res://Scenes/World/stats.gd" id="4_x6kl1"]
+
+[node name="Game" type="Control" unique_id=1126262729 node_paths=PackedStringArray("currentCore", "worldScene")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_bvkne")
+currentCore = NodePath("WorldScene/Core")
+worldScene = NodePath("WorldScene")
+
+[node name="GUI" type="Control" parent="." unique_id=1042113770]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="GUIHealthBar" type="TextureProgressBar" parent="GUI" unique_id=1381564769]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -26.0
+offset_right = 100.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_progress = ExtResource("1_ih2u4")
+script = ExtResource("2_bvkne")
+minProgressColour = Color(0.78943765, 0.1839453, 0.29120913, 1)
+maxProgressColour = Color(3.85046e-07, 0.59185004, 0.7390872, 1)
+
+[node name="Stats" type="Label" parent="GUI" unique_id=423820328]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("4_x6kl1")
+
+[node name="WorldScene" type="Node2D" parent="." unique_id=563467010]
+
+[node name="Core" parent="WorldScene" unique_id=39129889 instance=ExtResource("3_ih2u4")]
+position = Vector2(1150, 313)
+
+[node name="Camera" type="Camera2D" parent="WorldScene" unique_id=701365482]
+limit_left = 0
+limit_top = 0
+limit_right = 1152
+limit_bottom = 648
