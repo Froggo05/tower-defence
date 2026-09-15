@@ -1,29 +1,38 @@
 extends CharacterBody2D
 class_name Unit
 
-
-
-
-#todo learn object pooling
-
 #important vars
-var damage: float = 1.0
-var health: float = 100.0
+
 var projectileScene: PackedScene
 var direction: Vector2
 var currentTarget: Enemy
+
+#exports 
+
+@export var damage: float = 1.0
+@export var health: float = 1.0
+
+@export var rotationSpeed: float = 0.5
+@export var projectilesPerShot: int = 1
+@export var projectileSpread: float = 75.0
+
 #clock settings
-@export var attackSpeed: float = 0.2
+
+@export var attackSpeed: float = 0.01
+
 var clock: float = 0.0
 var canAttack: bool = true
-
+var targetRotation: float
 
 func _physics_process(delta: float) -> void:
 	timer(delta)
 	if currentTarget == null:
 		updateTarget()
 		return
-	if canAttack:
+	else:
+		rotateToTarget(delta)
+		
+	if canAttack && rotation == targetRotation:
 		attack(currentTarget)
 
 
@@ -32,7 +41,6 @@ func _ready() -> void:
 
 
 func attack(target: Enemy)->void:
-	look_at(target.global_position)
 	fireProjectile(target.global_position)
 
 
@@ -62,6 +70,12 @@ func updateTarget()->void:
 		return
 	
 	currentTarget = Global.targetList[-1]
+
+func rotateToTarget(delta)->void:
+	if currentTarget != null:
+		direction = (currentTarget.global_position - global_position)
+		targetRotation = direction.angle()
+		rotation = rotate_toward(rotation, targetRotation, rotationSpeed * delta)
 
 func timer(delta)->void:
 	if canAttack:

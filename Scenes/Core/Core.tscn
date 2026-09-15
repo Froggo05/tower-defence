@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://m4llt3qg2jeo"]
 
 [ext_resource type="Script" uid="uid://dm8j8dqql1s2w" path="res://Scenes/Core/core.gd" id="1_fo4am"]
+[ext_resource type="Script" uid="uid://t72qlwccbuho" path="res://Scenes/Core/dangerZone.gd" id="2_a6qhf"]
 
 [sub_resource type="Gradient" id="Gradient_8frii"]
 offsets = PackedFloat32Array(0, 0.14047287, 0.2684284, 0.276, 0.308, 0.34, 0.4923505)
@@ -13,8 +14,9 @@ height = 512
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_axljd"]
-radius = 174.48495
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x758d"]
+radius = 90.0
+height = 894.0
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fo4am"]
 
@@ -29,12 +31,12 @@ texture_filter = 1
 texture = SubResource("GradientTexture2D_axljd")
 
 [node name="DangerZone" type="Area2D" parent="." unique_id=1520288360]
-visible = false
 collision_layer = 4
 collision_mask = 0
+script = ExtResource("2_a6qhf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DangerZone" unique_id=1494529893]
-shape = SubResource("CircleShape2D_axljd")
+shape = SubResource("CapsuleShape2D_x758d")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=972525124]
 position = Vector2(-57, 0)

@@ -4,7 +4,7 @@ var pool: Dictionary = {"basicProjectile" : []}
 @onready var basicProjectileScene = preload("uid://0ax2j8etcyia")
 
 func _ready() -> void:
-	initialisePool(2000, "basicProjectile")
+	initialisePool(10000, "basicProjectile")
 
 func initialisePool(amount: int, objectType: String)->void:
 	for i in range(amount):
@@ -17,7 +17,7 @@ func _getObject(objectType: String, damage: float, direction: Vector2, global_po
 	if pool[objectType] == []:
 		printerr("Pool '%s' is empty. Creating a new one (the size may be too small)" % objectType)
 		return
-		#initialisePool(1, objectType)
+
 	var newProjectile:Projectile = pool[objectType].pop_back()
 	newProjectile.global_position = global_position
 	_set_collisions(newProjectile, true)

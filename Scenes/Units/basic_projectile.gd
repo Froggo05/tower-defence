@@ -11,30 +11,27 @@ var damageTarget: Enemy
 
 @export var Ray: RayCast2D
 
+
 var lifeTime: float = 3.0
 var lifeClock: float = 0.0
 var runClock: bool = false
 
+
 func updateVelocity() -> void:
 	velocity = speed * direction
+
 
 func _process(delta: float) -> void:
 	timer(delta)
 	updateRay(delta)
 	updatePosition(delta)
 
-	
-
-
-
-#func _physics_process(delta: float) -> void:
-	#pass
-
 
 func updatePosition(delta):
 	#print("Pos: ",str(position), " Vel: ",str(velocity), " delta: ",str(delta))
 	position += velocity * delta
 	updateVelocity()
+
 
 func updateRay(delta)->void:
 	Ray.target_position = velocity * delta # relative value do not add its own position to itself again
@@ -58,6 +55,7 @@ func _start(newDamage: float, newDirection: Vector2)->void:
 	#speed = 2000.0
 	damage = newDamage
 	direction = newDirection
+	rotation = velocity.angle()
 	process_mode = Node.PROCESS_MODE_INHERIT
 	Global.projectileCount += 1
 	show()

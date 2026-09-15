@@ -13,16 +13,19 @@ var RightclickPressed:bool = false
 func _ready() -> void:
 	Global.currentHealthBar = guiHealthBar
 	Global.nextTarget = currentCore
+	Global.currentHealthBar._updateHealth(200.0)
 
 
 func _process(_delta: float) -> void:
 	pass
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	#print("L: ",LeftclickPressed, " R: ", RightclickPressed)
 	if LeftclickPressed:
+		LeftclickPressed = false
 		spawnUnit(get_global_mouse_position())
 	if RightclickPressed:
+		RightclickPressed = false
 		spawnEnemy(get_global_mouse_position())
 
 func _unhandled_input(event: InputEvent) -> void:

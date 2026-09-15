@@ -30,20 +30,18 @@ mouse_filter = 1
 [node name="GUIHealthBar" type="TextureProgressBar" parent="GUI" unique_id=1381564769]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 12
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -100.0
 offset_top = -26.0
-offset_right = 100.0
 grow_horizontal = 2
 grow_vertical = 0
 texture_progress = ExtResource("1_ih2u4")
 script = ExtResource("2_bvkne")
-minProgressColour = Color(0.78943765, 0.1839453, 0.29120913, 1)
-maxProgressColour = Color(3.85046e-07, 0.59185004, 0.7390872, 1)
+minProgressColour = Color(0.83513546, 0, 0.25823402, 1)
+maxProgressColour = Color(1.4439225e-06, 0.6448821, 0.25049123, 1)
+interpSpeed = 2.5
 
 [node name="Stats" type="Label" parent="GUI" unique_id=423820328]
 unique_name_in_owner = true

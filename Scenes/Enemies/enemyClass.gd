@@ -2,9 +2,10 @@ extends RigidBody2D
 class_name Enemy
 
 @export var hitbox: Area2D
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 var health = 1.0
-var damage = 1.0
+var damage = 2.0
 var isTargeted: bool = false
 var direction: Vector2 = Vector2(1.0, 0)
 
@@ -73,8 +74,8 @@ func _target()->void:
 	isTargeted = true
 
 
-func _attack_range_entered(_area: Area2D) -> void:
+func _attack_range_entered(area: Area2D) -> void:
 	#attack the hitbox in range
-	#if area is Hitbox:
-		#attack(area)
-		pass
+	if area.has_method("_getHit"):
+		sprite.play()
+		area._getHit(damage)

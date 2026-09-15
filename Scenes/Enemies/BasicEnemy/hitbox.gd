@@ -1,7 +1,7 @@
 extends Area2D
 class_name Hitbox
 
-@onready var ParentEnemy: Enemy = $".."
+@onready var Parent: Node2D = $".."
 
 func _getHit(damage: float)->void:
-	ParentEnemy._takeDamage(damage)
+	Parent._takeDamage(damage)

@@ -1,17 +1,7 @@
 [gd_scene format=3 uid="uid://0ax2j8etcyia"]
 
 [ext_resource type="Script" uid="uid://bupyg6c3de4m5" path="res://Scenes/Units/basic_projectile.gd" id="1_vr1wd"]
-
-[sub_resource type="Gradient" id="Gradient_0a2ta"]
-offsets = PackedFloat32Array(0.1682243, 0.26635513, 0.3995327, 1)
-colors = PackedColorArray(0.99999994, 0.18986532, 0.5779493, 1, 1, 1, 1, 0.5803922, 0, 0, 0, 0, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_vr1wd"]
-gradient = SubResource("Gradient_0a2ta")
-width = 256
-height = 256
-fill = 1
-fill_from = Vector2(0.5, 0.5)
+[ext_resource type="Texture2D" uid="uid://fgvjef64pacq" path="res://Scenes/Units/Textures/Arrow.png" id="2_whhts"]
 
 [sub_resource type="Gradient" id="Gradient_vi3op"]
 
@@ -26,8 +16,9 @@ script = ExtResource("1_vr1wd")
 Ray = NodePath("RayCast2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1789567249]
-scale = Vector2(0.1, 0.1)
-texture = SubResource("GradientTexture2D_vr1wd")
+texture_filter = 1
+scale = Vector2(7, 7)
+texture = ExtResource("2_whhts")
 
 [node name="ForwardMark" type="Sprite2D" parent="Sprite2D" unique_id=205632568]
 visible = false
