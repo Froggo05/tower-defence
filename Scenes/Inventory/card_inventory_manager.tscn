@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bgqvb6gq07m85"]
+
+[ext_resource type="Script" uid="uid://cj47idvqk5yj2" path="res://Scenes/Inventory/card_inventory_manager.gd" id="1_6bmq2"]
+
+[node name="CardInventoryManager" type="Control" unique_id=759476098 node_paths=PackedStringArray("slotContainer")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6bmq2")
+slotContainer = NodePath("SlotContainer")
+metadata/_edit_use_anchors_ = true
+
+[node name="SlotContainer" type="GridContainer" parent="." unique_id=1938667848]
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true

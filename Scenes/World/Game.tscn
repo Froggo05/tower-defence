@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://cbehnju1nbo8d" path="res://Scenes/World/fortress_health_bar.gd" id="2_bvkne"]
 [ext_resource type="PackedScene" uid="uid://m4llt3qg2jeo" path="res://Scenes/Core/Core.tscn" id="3_ih2u4"]
 [ext_resource type="Script" uid="uid://7bi3v0m038kw" path="res://Scenes/World/stats.gd" id="4_x6kl1"]
+[ext_resource type="PackedScene" uid="uid://bgqvb6gq07m85" path="res://Scenes/Inventory/card_inventory_manager.tscn" id="5_m3ec3"]
+[ext_resource type="PackedScene" uid="uid://crlm24wlk5oc0" path="res://Scenes/Inventory/Slot/slot.tscn" id="8_p2obh"]
 
 [node name="Game" type="Control" unique_id=1126262729 node_paths=PackedStringArray("currentCore", "worldScene")]
 layout_mode = 3
@@ -49,6 +51,22 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 script = ExtResource("4_x6kl1")
+
+[node name="CardInventoryManager" parent="GUI" unique_id=759476098 instance=ExtResource("5_m3ec3")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.47916666
+anchor_top = 0.5833333
+anchor_right = 0.47916666
+anchor_bottom = 0.5833333
+grow_vertical = 0
+
+[node name="Slot" parent="GUI" unique_id=1619604147 instance=ExtResource("8_p2obh")]
+layout_mode = 0
+offset_left = -235.0
+offset_top = 103.0
+offset_right = -157.0
+offset_bottom = 163.0
 
 [node name="WorldScene" type="Node2D" parent="." unique_id=563467010]
 

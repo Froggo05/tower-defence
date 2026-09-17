@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardResource" format=3 uid="uid://dn3fm2ms2eumr"]
+
+[ext_resource type="Script" uid="uid://cp5ipcea517nl" path="res://Scenes/Inventory/Cards/cardResources/CardResource.gd" id="1_ylv8g"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_ylv8g")
+stats = {
+"Damage": 1.0,
+"Health": 100.0,
+"Value": 10
+}
+size = Vector2i(4, 2)
+metadata/_custom_type_script = "uid://cp5ipcea517nl"
