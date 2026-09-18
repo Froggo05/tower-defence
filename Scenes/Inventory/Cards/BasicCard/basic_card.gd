@@ -6,17 +6,21 @@ extends Node2D
 @export var damageLabel: Label
 @export var valueLabel: Label
 @export var moveFactor: float = 5.0
+var cellPosition: Vector2i #Represents where the top left cell is stored
+var targetPosition: Vector2
+var pickedUp: bool = false
 
-var targetPosition
-
-func _startup(centerPos: Array = [Vector2.ZERO]) -> void:
+func _startup(centerPos: Array = [Vector2.ZERO], invPos: Vector2i = Vector2i.ZERO) -> void:
 	var posTotal:Vector2 = Vector2.ZERO
 	for pos in centerPos:
 		posTotal += pos
-	posTotal /= centerPos.size()
-	position.x = posTotal.x
-	position.y = -100
+	posTotal = posTotal/centerPos.size()
+	print(posTotal)
+	global_position.x = posTotal.x
+	global_position.y = -100.0
+	print(global_position)
 	targetPosition = posTotal
+	data.invPos = invPos
 
 func _ready() -> void:
 	damageLabel.text = str(data.stats["Damage"])
@@ -24,8 +28,6 @@ func _ready() -> void:
 	valueLabel.text = str(data.stats["Value"])
 
 func _process(delta: float) -> void:
-	if position == targetPosition:
-		return
-	if targetPosition == null:
-		return
-	position.move_toward(targetPosition, delta * moveFactor)
+	if !pickedUp && global_position != targetPosition:
+		global_position = global_position.lerp(targetPosition, delta * moveFactor)
+	

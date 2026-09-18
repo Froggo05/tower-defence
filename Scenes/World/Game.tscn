@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://m4llt3qg2jeo" path="res://Scenes/Core/Core.tscn" id="3_ih2u4"]
 [ext_resource type="Script" uid="uid://7bi3v0m038kw" path="res://Scenes/World/stats.gd" id="4_x6kl1"]
 [ext_resource type="PackedScene" uid="uid://bgqvb6gq07m85" path="res://Scenes/Inventory/card_inventory_manager.tscn" id="5_m3ec3"]
-[ext_resource type="PackedScene" uid="uid://crlm24wlk5oc0" path="res://Scenes/Inventory/Slot/slot.tscn" id="8_p2obh"]
 
 [node name="Game" type="Control" unique_id=1126262729 node_paths=PackedStringArray("currentCore", "worldScene")]
 layout_mode = 3
@@ -52,25 +51,40 @@ offset_right = 40.0
 offset_bottom = 23.0
 script = ExtResource("4_x6kl1")
 
+[node name="Label" type="Label" parent="GUI" unique_id=252690111]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 378.0
+offset_right = 43.0
+offset_bottom = 401.0
+
+[node name="AddCardButton" type="Button" parent="GUI" unique_id=353569280]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -4.0
+offset_bottom = 4.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Add Card"
+
 [node name="CardInventoryManager" parent="GUI" unique_id=759476098 instance=ExtResource("5_m3ec3")]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.47916666
-anchor_top = 0.5833333
-anchor_right = 0.47916666
-anchor_bottom = 0.5833333
-grow_vertical = 0
-
-[node name="Slot" parent="GUI" unique_id=1619604147 instance=ExtResource("8_p2obh")]
-layout_mode = 0
-offset_left = -235.0
-offset_top = 103.0
-offset_right = -157.0
-offset_bottom = 163.0
+anchor_left = 0.5
+anchor_top = 0.77160496
+anchor_right = 0.5
+anchor_bottom = 0.77160496
 
 [node name="WorldScene" type="Node2D" parent="." unique_id=563467010]
 
 [node name="Core" parent="WorldScene" unique_id=39129889 instance=ExtResource("3_ih2u4")]
+visible = false
 position = Vector2(1150, 313)
 
 [node name="Camera" type="Camera2D" parent="WorldScene" unique_id=701365482]
@@ -78,3 +92,5 @@ limit_left = 0
 limit_top = 0
 limit_right = 1152
 limit_bottom = 648
+
+[connection signal="pressed" from="GUI/AddCardButton" to="GUI/CardInventoryManager" method="_on_button_pressed"]

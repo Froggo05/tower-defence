@@ -5,7 +5,8 @@ extends Resource
 @export var size: Vector2i = Vector2i(1, 2)
 @export var tier: int = 0
 @export var invPos: Vector2i = Vector2i.ZERO
-var scene: PackedScene
+@export var stackSize: int = 10
 
+var scene: PackedScene
 func _init() -> void:
 	scene = load("uid://c5mkw4xmmuod1")

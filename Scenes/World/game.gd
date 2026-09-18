@@ -9,6 +9,7 @@ var RightclickPressed:bool = false
 
 #onreadys
 @onready var guiHealthBar: Control = %GUIHealthBar
+@onready var mousePosLabel: Label = $GUI/Label
 
 func _ready() -> void:
 	Global.currentHealthBar = guiHealthBar
@@ -27,6 +28,8 @@ func _physics_process(_delta: float) -> void:
 	if RightclickPressed:
 		RightclickPressed = false
 		spawnEnemy(get_global_mouse_position())
+	mousePosLabel.text = str(get_global_mouse_position())
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	mouseInput(event)
@@ -61,3 +64,7 @@ func spawnEnemy(spawnPosition: Vector2):
 func changeObservedCore(newCore)->void:
 	currentCore = newCore
 	Global.currentHealthBar._changeObserved(newCore.health)
+
+
+func _on_button_pressed() -> void:
+	pass # Replace with function body.
