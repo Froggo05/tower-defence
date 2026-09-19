@@ -27,6 +27,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="GUIHealthBar" type="TextureProgressBar" parent="GUI" unique_id=1381564769]
 unique_name_in_owner = true
@@ -90,7 +91,7 @@ position = Vector2(1150, 313)
 [node name="Camera" type="Camera2D" parent="WorldScene" unique_id=701365482]
 limit_left = 0
 limit_top = 0
-limit_right = 1152
-limit_bottom = 648
+limit_right = 1920
+limit_bottom = 1080
 
 [connection signal="pressed" from="GUI/AddCardButton" to="GUI/CardInventoryManager" method="_on_button_pressed"]

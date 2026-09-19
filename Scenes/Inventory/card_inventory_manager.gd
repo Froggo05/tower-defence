@@ -1,7 +1,7 @@
-class_name CardInventoryManager
+class_name CardInventoryManager extends Control
 
-extends Control
-
+@warning_ignore_start("unused_variable") 
+@warning_ignore_start("unused_parameter")
 
 @onready var SlotScene = preload("uid://crlm24wlk5oc0")
 @onready var basicCard: CardBase = preload("uid://c5mkw4xmmuod1").instantiate()
@@ -11,18 +11,38 @@ var Inventory: Array = []
 var columns: int = 10
 var rows: int = 4
 
+
 var pickupSlot: CardBase:
-	set(value):
-		value.pickedUp = true
-		pickupSlot = value
+	set(newCard):
+		if newCard == null:
+			pickupSlot.pickedUp = false
+			pickupSlot = newCard
+			return
+		else:
+			newCard.pickedUp = true
+			pickupSlot = newCard
 	get():
 		return pickupSlot
 
-var currentCell: Vector2i
+var hoveredCell: Vector2i:
+	set(value):
+		#print("hoveredCellChanged", value)
+		hoveredCell = value
+	get():
+		return hoveredCell
 
 @export var slotContainer: GridContainer
-
 @export var cardDragFactor: float = 5.0
+
+
+enum SLOT {
+	OUTOFBOUNDS = -1,
+	FULL = 0,
+	EMPTY = 1,
+	COMBINE = 2,
+	STACKABLE = 3
+}
+
 
 func _process(delta: float) -> void:
 	if pickupSlot != null:
@@ -52,35 +72,37 @@ func loadCells()->void:
 			var newSlot: InventorySlot = SlotScene.instantiate()
 			Inventory[column][row] = newSlot
 			slotContainer.add_child(newSlot, true)#force readableName
+			
 			newSlot.mousePressed.connect(_on_cell_pressed)
 			newSlot.mouseHovered.connect(_on_cell_hovered)
+			newSlot.mouseReleased.connect(_on_cell_released)
+			
 			newSlot.slotPosition = Vector2i(column, row)
 			newSlot.label.text = newSlot.name
-			print(newSlot.global_position)
-	print(Inventory)
+			#print(newSlot.global_position)
+	#print(Inventory)
 
 
-func checkSlots(card: CardBase, inventoryPos: Vector2i)->int:
-	var data = card.data
-	if (inventoryPos + card.data.size) > Vector2i(columns, rows):
-		push_error("Inventory Check Failed | outside of bounds | InvPos: ", card.data.size + inventoryPos)
-		return -1 #out of bounds
+func checkSlots(cellPosition: Vector2i, data: CardResource)->SLOT:
+	var cardMaxBounds: Vector2i = (cellPosition + data.size)
+	if cardMaxBounds.x > columns or cardMaxBounds.y > rows:
+		return SLOT.OUTOFBOUNDS
 	
-	for y in range(card.cellPosition.y ,card.cellPosition.y + (card.data.size.y - 1)):
-		for x in range(card.cellPosition.x ,card.cellPosition.x + (card.data.size.x - 1)):
+	for y in range(cellPosition.y ,cellPosition.y + (data.size.y - 1)):
+		for x in range(cellPosition.x , cellPosition.x + (data.size.x - 1)):
 			if Inventory[x][y].hasCard:
-				if Inventory[x][y].card.data.tier == card.data.tier && not Inventory[x][y].card.data == card.data:
-					return 2 #can combine
-				elif Inventory[x][y].card.data == card.data:
-					if card.data.canStack > 1:
-						return 3 # can stack
-						#stackCard(Vector2i(x, y), card)
+				if Inventory[x][y].card.data.tier == data.tier && not Inventory[x][y].card.data == data:
+					return SLOT.COMBINE
+				elif Inventory[x][y].card.data == data:
+					if data.stackSize > 1:
+						return SLOT.STACKABLE
 				elif Inventory[x][y].card != null:
-					return 0 #has card
-	return 1 #empty
+					push_warning("INVENTORYSLOT IS FULL", Vector2i(x, y))
+					return SLOT.FULL
+	return SLOT.EMPTY
 
 
-func stackCard(cellPos: Vector2i, card: CardBase)->void:
+func stackCard(cellPos: Vector2i)->void:
 	if Inventory[cellPos.x][cellPos.y].canStack():
 		Inventory[cellPos.x][cellPos.y].stackCount += 1
 	else:
@@ -88,107 +110,116 @@ func stackCard(cellPos: Vector2i, card: CardBase)->void:
 		return
 
 
-func removeCard(inventoryPos: Vector2i, card: CardBase)->void:
-	var data = card.data
-	if (inventoryPos + card.data.size) > Vector2i(columns, rows):
-		push_error("Cannot place card outside of bounds | InvPos: ", card.data.size + inventoryPos)
+func removeCard(cellPosition: Vector2i, card: CardBase)->void:
+	if checkSlots(cellPosition, card.data) == SLOT.OUTOFBOUNDS:
+		push_error("Cannot Remove Card Out of Bounds")
 		return
-	
-	for x in range(card.cellPosition.x ,card.cellPosition.x + card.data.size.x):
-		for y in range(card.cellPosition.y ,card.cellPosition.y + card.data.size.y):
-			if Inventory[x][y].card != card:
-				push_error("Card is not in postion: ", inventoryPos) 
-			else:
-				Inventory[x][y].removeData()
+
+	for x in range(cellPosition.x , cellPosition.x + card.data.size.x):
+		for y in range(cellPosition.y ,cellPosition.y + card.data.size.y):
+				Inventory[x][y].removeCardInSlot()
+
+
+
 
 
 func combineCards(card: CardBase, inventoryPos: Vector2i, cardTarget: CardBase)->void:
 	pass
 
 
-func addCard(inventoryPos: Vector2i, card: CardBase)->void:
-	if (inventoryPos + card.data.size) > Vector2i(columns, rows):
-		push_error("Cannot place card outside of bounds | InvPos: ", card.data.size + inventoryPos)
-		return
-	
-	#check if the section has card in it already
-	for y in range(card.cellPosition.y ,card.cellPosition.y + card.data.size.y):
-		for x in range(card.cellPosition.x ,card.cellPosition.x + card.data.size.x):
-			if Inventory[x][y].hasCard:
-				push_error("CardAlreadyInSlot: ", Vector2i(x,y), " | InvPos: ", inventoryPos)
-				return
-	
+func setCardPos(cardPosition: Vector2i, card: CardBase)->void:
+	var cardSize = card.data.size
 	var centerPosArr = []
-	for y in range(card.cellPosition.y ,card.cellPosition.y + card.data.size.y):
-		for x in range(card.cellPosition.x ,card.cellPosition.x + card.data.size.x):
+	for y in range(cardPosition.y ,cardPosition.y + cardSize.y):
+		for x in range(cardPosition.x, cardPosition.x + cardSize.x):
+			print("Set card to, ", Vector2i(x, y))
 			Inventory[x][y].card = card
 			centerPosArr.append(Inventory[x][y].getCenterPoint())
-			print("Added card at: ", Vector2i(x,y))
-	
+			#print("Added card at: ", Vector2i(x,y))
+	card.moveCard(centerPosArr, cardPosition)
 
 
+#add card to a position in the inventory
+func addCard(newCellPosition: Vector2i, card: CardBase)->void:
+	var check = checkSlots(newCellPosition, card.data)
+	#print(check)
+	if check == SLOT.OUTOFBOUNDS:
+		push_error("Cannot Add Card Out of Bounds")
+		print_stack()
+		return
+	#check if the section has card in it already
+	if  check == SLOT.EMPTY:
+		setCardPos(newCellPosition, card)
 
-func addToEmpty(card: CardBase)->void:
+
+func addToEmpty(resource: CardResource)->void:
 	for y in range(rows):
 		for x in range(columns):
 			if !Inventory[x][y].hasCard:
-				var result = checkSlots(card, Vector2i(x,y))
-				if result == 1: #clear slot
-					setCard(Vector2i(x,y), card.data)
+				var check = checkSlots(Vector2i(x,y), resource)
+				if check == SLOT.EMPTY:
+					createCard(Vector2i(x,y), CardResource.new())
 					return
-	push_error("Inventory full.")
+	push_warning("Inventory full.")
 
 
-func _on_cell_pressed(invPosition: Vector2i, card: CardBase)->void:
-	pickupCard(invPosition, card)
-
-
-func _on_cell_released(invPosition: Vector2i, card: CardBase)->void:
-	placeCard(invPosition, card)
-#TODO: MAKE IT  SO WHEN THE TRAnsition would haPPEN like the tile is hovered and you release the drag the card gets placed in that slot but not before. if the drag is released then let it return to the old position.
-
-func _on_cell_hovered(cellPosition: Vector2i)->void:
-	currentCell = cellPosition
-	print(currentCell)
-
-
-func setCard(cellPosition: Vector2i, data: CardResource) -> CardBase:
+func createCard(cellPosition: Vector2i, data: CardResource) -> CardBase:
 	
-	var newCard: CardBase = data.scene.instantiate()
-	add_child(newCard)
-	
-	if (cellPosition + data.size) > Vector2i(columns, rows):
-		push_error("Cannot place card outside of bounds | InvPos: ", data.size + cellPosition )
+
+	if checkSlots(cellPosition, data) != SLOT.EMPTY:
+		push_error("CardAlreadyInSlot: ", cellPosition)
 		return
 	
-	#check if the section has card in it already
-	for y in range(cellPosition.y , cellPosition.y + data.size.y):
-		for x in range(cellPosition.x , cellPosition.x + data.size.x):
-			if Inventory[x][y].hasCard:
-				push_error("CardAlreadyInSlot: ", Vector2i(x,y), " | InvPos: ", cellPosition )
-				return
-	
+	var newCard: CardBase = data.scene.instantiate()
+
 	var centerPosArr = []
 	for y in range(cellPosition.y ,cellPosition.y + data.size.y):
 		for x in range( cellPosition.x , cellPosition.x + data.size.x):
 			Inventory[x][y].card = newCard
 			centerPosArr.append(Inventory[x][y].getCenterPoint())
-			print("Added card at: ", Vector2i(x,y))
-		
+			#print("Added card at: ", Vector2i(x,y))
+	
+	add_child(newCard)
 	newCard._startup(centerPosArr, cellPosition) #ALWAYS ADD TO SCENE BEFORE SETTING VALUES LIKE GLOBAL POS BECAUSE OTHERWISE THEY WILL BE NONSENSE
-	print(newCard)
+	#print(newCard)
 	return newCard
+
+
+
+func _on_cell_hovered(cellPosition: Vector2i)->void: hoveredCell = cellPosition
+func _on_cell_pressed(invPosition: Vector2i, card: CardBase)->void: pickupCard(invPosition, card)
+func _on_cell_released()->void:
+	if pickupSlot == null:
+		return
+	if checkSlots(hoveredCell, pickupSlot.data) == SLOT.OUTOFBOUNDS:
+		#check if slots above are clear (-1 for array allignment with size)
+		if checkSlots(hoveredCell- Vector2i(0, pickupSlot.data.size.y -1), pickupSlot.data) == SLOT.EMPTY:
+			hoveredCell -=  Vector2i(0, pickupSlot.data.size.y -1)
+			placeCard()
+			return
+		
+	if hoveredCell == Vector2i(-1,-1) or hoveredCell == pickupSlot.cellPosition :
+		dropCard()
+		return	
+
+	placeCard()
+
+
+
 
 
 func pickupCard(invPosition: Vector2i , card :CardBase)->void:
 	pickupSlot = card
-	removeCard(invPosition, card)
 
 
-func placeCard(invPosition: Vector2i, card: CardBase)->void:
+func placeCard()->void:
+	removeCard(pickupSlot.cellPosition, pickupSlot)
+	addCard(hoveredCell, pickupSlot)
 	pickupSlot = null
-	placeCard(invPosition, card)
 
+
+func dropCard()->void:
+	pickupSlot = null
 
 func _on_button_pressed() -> void:
-	addToEmpty(basicCard)
+	addToEmpty(CardResource.new())
