@@ -1,6 +1,11 @@
 extends Node2D
 
 class_name Projectile
+#flags
+var oneShot: bool = true
+var active :bool = false
+var needsLoading:bool = false
+#important vars
 var type: String = "basicProjectile"
 var velocity: Vector2
 var moveSpeed: float = 1000.0
@@ -14,52 +19,100 @@ var direction: Vector2
 @export var projectileMaxHeight: float
 @export var axisCorrectionCurve: Curve
 @export var speedCurve: Curve
+@export var fadeRate: float = 5.0
 
+@export var shadowSprite: Sprite2D
+@export var sprite: Sprite2D
+
+#sprite manipulation vars
 var percentageFromTarget: float = 0.0
 var trajectoryRange: Vector2 = Vector2.ZERO
 var startPos: Vector2 = Vector2.ZERO
 var target: Enemy
 var targetGlobalPosition: Vector2
+var nextPosition: Vector2
+var lastPosition: Vector2
+var nextPositionYCorrection: float 
+
 #clock
 var lifeTime: float = 3.0
 var lifeClock: float = 0.0
 var runClock: bool = false
 
 
-func _start(newDamage: float, newTarget: Enemy, globalPos: Vector2)->void:
+func _start(newDamage: float, newTarget: Enemy, spawnPosition: Vector2)->void:
+	process_mode = Node.PROCESS_MODE_INHERIT
+	active = false
 	startClock()
-	#newSpeed: float,
-	#speed = 2000.0
 	damage = newDamage
 	target = newTarget
-	global_position = globalPos
-	startPos = global_position
-	#print("projStartPos:", startPos)
-	process_mode = Node.PROCESS_MODE_INHERIT
-	Global.projectileCount += 1
-	show()
 
+	startPos = spawnPosition
+	#updatePosition(0.001)
+	#print("projStartPos:", startPos)
+	Global.projectileCount += 1
+	needsLoading = true
+	active = false
 
 func _reset()->void:
 	stopClock()
 	hide()
+	active = false
 	#speed = 0
 	damage = 0
-	direction = Vector2.ZERO
 	position = Vector2.ZERO
 	percentageFromTarget = 0.0
 	trajectoryRange = Vector2.ZERO
 	target = null
+	nextPosition = Vector2.ZERO
 	process_mode = Node.PROCESS_MODE_DISABLED
 	Global.projectileCount -=1
+	
 
 
-func _process(delta: float) -> void:
-	timer(delta) 
-	updatePosition(delta)
+func _physics_process(delta: float) -> void:
+	if needsLoading:
+		oneShot = true
+		needsLoading = false
+		global_position = startPos
+		reset_physics_interpolation()
+		await get_tree().physics_frame
+		show() # needed to be called on the next frame? otherwise the streaking was happening due to physics interp which is good still.
+		active = true
+	
+	
+	if active:
+		timer(delta) 
+		updateRotation()
+		updatePosition(delta)
+	else:
+		fadeOut(delta)
+	
+	if !active and oneShot:
+		oneShot = false
+		PoolManager._set_collisions(self, true)
 
 
-func calucluateNextPos(delta)->Vector2:
+func fadeOut(delta)->void:
+	modulate.a = move_toward(modulate.a, 0.0, delta)
+
+func updateRotation()->void: # run before update postioin so global position = last position still
+	direction = (nextPosition-lastPosition).normalized()
+	sprite.rotation = direction.angle()
+	#print(sprite.rotation)
+
+
+func updatePosition(delta):
+	if target != null:
+		targetGlobalPosition = target.global_position
+	calucluateNextPos(delta)
+	updateShadow()
+	updateRay()
+	
+
+
+
+func calucluateNextPos(delta)->void:
 	trajectoryRange = targetGlobalPosition - startPos
 	var distanceTo = targetGlobalPosition.x - startPos.x
 	var projectileMaxRelativeHeight = abs(distanceTo) * projectileMaxHeight
@@ -67,32 +120,37 @@ func calucluateNextPos(delta)->Vector2:
 	var nextPositionXNormalised = (nextPositionX - startPos.x)/trajectoryRange.x
 	var nextYPosNormalised = -movementCurve.sample(nextPositionXNormalised)
 	var nextPositionYCorrectionNormalised = -axisCorrectionCurve.sample(nextPositionXNormalised)
-	var nextPositionYCorrectionAbsolute = nextPositionYCorrectionNormalised * trajectoryRange.y
-	var nextPositionY = (nextYPosNormalised * projectileMaxRelativeHeight) + startPos.y - nextPositionYCorrectionAbsolute
-	var nextPostion = Vector2(nextPositionX, nextPositionY)
+	nextPositionYCorrection = nextPositionYCorrectionNormalised * trajectoryRange.y
+	var nextPositionY = (nextYPosNormalised * projectileMaxRelativeHeight) + startPos.y - nextPositionYCorrection
+	nextPosition = Vector2(nextPositionX, nextPositionY)
 	
-	calucluateNextSpeed(nextPositionXNormalised)
-	
-	if snappedf(nextPositionXNormalised, 0.01) == 1.0:
-		#fadeOut()
-		return global_position
-	
-	return nextPostion
 
-func calucluateNextSpeed(nextPositionXNormalised: float)->void:
+	updateNextSpeed(nextPositionXNormalised)
+	
+	if snappedf(nextPositionXNormalised, 0.01) >= 1.0:
+		active = false
+		return    
+	lastPosition = global_position  
+	global_position = nextPosition
+
+
+
+func updateShadow()->void:
+	shadowSprite.global_position.x = nextPosition.x - 30
+	shadowSprite.global_position.y = startPos.y - nextPositionYCorrection
+
+	shadowSprite.scale.x = sprite.scale.x * abs(direction.dot((Vector2.UP+ 2*Vector2.RIGHT).normalized()))
+	print(shadowSprite.scale.x)
+	print(direction.dot((Vector2.UP+2*Vector2.RIGHT).normalized()))
+func updateNextSpeed(nextPositionXNormalised: float)->void:
 	var nextMoveSpeedNormalised = speedCurve.sample(nextPositionXNormalised)
+	if trajectoryRange.x < 0:
+		nextMoveSpeedNormalised = -nextMoveSpeedNormalised
 	moveSpeed = nextMoveSpeedNormalised * maxMoveSpeed
 
-func updatePosition(delta):
-	if target != null:
-		targetGlobalPosition = target.global_position
-	
-	global_position = calucluateNextPos(delta)
-	updateRay(delta)
 
-
-func updateRay(delta)->void:
-	Ray.target_position = to_local(calucluateNextPos(delta))
+func updateRay()->void:
+	Ray.target_position = to_local(nextPosition)
 	Ray.force_raycast_update()
 	attackTarget()
 

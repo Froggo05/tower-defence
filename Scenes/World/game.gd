@@ -23,10 +23,10 @@ func _process(_delta: float) -> void:
 func _physics_process(_delta: float) -> void:
 	#print("L: ",LeftclickPressed, " R: ", RightclickPressed)
 	if LeftclickPressed:
-		#LeftclickPressed = false
+		LeftclickPressed = false
 		spawnUnit(get_global_mouse_position())
 	if RightclickPressed:
-		#RightclickPressed = false
+		RightclickPressed = false
 		spawnEnemy(get_global_mouse_position())
 	mousePosLabel.text = str(get_global_mouse_position())
 

@@ -30,7 +30,8 @@ func _physics_process(delta: float) -> void:
 		updateTarget()
 		return
 	else:
-		rotateToTarget(delta)
+		pass
+		#rotateToTarget(delta)
 		
 	if canAttack && rotation == targetRotation:
 		attack(currentTarget)

@@ -18,18 +18,29 @@ point_count = 3
 [sub_resource type="CircleShape2D" id="CircleShape2D_axljd"]
 radius = 29.017237
 
-[node name="BasicProjectile" type="Node2D" unique_id=94788006 node_paths=PackedStringArray("Ray")]
+[node name="BasicProjectile" type="Node2D" unique_id=94788006 node_paths=PackedStringArray("Ray", "shadowSprite", "sprite")]
 script = ExtResource("1_vr1wd")
 Ray = NodePath("RayCast2D")
 movementCurve = SubResource("Curve_whhts")
 projectileMaxHeight = 0.3
 axisCorrectionCurve = SubResource("Curve_83rr5")
 speedCurve = SubResource("Curve_sldn5")
+shadowSprite = NodePath("Shadow")
+sprite = NodePath("Sprite")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1789567249]
+[node name="Shadow" type="Sprite2D" parent="." unique_id=965375364]
+modulate = Color(0, 0, 0, 0.73333335)
+z_index = -1
 texture_filter = 1
-scale = Vector2(7, 7)
+position = Vector2(-3.0000005, 0)
+scale = Vector2(7.2000003, 5.5833335)
 texture = ExtResource("2_whhts")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1789567249]
+texture_filter = 1
+scale = Vector2(6.9999995, 6.9999995)
+texture = ExtResource("2_whhts")
+flip_h = true
 
 [node name="Attackbox" type="Area2D" parent="." unique_id=1183665927]
 visible = false
