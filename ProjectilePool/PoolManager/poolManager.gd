@@ -4,7 +4,7 @@ var pool: Dictionary = {"basicProjectile" : []}
 @onready var basicProjectileScene = preload("uid://0ax2j8etcyia")
 
 func _ready() -> void:
-	initialisePool(10000, "basicProjectile")
+	initialisePool(2000, "basicProjectile")
 
 func initialisePool(amount: int, objectType: String)->void:
 	for i in range(amount):
@@ -13,17 +13,16 @@ func initialisePool(amount: int, objectType: String)->void:
 		pool[objectType].append(newProjectile)
 
 
-func _getObject(objectType: String, damage: float, direction: Vector2, global_position: Vector2) -> void:
+func _getObject(objectType: String, damage: float, _direction: Vector2, global_position: Vector2, target: Enemy) -> void:
 	if pool[objectType] == []:
 		printerr("Pool '%s' is empty. Creating a new one (the size may be too small)" % objectType)
 		return
 
 	var newProjectile:Projectile = pool[objectType].pop_back()
-	newProjectile.global_position = global_position
-	_set_collisions(newProjectile, true)
 	
+	_set_collisions(newProjectile, true)
 	add_child.call_deferred(newProjectile)
-	newProjectile._start(damage, direction)
+	newProjectile.call_deferred("_start", damage, target, global_position)
 
 
 func _returnObject(object: Projectile)->void:

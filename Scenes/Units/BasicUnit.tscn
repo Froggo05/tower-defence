@@ -228,11 +228,9 @@ animations = [{
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_6kvvk"]
 gradient = SubResource("Gradient_78lln")
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_whhts"]
-radius = 52.009613
-
 [node name="BasicUnit" type="CharacterBody2D" unique_id=1211809047]
 script = ExtResource("1_3ptfe")
+attackSpeed = 2.0
 
 [node name="EnemyCollider" type="CollisionShape2D" parent="." unique_id=1327838859]
 position = Vector2(-1, 0)
@@ -254,11 +252,11 @@ scale = Vector2(0.5, 0.09375)
 texture = SubResource("GradientTexture2D_6kvvk")
 
 [node name="AttackRange" type="Area2D" parent="." unique_id=2142669396]
-visible = false
 collision_layer = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange" unique_id=666868868]
-position = Vector2(54, 0)
-shape = SubResource("CircleShape2D_whhts")
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="AttackRange" unique_id=1403742310]
+polygon = PackedVector2Array(0, 0, 1000, 500, 1000, -500)
 
 [node name="AttackTimer" type="Timer" parent="." unique_id=167258846]
+
+[connection signal="area_entered" from="AttackRange" to="." method="_on_attack_range_area_entered"]

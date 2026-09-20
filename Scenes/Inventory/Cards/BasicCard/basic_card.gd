@@ -21,10 +21,10 @@ func _startup(centerPos: Array = [Vector2.ZERO], invPos: Vector2i = Vector2i.ZER
 	for pos in centerPos:
 		posTotal += pos
 	posTotal = posTotal/centerPos.size()
-	print(posTotal)
+	#print(posTotal)
 	global_position.x = posTotal.x
 	global_position.y = -100.0
-	print(global_position)
+	#print(global_position)
 	targetPosition = posTotal
 	
 	data.invPos = invPos

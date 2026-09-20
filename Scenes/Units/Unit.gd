@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Unit
 
 #important vars
-
+var targetList: Array[Enemy] = []
 var projectileScene: PackedScene
 var direction: Vector2
 var currentTarget: Enemy
@@ -41,35 +41,48 @@ func _ready() -> void:
 
 
 func attack(target: Enemy)->void:
-	fireProjectile(target.global_position)
+	fireProjectile(target)
+	currentTarget = null
 
-
-func fireProjectile(targetPosition: Vector2)->void:
+func fireProjectile(target: Enemy)->void:
 	
-	var newProj: Projectile = projectileScene.instantiate()
+	direction = global_position.direction_to(target.global_position)
 	
-	newProj.direction = global_position.direction_to(targetPosition)
-	newProj.global_position = global_position
-	newProj.damage = damage
-	newProj.applyImpulse()
-	
-	get_tree().current_scene.add_child.call_deferred(newProj)
+	if projectilesPerShot > 1:
+		var firingDirection = direction
+		firingDirection = firingDirection.rotated(deg_to_rad(-(projectileSpread/2)))
+		var angleBetween = projectileSpread/(projectilesPerShot-1)
+		#print("Angle between " , angleBetween)
+		
+		for projectileNum in range(projectilesPerShot):
+			#print("# ",projectileNum, " Current Angle: ",  angleBetween*projectileNum)
+			PoolManager._getObject("basicProjectile", damage, firingDirection.rotated(deg_to_rad(angleBetween*projectileNum)), global_position, target)
+	else:
+		PoolManager._getObject("basicProjectile", damage, direction, global_position, target)
 	canAttack = false
-
+	#print("Unit globalPos: ", global_position)
 
 func reload()->void:
 	pass
 
 
 func updateTarget()->void:
-	if Global.targetList == []:
+	var tempList:Array[Enemy] = []
+	for target in targetList:
+		
+		if target != null:
+			tempList.append(target)
+	targetList = tempList
+		
+	if targetList == []:
+		#print("Target list empty for some reason")
 		return
+
 	
-	if Global.targetList[-1] == null:
-		Global.targetList.remove_at(-1)
-		return
-	
-	currentTarget = Global.targetList[-1]
+	targetList.sort_custom(func(a: Enemy, b: Enemy)->bool: return global_position.distance_squared_to(a.global_position) > global_position.distance_squared_to(b.global_position))
+
+	currentTarget = targetList.pop_back()
+
 
 func rotateToTarget(delta)->void:
 	if currentTarget != null:
@@ -89,6 +102,10 @@ func timer(delta)->void:
 	clock += delta
 	
 
+func _on_attack_range_area_entered(area: Area2D) -> void:
+	if area.Parent is Enemy:
+		targetList.append(area.Parent)
+		print(area.Parent)
 
 #updateTarget closest
 #super inefficient make a sort that sorts the array by distance to and only updates if add to list or etc.
