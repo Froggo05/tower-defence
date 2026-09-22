@@ -1,0 +1,8 @@
+[gd_resource type="Theme" format=3 uid="uid://v1ubk6fnbab2"]
+
+[ext_resource type="FontFile" uid="uid://ja2aej7gikrv" path="res://Theme/hardpixel/Hardpixel.OTF" id="1_2ufmn"]
+
+[resource]
+default_font = ExtResource("1_2ufmn")
+default_font_size = 24
+HBoxContainer/constants/separation = 10

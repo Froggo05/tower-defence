@@ -1,13 +1,17 @@
 [gd_resource type="Resource" script_class="CardResource" format=3 uid="uid://dn3fm2ms2eumr"]
 
 [ext_resource type="Script" uid="uid://cp5ipcea517nl" path="res://Scenes/Inventory/Cards/cardResources/CardResource.gd" id="1_ylv8g"]
+[ext_resource type="Texture2D" uid="uid://tayejnbibova" path="res://Scenes/Inventory/Cards/BasicCard/CardBaseV2.png" id="2_6n8d2"]
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_ylv8g")
+name = "BaseCardResource"
 stats = {
 "Damage": 200.0,
-"Health": 99.0,
+"Health": 100.0,
 "Value": 1
 }
+stackSize = 5
+texture = ExtResource("2_6n8d2")
 metadata/_custom_type_script = "uid://cp5ipcea517nl"

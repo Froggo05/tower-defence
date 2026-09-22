@@ -36,6 +36,7 @@ var hoveredCell: Vector2i:
 
 
 enum SLOT {
+	ERROR = -2,
 	OUTOFBOUNDS = -1,
 	FULL = 0,
 	EMPTY = 1,
@@ -83,41 +84,49 @@ func loadCells()->void:
 	#print(Inventory)
 
 
-func checkSlots(cellPosition: Vector2i, data: CardResource)->SLOT:
-	var cardMaxBounds: Vector2i = (cellPosition + data.size)
+func checkSlots(cellPosition: Vector2i, card: CardBase)->SLOT:
+	
+	var cardMaxBounds: Vector2i = (cellPosition + card.data.size)
 	if cardMaxBounds.x > columns or cardMaxBounds.y > rows:
+		print(SLOT.OUTOFBOUNDS)
 		return SLOT.OUTOFBOUNDS
 	
-	for y in range(cellPosition.y ,cellPosition.y + (data.size.y - 1)):
-		for x in range(cellPosition.x , cellPosition.x + (data.size.x - 1)):
+	var cardInASlot:bool = false
+	
+	for y in range(cellPosition.y ,cellPosition.y + (card.data.size.y)):
+		for x in range(cellPosition.x , cellPosition.x + (card.data.size.x)):
+			#print("Checking x: ",x, " y: ", y)
+			#print(Inventory[x][y].hasCard)
 			if Inventory[x][y].hasCard:
-				if Inventory[x][y].card.data.tier == data.tier && not Inventory[x][y].card.data == data:
+				cardInASlot = true
+				if Inventory[x][y].card.data.tier == card.data.tier && not Inventory[x][y].card.data.name == card.data.name: 
+					#will have to add some sort of combo recipies prob use dict in resource?
 					return SLOT.COMBINE
-				elif Inventory[x][y].card.data == data:
-					if data.stackSize > 1:
+				
+				#print(Inventory[x][y].card.data.name, " ", card.data.name)
+				if Inventory[x][y].card.data.name == card.data.name:
+					if Inventory[x][y].card.checkCanStack(card):
 						return SLOT.STACKABLE
-				elif Inventory[x][y].card != null:
+				
+				if Inventory[x][y].card != null:
 					push_warning("INVENTORYSLOT IS FULL", Vector2i(x, y))
 					return SLOT.FULL
-	return SLOT.EMPTY
-
-
-func stackCard(cellPos: Vector2i)->void:
-	if Inventory[cellPos.x][cellPos.y].canStack():
-		Inventory[cellPos.x][cellPos.y].stackCount += 1
+	
+	if cardInASlot:
+		return SLOT.ERROR
 	else:
-		push_warning("StackSizeFull or CannotStack")
-		return
-
+		return SLOT.EMPTY
 
 func removeCard(cellPosition: Vector2i, card: CardBase)->void:
-	if checkSlots(cellPosition, card.data) == SLOT.OUTOFBOUNDS:
+	if checkSlots(cellPosition, card) == SLOT.OUTOFBOUNDS:
 		push_error("Cannot Remove Card Out of Bounds")
 		return
 
 	for x in range(cellPosition.x , cellPosition.x + card.data.size.x):
 		for y in range(cellPosition.y ,cellPosition.y + card.data.size.y):
 				Inventory[x][y].removeCardInSlot()
+				
+				
 
 
 
@@ -132,7 +141,7 @@ func setCardPos(cardPosition: Vector2i, card: CardBase)->void:
 	var centerPosArr = []
 	for y in range(cardPosition.y ,cardPosition.y + cardSize.y):
 		for x in range(cardPosition.x, cardPosition.x + cardSize.x):
-			print("Set card to, ", Vector2i(x, y))
+			#print("Set card to, ", Vector2i(x, y))
 			Inventory[x][y].card = card
 			centerPosArr.append(Inventory[x][y].getCenterPoint())
 			#print("Added card at: ", Vector2i(x,y))
@@ -141,7 +150,7 @@ func setCardPos(cardPosition: Vector2i, card: CardBase)->void:
 
 #add card to a position in the inventory
 func addCard(newCellPosition: Vector2i, card: CardBase)->void:
-	var check = checkSlots(newCellPosition, card.data)
+	var check = checkSlots(newCellPosition, card)
 	#print(check)
 	if check == SLOT.OUTOFBOUNDS:
 		push_error("Cannot Add Card Out of Bounds")
@@ -152,11 +161,13 @@ func addCard(newCellPosition: Vector2i, card: CardBase)->void:
 		setCardPos(newCellPosition, card)
 
 
-func addToEmpty(resource: CardResource)->void:
+func addToEmpty(card: CardBase)->void:
 	for y in range(rows):
 		for x in range(columns):
 			if !Inventory[x][y].hasCard:
-				var check = checkSlots(Vector2i(x,y), resource)
+				var check = checkSlots(Vector2i(x,y), card)
+				if check == SLOT.ERROR:
+					push_error("SLOT.ERROR ", Vector2i(x, y))
 				if check == SLOT.EMPTY:
 					createCard(Vector2i(x,y), CardResource.new())
 					return
@@ -164,13 +175,13 @@ func addToEmpty(resource: CardResource)->void:
 
 
 func createCard(cellPosition: Vector2i, data: CardResource) -> CardBase:
+	var newCard: CardBase = data.scene.instantiate()
 	
-
-	if checkSlots(cellPosition, data) != SLOT.EMPTY:
-		push_error("CardAlreadyInSlot: ", cellPosition)
+	var cardResult:int = checkSlots(cellPosition, newCard)
+	if cardResult != SLOT.EMPTY:
+		push_error("cardSlotNotEmpty: ", cellPosition)
 		return
 	
-	var newCard: CardBase = data.scene.instantiate()
 
 	var centerPosArr = []
 	for y in range(cellPosition.y ,cellPosition.y + data.size.y):
@@ -191,21 +202,35 @@ func _on_cell_pressed(invPosition: Vector2i, card: CardBase)->void: pickupCard(i
 func _on_cell_released()->void:
 	if pickupSlot == null:
 		return
-	if checkSlots(hoveredCell, pickupSlot.data) == SLOT.OUTOFBOUNDS:
+	
+	var checkSlotResult :int = checkSlots(hoveredCell, pickupSlot)
+	
+	if checkSlotResult == SLOT.OUTOFBOUNDS:
 		#check if slots above are clear (-1 for array allignment with size)
-		if checkSlots(hoveredCell- Vector2i(0, pickupSlot.data.size.y -1), pickupSlot.data) == SLOT.EMPTY:
+		if checkSlots(hoveredCell- Vector2i(0, pickupSlot.data.size.y -1), pickupSlot) == SLOT.EMPTY:
 			hoveredCell -=  Vector2i(0, pickupSlot.data.size.y -1)
 			placeCard()
 			return
-		
+	
+	
 	if hoveredCell == Vector2i(-1,-1) or hoveredCell == pickupSlot.cellPosition :
 		dropCard()
 		return	
-
-	placeCard()
-
-
-
+	
+	
+	if checkSlotResult == SLOT.STACKABLE:
+		if Inventory[hoveredCell.x][hoveredCell.y].card.checkCanStack(pickupSlot):
+			stackCard(Inventory[hoveredCell.x][hoveredCell.y].card)
+			print("Stacking Card")
+			return
+		else:
+			dropCard()
+			return
+	
+	if checkSlotResult == SLOT.EMPTY:
+		print("Placing Card")
+		#print(Inventory[hoveredCell.x][hoveredCell.y].card.data.name, " ", pickupSlot.data.name)
+		placeCard()
 
 
 func pickupCard(invPosition: Vector2i , card :CardBase)->void:
@@ -217,9 +242,14 @@ func placeCard()->void:
 	addCard(hoveredCell, pickupSlot)
 	pickupSlot = null
 
+func stackCard(card: CardBase)->void:
+	card.addToStack(pickupSlot)
+	removeCard(pickupSlot.cellPosition, pickupSlot)
+	pickupSlot.queue_free()
+	pickupSlot = null
 
 func dropCard()->void:
 	pickupSlot = null
 
 func _on_button_pressed() -> void:
-	addToEmpty(CardResource.new())
+	addToEmpty(basicCard)

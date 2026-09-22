@@ -8,22 +8,15 @@ var slotPosition: Vector2i
 @onready var debugColour: ColorRect = $ColorRect
 @export var label: Label
 
-var stackSize: int = 0
-var stackCount: int = 0
-
 var card: CardBase:
 	set(newCard):
 		if newCard == null:
 			hasCard = false
-			card = newCard
-			stackSize = 0
-			stackCount = 0
+			card = null
 			debugColour.visible = false
 		else:
 			hasCard = true
 			card = newCard
-			stackSize = card.data.stackSize
-			stackCount = 1
 			debugColour.visible = true
 	get:
 		return card
@@ -39,7 +32,8 @@ func getCenterPoint()->Vector2:
 
 
 func removeCardInSlot()->void:
-	print("Removed Card, ", slotPosition)
+	#print("Removed Card, ", slotPosition)
+
 	card = null
 
 
@@ -61,9 +55,3 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	mouseHovered.emit(Vector2i(-1,-1))
-
-func canStack()->bool:
-	if stackCount >= stackSize:
-		return false
-	else:
-		return true

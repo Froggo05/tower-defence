@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://bxi25owp2kmkv"]
+
+[ext_resource type="Theme" uid="uid://v1ubk6fnbab2" path="res://Theme/Theme.tres" id="1_k3ivt"]
+[ext_resource type="Texture2D" uid="uid://f5w4rl0arx6m" path="res://Scenes/Assets/HealthBarGreyScale.png" id="2_s6kyy"]
+[ext_resource type="Script" uid="uid://chgk30emgbnpy" path="res://Scenes/GUI/gui.gd" id="2_wf68y"]
+[ext_resource type="Script" uid="uid://cbehnju1nbo8d" path="res://Scenes/World/fortress_health_bar.gd" id="3_slhow"]
+[ext_resource type="Script" uid="uid://7bi3v0m038kw" path="res://Scenes/GUI/stats.gd" id="4_s358i"]
+[ext_resource type="PackedScene" uid="uid://bgqvb6gq07m85" path="res://Scenes/Inventory/card_inventory_manager.tscn" id="5_w47j0"]
+[ext_resource type="PackedScene" uid="uid://do1wmn2x04efg" path="res://Scenes/GUI/MenuManger/menu_manager.tscn" id="6_r14bo"]
+
+[node name="GUI" type="Control" unique_id=1095052953 node_paths=PackedStringArray("guiHealthBar")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("1_k3ivt")
+script = ExtResource("2_wf68y")
+guiHealthBar = NodePath("GUIHealthBar")
+metadata/_edit_use_anchors_ = true
+
+[node name="GUIHealthBar" type="TextureProgressBar" parent="." unique_id=585776593]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+offset_right = 200.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_progress = ExtResource("2_s6kyy")
+script = ExtResource("3_slhow")
+minProgressColour = Color(0.83513546, 0, 0.25823402, 1)
+maxProgressColour = Color(1.4439225e-06, 0.6448821, 0.25049123, 1)
+interpSpeed = 2.5
+
+[node name="Stats" type="Label" parent="." unique_id=1549377497]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("4_s358i")
+
+[node name="Label" type="Label" parent="." unique_id=2128666026]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 378.0
+offset_right = 43.0
+offset_bottom = 401.0
+
+[node name="AddCardButton" type="Button" parent="." unique_id=79881481]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -79.0
+offset_top = -32.0
+offset_bottom = 32.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Add Card"
+
+[node name="MenuManager" parent="." unique_id=1690813115 instance=ExtResource("6_r14bo")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.25260416
+anchor_top = -0.0027777778
+anchor_right = 0.7473958
+anchor_bottom = 0.99722224
+metadata/_edit_use_anchors_ = true
+
+[node name="CardInventoryManager" parent="." unique_id=759476098 instance=ExtResource("5_w47j0")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 372.0
+offset_top = -3.0
+offset_right = 372.0
+offset_bottom = -3.0
+
+[connection signal="pressed" from="AddCardButton" to="CardInventoryManager" method="_on_button_pressed"]

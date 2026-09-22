@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://bt43u6hm3ivpd"]
+
+[ext_resource type="Script" uid="uid://cp21qmvlgxixh" path="res://Scenes/Inventory/Cards/BasicCard/basic_card.gd" id="1_txtqy"]
+[ext_resource type="Resource" uid="uid://dn3fm2ms2eumr" path="res://Scenes/Inventory/Cards/cardResources/CardResource.tres" id="2_xdlut"]
+[ext_resource type="Texture2D" uid="uid://d313xjvjwmy0s" path="res://Scenes/Inventory/Cards/BasicCard/ArcherCard-export.png" id="3_3kq8m"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3jdu3"]
+font_size = 5
+
+[node name="CardContainer" type="Node2D" unique_id=873052689 node_paths=PackedStringArray("healthLabel", "damageLabel", "valueLabel")]
+scale = Vector2(1.2, 1.2)
+script = ExtResource("1_txtqy")
+data = ExtResource("2_xdlut")
+healthLabel = NodePath("HealthLabel")
+damageLabel = NodePath("DamageLabel")
+valueLabel = NodePath("ValueLabel")
+
+[node name="BasicCard" type="Sprite2D" parent="." unique_id=910681907]
+visible = false
+texture_filter = 1
+texture = ExtResource("3_3kq8m")
+
+[node name="HealthLabel" type="Label" parent="." unique_id=2094413183]
+visible = false
+offset_left = -3.3333333
+offset_top = 31.66666
+offset_right = 2.6666667
+offset_bottom = 39.666664
+scale = Vector2(1.2, 1.2)
+text = "10"
+label_settings = SubResource("LabelSettings_3jdu3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DamageLabel" type="Label" parent="." unique_id=99100957]
+visible = false
+offset_left = -21.666664
+offset_top = 31.666666
+offset_right = -15.666664
+offset_bottom = 39.666664
+scale = Vector2(1.2, 1.2)
+text = "10"
+label_settings = SubResource("LabelSettings_3jdu3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ValueLabel" type="Label" parent="." unique_id=417115919]
+visible = false
+offset_left = 14.166666
+offset_top = 31.666666
+offset_right = 20.166668
+offset_bottom = 39.666664
+scale = Vector2(1.2, 1.2)
+text = "10"
+label_settings = SubResource("LabelSettings_3jdu3")
+horizontal_alignment = 1
+vertical_alignment = 1

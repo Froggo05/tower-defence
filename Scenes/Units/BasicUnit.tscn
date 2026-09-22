@@ -255,7 +255,7 @@ texture = SubResource("GradientTexture2D_6kvvk")
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="AttackRange" unique_id=1403742310]
-polygon = PackedVector2Array(0, 0, 1000, 500, 1000, -500)
+polygon = PackedVector2Array(-3215, -486, 714, 2614, 3488, -1605, -530, -2259)
 
 [node name="AttackTimer" type="Timer" parent="." unique_id=167258846]
 

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://do1wmn2x04efg"]
+
+[ext_resource type="Theme" uid="uid://v1ubk6fnbab2" path="res://Theme/Theme.tres" id="1_ab07y"]
+[ext_resource type="PackedScene" uid="uid://b513rabiu4iv8" path="res://Scenes/GUI/MenuManger/MerchantMenu/merchant_menu.tscn" id="1_xkxm8"]
+
+[node name="MenuManager" type="Control" unique_id=1690813115]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ab07y")
+
+[node name="MerchantMenu" parent="." unique_id=1036665437 instance=ExtResource("1_xkxm8")]
+layout_mode = 1

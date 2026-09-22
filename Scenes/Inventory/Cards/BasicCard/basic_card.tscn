@@ -4,17 +4,19 @@
 [ext_resource type="Resource" uid="uid://dn3fm2ms2eumr" path="res://Scenes/Inventory/Cards/cardResources/CardResource.tres" id="2_3jdu3"]
 [ext_resource type="Texture2D" uid="uid://d313xjvjwmy0s" path="res://Scenes/Inventory/Cards/BasicCard/ArcherCard-export.png" id="2_qpaed"]
 [ext_resource type="Texture2D" uid="uid://tayejnbibova" path="res://Scenes/Inventory/Cards/BasicCard/CardBaseV2.png" id="4_67k3h"]
+[ext_resource type="Theme" uid="uid://v1ubk6fnbab2" path="res://Theme/Theme.tres" id="5_chaop"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3jdu3"]
 font_size = 5
 
-[node name="BasicCard" type="Node2D" unique_id=873052689 node_paths=PackedStringArray("healthLabel", "damageLabel", "valueLabel")]
+[node name="BasicCard" type="Node2D" unique_id=873052689 node_paths=PackedStringArray("healthLabel", "damageLabel", "valueLabel", "cardCountLabel")]
 scale = Vector2(1.2, 1.2)
 script = ExtResource("1_hpeyq")
 data = ExtResource("2_3jdu3")
 healthLabel = NodePath("HealthLabel")
 damageLabel = NodePath("DamageLabel")
 valueLabel = NodePath("ValueLabel")
+cardCountLabel = NodePath("StackCount")
 
 [node name="BasicCard" type="Sprite2D" parent="." unique_id=910681907]
 visible = false
@@ -61,3 +63,12 @@ text = "10"
 label_settings = SubResource("LabelSettings_3jdu3")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="StackCount" type="Label" parent="." unique_id=1391598053]
+visible = false
+offset_left = 14.166666
+offset_top = 33.333332
+offset_right = 54.166664
+offset_bottom = 62.333336
+theme = ExtResource("5_chaop")
+text = "x9"

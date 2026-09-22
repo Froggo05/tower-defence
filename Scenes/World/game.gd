@@ -8,13 +8,13 @@ var RightclickPressed:bool = false
 @export var worldScene: Node2D
 
 #onreadys
-@onready var guiHealthBar: Control = %GUIHealthBar
 @onready var mousePosLabel: Label = $GUI/Label
+@onready var gui: Control = $GUI
 
 func _ready() -> void:
-	Global.currentHealthBar = guiHealthBar
 	Global.nextTarget = currentCore
-	Global.currentHealthBar._updateHealth(200.0)
+	Global.currentHealthBar = gui.guiHealthBar
+	Global.currentHealthBar._updateHealth(Global.currentHealthBar.maxHealthPoints)
 
 
 func _process(_delta: float) -> void:

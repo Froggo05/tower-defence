@@ -5,6 +5,7 @@ extends Node2D
 @export var healthLabel: Label
 @export var damageLabel: Label
 @export var valueLabel: Label
+@export var cardCountLabel: Label
 
 @export var minMoveFactor: float = 2.0
 @export var maxMoveFactor: float = 20.0
@@ -15,6 +16,21 @@ var targetPosition: Vector2
 var pickedUp: bool = false
 
 var moveFactor: float = 5.0
+var maxStackSize: int = 10
+var stackCount: int = 1
+
+func addToStack(cardToStack: CardBase)->void:
+	if cardToStack.data.name == data.name:
+		if stackCount < maxStackSize:
+			stackCount += 1 
+			cardCountLabel.text = "x" + str(stackCount)
+			cardCountLabel.visible = true
+
+func checkCanStack(cardToStack: CardBase)->bool: #
+	#Add a check for adding the current cards stack size to the current stack
+	if stackCount <= maxStackSize && cardToStack.data.name == data.name:
+		return true
+	return false
 
 func _startup(centerPos: Array = [Vector2.ZERO], invPos: Vector2i = Vector2i.ZERO) -> void:
 	var posTotal:Vector2 = Vector2.ZERO

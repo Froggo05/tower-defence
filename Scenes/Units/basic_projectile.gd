@@ -1,7 +1,7 @@
 extends Node2D
 
 class_name Projectile
-#flags
+#flags	
 var oneShot: bool = true
 var active :bool = false
 var needsLoading:bool = false
@@ -106,7 +106,7 @@ func updatePosition(delta):
 	if target != null:
 		targetGlobalPosition = target.global_position
 	calucluateNextPos(delta)
-	updateShadow()
+
 	updateRay()
 	
 
@@ -114,6 +114,48 @@ func updatePosition(delta):
 
 func calucluateNextPos(delta)->void:
 	trajectoryRange = targetGlobalPosition - startPos
+	
+	if trajectoryRange.normalized().x < trajectoryRange.normalized().y:
+		if trajectoryRange.y > 0:
+			moveSpeed = -moveSpeed
+		updatePositionwithXCurve(delta)
+	else:
+		updatePositionwithYCurve(delta)
+	
+
+
+func updatePositionwithXCurve(delta)->void:
+	var distanceTo = targetGlobalPosition.y - startPos.y
+	var projectileMaxRelativeHeight = abs(distanceTo) * projectileMaxHeight
+	
+	var nextPositionY = global_position.y + (moveSpeed * delta)
+	var nextPositionYNormalised = (nextPositionY - startPos.y)/trajectoryRange.y
+	
+	var nextXPosNormalised = -movementCurve.sample(nextPositionYNormalised)
+	var nextPositionXCorrectionNormalised = axisCorrectionCurve.sample(nextPositionYNormalised)
+	var nextPositionXCorrection = nextPositionXCorrectionNormalised * trajectoryRange.x
+	var nextXTrajectorPosition = nextXPosNormalised * projectileMaxRelativeHeight
+	
+	var nextPositionX =  nextXTrajectorPosition + startPos.x + nextPositionXCorrection
+	nextPosition = Vector2(nextPositionX, nextPositionY)
+	
+	updateNextSpeed(nextPositionYNormalised)
+	shadowSprite.rotation = sprite.rotation
+	updateShadowXCurve(nextPositionXCorrection)
+	if snappedf(nextPositionYNormalised, 0.01) >= 1.0:
+		active = false
+		return    
+	lastPosition = global_position  
+	global_position = nextPosition
+
+
+
+
+
+func updatePositionwithYCurve(delta)->void:
+	
+	
+	
 	var distanceTo = targetGlobalPosition.x - startPos.x
 	var projectileMaxRelativeHeight = abs(distanceTo) * projectileMaxHeight
 	var nextPositionX = global_position.x + (moveSpeed * delta)
@@ -124,9 +166,10 @@ func calucluateNextPos(delta)->void:
 	var nextPositionY = (nextYPosNormalised * projectileMaxRelativeHeight) + startPos.y - nextPositionYCorrection
 	nextPosition = Vector2(nextPositionX, nextPositionY)
 	
-
 	updateNextSpeed(nextPositionXNormalised)
-	
+	shadowSprite.rotation = sprite.rotation
+	reset_physics_interpolation()
+	updateShadowYCurve(nextPositionYCorrection)
 	if snappedf(nextPositionXNormalised, 0.01) >= 1.0:
 		active = false
 		return    
@@ -134,14 +177,19 @@ func calucluateNextPos(delta)->void:
 	global_position = nextPosition
 
 
+func updateShadowXCurve(next_position_correction: float) -> void:
+	shadowSprite.global_position = Vector2(
+		startPos.x + next_position_correction,
+		nextPosition.y
+	)
 
-func updateShadow()->void:
-	shadowSprite.global_position.x = nextPosition.x - 30
-	shadowSprite.global_position.y = startPos.y - nextPositionYCorrection
 
-	shadowSprite.scale.x = sprite.scale.x * abs(direction.dot((Vector2.UP+ 2*Vector2.RIGHT).normalized()))
-	print(shadowSprite.scale.x)
-	print(direction.dot((Vector2.UP+2*Vector2.RIGHT).normalized()))
+func updateShadowYCurve(next_position_correction: float) -> void:
+	shadowSprite.global_position = Vector2(
+		nextPosition.x,
+		startPos.y - next_position_correction
+	)
+
 func updateNextSpeed(nextPositionXNormalised: float)->void:
 	var nextMoveSpeedNormalised = speedCurve.sample(nextPositionXNormalised)
 	if trajectoryRange.x < 0:
