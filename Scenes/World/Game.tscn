@@ -32,4 +32,5 @@ limit_right = 1920
 limit_bottom = 1080
 
 [node name="GUI" parent="." unique_id=1095052953 instance=ExtResource("4_bvkne")]
+visible = true
 layout_mode = 1

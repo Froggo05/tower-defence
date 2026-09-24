@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://dgasuoniijcd3" path="res://Scenes/GUI/mouse_manager.gd" id="8_7fy40"]
 
 [node name="GUI" type="Control" unique_id=1095052953 node_paths=PackedStringArray("guiHealthBar", "menuManager")]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,7 +20,7 @@ mouse_filter = 1
 theme = ExtResource("1_k3ivt")
 script = ExtResource("2_wf68y")
 guiHealthBar = NodePath("GUIHealthBar")
-menuManager = NodePath("MouseManager/MenuContainer")
+menuManager = NodePath("MouseManager/MenuManager")
 metadata/_edit_use_anchors_ = true
 
 [node name="GUIHealthBar" type="TextureProgressBar" parent="." unique_id=585776593]
@@ -62,9 +63,9 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("8_7fy40")
-menuManager = NodePath("MenuContainer")
+menuManager = NodePath("MenuManager")
 
-[node name="MenuContainer" parent="MouseManager" unique_id=1690813115 instance=ExtResource("6_r14bo")]
+[node name="MenuManager" parent="MouseManager" unique_id=1690813115 instance=ExtResource("6_r14bo")]
 layout_mode = 1
 offset_left = 5.0
 offset_top = -1.0

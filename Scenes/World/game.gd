@@ -68,7 +68,3 @@ func spawnEnemy(spawnPosition: Vector2):
 func changeObservedCore(newCore)->void:
 	currentCore = newCore
 	Global.currentHealthBar._changeObserved(newCore.health)
-
-
-func _on_button_pressed() -> void:
-	pass # Replace with function body.
