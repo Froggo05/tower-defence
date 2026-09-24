@@ -21,14 +21,16 @@ var stackCount: int = 1
 
 func addToStack(cardToStack: CardBase)->void:
 	if cardToStack.data.name == data.name:
-		if stackCount < maxStackSize:
-			stackCount += 1 
+		if stackCount <= maxStackSize:
+			stackCount += cardToStack.stackCount 
 			cardCountLabel.text = "x" + str(stackCount)
 			cardCountLabel.visible = true
+	else:
+		push_error("CardToStack not similar")
 
 func checkCanStack(cardToStack: CardBase)->bool: #
 	#Add a check for adding the current cards stack size to the current stack
-	if stackCount <= maxStackSize && cardToStack.data.name == data.name:
+	if stackCount <= maxStackSize && cardToStack.data.name == data.name && (cardToStack.stackCount + stackCount) <= maxStackSize:
 		return true
 	return false
 

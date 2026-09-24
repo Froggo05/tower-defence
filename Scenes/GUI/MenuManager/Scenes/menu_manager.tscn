@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cichh7wdpsm2e"]
+
+[ext_resource type="Script" uid="uid://b28k2ah3fvtq4" path="res://MenuManager/scripts/menu_manager.gd" id="1_qul8y"]
+[ext_resource type="PackedScene" uid="uid://b760x7s8djb85" path="res://MenuManager/Scenes/MenuScene/SampleMenu.tscn" id="2_opk1t"]
+[ext_resource type="PackedScene" uid="uid://dagqtmcve2ad2" path="res://MenuManager/Scenes/MenuScene/SampleMenu2.tscn" id="3_pta1u"]
+[ext_resource type="PackedScene" uid="uid://bptcnw1peikk5" path="res://MenuManager/Scenes/MenuScene/StartMenuExample.tscn" id="4_opk1t"]
+
+[node name="MenuManager" type="Control" unique_id=1215264674 node_paths=PackedStringArray("defaultMenu", "startMenu")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qul8y")
+defaultMenu = NodePath("SampleMenu")
+startMenu = NodePath("StartMenu")
+
+[node name="SampleMenu" parent="." unique_id=783130587 instance=ExtResource("2_opk1t")]
+layout_mode = 1
+
+[node name="SampleMenu2" parent="." unique_id=1860912079 instance=ExtResource("3_pta1u")]
+layout_mode = 1
+
+[node name="StartMenu" parent="." unique_id=1161509810 instance=ExtResource("4_opk1t")]
+layout_mode = 1

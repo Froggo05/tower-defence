@@ -1,7 +1,14 @@
 extends Node
 
-#loaders (places to look for enemys or units if i want to spawn stuff (maybe projectiles too))
+#enums
+enum CardRarity {
+	BASIC,
+	UNCOMMON,
+	RARE,
+	LEGENDARY
+}
 
+#loaders (places to look for enemys or units if i want to spawn stuff (maybe projectiles too))
 var entityList: Dictionary = {"unit": "uid://do5p2oo1evqfk", "enemy": "uid://b27eegnueu6ys"}
 var projectileList: Dictionary = {"projectile": "uid://0ax2j8etcyia"}
 #important vars
@@ -14,9 +21,16 @@ var projectileCount: int = 0
 #references
 var nextTarget :Core
 var currentHealthBar: healthBar
+var currentlyAvaliableCards: Array[String] = ["uid://c5mkw4xmmuod1"]
 
 #units
 var targetList: Array = []
+
+func addToAvaliableCards(UID)->void:
+	currentlyAvaliableCards.append(UID)
+
+func removeFromAvaliableCards(UID)->void:
+	currentlyAvaliableCards.erase(UID)
 
 func _ready() -> void:
 	_loadProjectiles()

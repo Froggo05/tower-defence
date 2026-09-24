@@ -12,6 +12,7 @@ stats = {
 "Health": 100.0,
 "Value": 1
 }
+size = Vector2i(4, 2)
 stackSize = 5
 texture = ExtResource("2_6n8d2")
 metadata/_custom_type_script = "uid://cp5ipcea517nl"

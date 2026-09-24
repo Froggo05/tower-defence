@@ -16,7 +16,6 @@ damageLabel = NodePath("DamageLabel")
 valueLabel = NodePath("ValueLabel")
 
 [node name="BasicCard" type="Sprite2D" parent="." unique_id=910681907]
-visible = false
 texture_filter = 1
 texture = ExtResource("3_3kq8m")
 

@@ -107,6 +107,7 @@ func checkSlots(cellPosition: Vector2i, card: CardBase)->SLOT:
 				if Inventory[x][y].card.data.name == card.data.name:
 					if Inventory[x][y].card.checkCanStack(card):
 						return SLOT.STACKABLE
+						
 				
 				if Inventory[x][y].card != null:
 					push_warning("INVENTORYSLOT IS FULL", Vector2i(x, y))
@@ -125,11 +126,6 @@ func removeCard(cellPosition: Vector2i, card: CardBase)->void:
 	for x in range(cellPosition.x , cellPosition.x + card.data.size.x):
 		for y in range(cellPosition.y ,cellPosition.y + card.data.size.y):
 				Inventory[x][y].removeCardInSlot()
-				
-				
-
-
-
 
 
 func combineCards(card: CardBase, inventoryPos: Vector2i, cardTarget: CardBase)->void:
@@ -182,7 +178,7 @@ func createCard(cellPosition: Vector2i, data: CardResource) -> CardBase:
 		push_error("cardSlotNotEmpty: ", cellPosition)
 		return
 	
-
+	
 	var centerPosArr = []
 	for y in range(cellPosition.y ,cellPosition.y + data.size.y):
 		for x in range( cellPosition.x , cellPosition.x + data.size.x):
@@ -242,14 +238,17 @@ func placeCard()->void:
 	addCard(hoveredCell, pickupSlot)
 	pickupSlot = null
 
+
 func stackCard(card: CardBase)->void:
 	card.addToStack(pickupSlot)
 	removeCard(pickupSlot.cellPosition, pickupSlot)
 	pickupSlot.queue_free()
 	pickupSlot = null
 
+
 func dropCard()->void:
 	pickupSlot = null
+
 
 func _on_button_pressed() -> void:
 	addToEmpty(basicCard)

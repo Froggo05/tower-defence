@@ -2,15 +2,41 @@
 
 [ext_resource type="Theme" uid="uid://v1ubk6fnbab2" path="res://Theme/Theme.tres" id="1_ab07y"]
 [ext_resource type="PackedScene" uid="uid://b513rabiu4iv8" path="res://Scenes/GUI/MenuManger/MerchantMenu/merchant_menu.tscn" id="1_xkxm8"]
+[ext_resource type="Script" uid="uid://b4kpj75nf14b5" path="res://Scenes/GUI/MenuManger/menu_manager.gd" id="2_cpndi"]
+[ext_resource type="PackedScene" uid="uid://7kgi4wsaqwi8" path="res://Scenes/GUI/MenuManger/gameplay_gui.tscn" id="4_5qr3h"]
+[ext_resource type="PackedScene" uid="uid://bgqvb6gq07m85" path="res://Scenes/Inventory/card_inventory_manager.tscn" id="5_xb0jk"]
+[ext_resource type="PackedScene" uid="uid://bptcnw1peikk5" path="res://Scenes/GUI/MenuManager/Scenes/MenuScene/StartMenuExample.tscn" id="6_i4xqd"]
 
-[node name="MenuManager" type="Control" unique_id=1690813115]
+[node name="MenuManager" type="Control" unique_id=1690813115 node_paths=PackedStringArray("defaultMenu", "startMenu")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme = ExtResource("1_ab07y")
+script = ExtResource("2_cpndi")
+defaultMenu = NodePath("GameplayGUI")
+startMenu = NodePath("StartMenu")
 
-[node name="MerchantMenu" parent="." unique_id=1036665437 instance=ExtResource("1_xkxm8")]
+[node name="MerchantMenu" parent="." unique_id=1036665437 node_paths=PackedStringArray("cardInventoryManager") instance=ExtResource("1_xkxm8")]
+layout_mode = 1
+mouse_filter = 1
+cardInventoryManager = NodePath("../CardInventoryManager")
+
+[node name="GameplayGUI" parent="." unique_id=1534566029 node_paths=PackedStringArray("cardInventoryManager") instance=ExtResource("4_5qr3h")]
+layout_mode = 0
+cardInventoryManager = NodePath("../CardInventoryManager")
+
+[node name="CardInventoryManager" parent="." unique_id=759476098 instance=ExtResource("5_xb0jk")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+
+[node name="StartMenu" parent="." unique_id=783130587 instance=ExtResource("6_i4xqd")]
 layout_mode = 1

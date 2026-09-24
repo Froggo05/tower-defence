@@ -6,16 +6,20 @@ var RightclickPressed:bool = false
 #exports
 @export var currentCore: Core
 @export var worldScene: Node2D
-
+@export var GUI: GUIManager
 #onreadys
 @onready var mousePosLabel: Label = $GUI/Label
-@onready var gui: Control = $GUI
 
 func _ready() -> void:
+	Global.gold = 1000
 	Global.nextTarget = currentCore
-	Global.currentHealthBar = gui.guiHealthBar
+	Global.currentHealthBar = GUI.guiHealthBar
 	Global.currentHealthBar._updateHealth(Global.currentHealthBar.maxHealthPoints)
+	nextDay()
 
+func nextDay()->void:
+	GUI.menuManager.menuDict["MerchantMenu"].generateSale()
+	
 
 func _process(_delta: float) -> void:
 	pass
