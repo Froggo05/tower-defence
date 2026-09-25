@@ -2,6 +2,7 @@ class_name MerchantMenu extends Menu
 
 @export var slotContainer: HBoxContainer
 @export var cardInventoryManager: CardInventoryManager
+@export var inventoryTarget: Control
 
 @onready var merchantSlot = preload("uid://bqvyylr4y52pn")
 #func addItemToShop(cardType: CardResource)->void:
@@ -26,8 +27,16 @@ func activate()->void:
 	show()
 	process_mode = Node.PROCESS_MODE_INHERIT
 	cardInventoryManager.show()
+	cardInventoryManager.targetPosition = inventoryTarget.global_position
+	#cardInventoryManager.global_position = Vector2(inventoryTarget.global_position.x, inventoryTarget.y + 800)
 
 func deactivate()->void:
 	hide()
 	process_mode = Node.PROCESS_MODE_DISABLED
 	cardInventoryManager.hide()
+	cardInventoryManager.targetPosition = Vector2.ZERO
+	
+
+
+func _on_back_button_pressed() -> void:
+	exit_menu.emit()

@@ -32,7 +32,7 @@ func setCard(newCard: CardBase)->void:
 	print(global_position, " ", card.global_position)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if cardIsSold:
 		return
 	card.targetPosition =  card_target.global_position

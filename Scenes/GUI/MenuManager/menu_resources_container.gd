@@ -1,0 +1,2 @@
+class_name MenuResourceContainer extends Control
+@export var InventoryManager: CardInventoryManager

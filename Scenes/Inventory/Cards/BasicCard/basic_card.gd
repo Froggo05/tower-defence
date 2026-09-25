@@ -69,11 +69,11 @@ func _ready() -> void:
 
 
 func moveTowardTarget(delta: float)->void:
-	updateMoveFactor(delta)
+	updateMoveFactor()
 	global_position = global_position.lerp(targetPosition, delta * moveFactor)
 
 
-func updateMoveFactor(delta)->void:
+func updateMoveFactor()->void:
 	moveFactor = move_toward(minMoveFactor, maxMoveFactor, global_position.distance_squared_to(targetPosition))
 
 func _process(delta: float) -> void:

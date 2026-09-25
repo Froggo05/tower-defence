@@ -1,4 +1,6 @@
 class_name Menu extends Control
+#--------Ignores--------
+@warning_ignore_start("unused_signal")
 
 # -------Exports--------
 @export var MenuMovementFactor: float = 5.0

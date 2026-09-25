@@ -34,6 +34,8 @@ var hoveredCell: Vector2i:
 @export var slotContainer: GridContainer
 @export var cardDragFactor: float = 5.0
 
+var moveSpeed: float = 5.0
+var targetPosition: Vector2 = Vector2.ZERO
 
 enum SLOT {
 	ERROR = -2,
@@ -45,7 +47,17 @@ enum SLOT {
 }
 
 
+func moveToTarget(delta: float)->void:
+	if targetPosition != Vector2.ZERO:
+		global_position = global_position.lerp(targetPosition, delta*moveSpeed)
+		var approxTarget = Vector2(0.001,0.001)
+		if targetPosition.snapped(approxTarget) == global_position.snapped(approxTarget):
+			targetPosition = Vector2.ZERO
+			print("Stop move to Target")
+
+
 func _process(delta: float) -> void:
+	moveToTarget(delta)
 	if pickupSlot != null:
 		pickupSlot.global_position = lerp(pickupSlot.global_position, get_global_mouse_position(), delta * cardDragFactor)
 

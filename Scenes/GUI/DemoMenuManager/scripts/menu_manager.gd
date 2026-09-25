@@ -39,7 +39,9 @@ func _setMenu(menu: Menu)->void:
 	if activeMenu != null:
 		activeMenu.deactivate()
 	else:
-		push_warning("Set menu when ActiveMenu is null")
+		#push_warning("Set menu when ActiveMenu is null")
+		pass
+	
 	
 	activeMenu = menu
 	activeMenu.activate()

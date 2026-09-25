@@ -28,6 +28,23 @@ window/size/initial_position_type=4
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[file_customization]
+
+folder_colors={
+"res://ProjectilePool/PoolManager/": "green",
+"res://Scenes/Assets/": "yellow",
+"res://Scenes/Core/": "orange",
+"res://Scenes/Enemies/": "orange",
+"res://Scenes/GUI/": "green",
+"res://Scenes/GUI/DemoMenuManager/": "red",
+"res://Scenes/GUI/MenuManager/": "green",
+"res://Scenes/Globals/": "orange",
+"res://Scenes/Inventory/": "orange",
+"res://Scenes/Units/": "green",
+"res://Scenes/World/": "green",
+"res://Theme/": "yellow"
+}
+
 [input]
 
 Leftclick={
