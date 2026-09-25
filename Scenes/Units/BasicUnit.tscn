@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://do5p2oo1evqfk"]
 
 [ext_resource type="Script" uid="uid://uql0fqvddu8v" path="res://Scenes/Units/basic_unit.gd" id="1_3ptfe"]
-[ext_resource type="Texture2D" uid="uid://d24gpggyn1b23" path="res://Scenes/Units/Textures/SmolArcherIdle.png" id="2_3ptfe"]
-[ext_resource type="Texture2D" uid="uid://bihl4l3j8vp25" path="res://Scenes/Units/Textures/SmolArcherAttack.png" id="3_78lln"]
+[ext_resource type="Texture2D" path="res://Scenes/Units/Textures/SmolArcherIdle.png" id="2_3ptfe"]
+[ext_resource type="Texture2D" path="res://Scenes/Units/Textures/SmolArcherAttack.png" id="3_78lln"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3ptfe"]
 radius = 18.439089
@@ -255,7 +255,8 @@ texture = SubResource("GradientTexture2D_6kvvk")
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="AttackRange" unique_id=1403742310]
-polygon = PackedVector2Array(-3215, -486, 714, 2614, 3488, -1605, -530, -2259)
+position = Vector2(-2, 0)
+polygon = PackedVector2Array(0, 0, 519, 282, 516, -247)
 
 [node name="AttackTimer" type="Timer" parent="." unique_id=167258846]
 

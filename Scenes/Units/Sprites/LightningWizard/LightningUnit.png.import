@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d24gpggyn1b23"
-path="res://.godot/imported/SmolArcherIdle.png-6112b96a0447c848886b18cefe810edd.ctex"
+uid="uid://ukopikvpa0id"
+path="res://.godot/imported/LightningUnit.png-d7f89cc6786e8de46bf2e6fb45880f2f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Units/Textures/SmolArcherIdle.png"
-dest_files=["res://.godot/imported/SmolArcherIdle.png-6112b96a0447c848886b18cefe810edd.ctex"]
+source_file="res://Scenes/Units/Sprites/LightningWizard/LightningUnit.png"
+dest_files=["res://.godot/imported/LightningUnit.png-d7f89cc6786e8de46bf2e6fb45880f2f.ctex"]
 
 [params]
 

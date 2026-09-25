@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bihl4l3j8vp25"
-path="res://.godot/imported/SmolArcherAttack.png-5e69123656f2a3ce2297568723704242.ctex"
+uid="uid://fgvjef64pacq"
+path="res://.godot/imported/Arrow.png-6fd4e6a4defe275be441c1d41742f21b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Units/Textures/SmolArcherAttack.png"
-dest_files=["res://.godot/imported/SmolArcherAttack.png-5e69123656f2a3ce2297568723704242.ctex"]
+source_file="res://Scenes/Units/Sprites/Arrow.png"
+dest_files=["res://.godot/imported/Arrow.png-6fd4e6a4defe275be441c1d41742f21b.ctex"]
 
 [params]
 
