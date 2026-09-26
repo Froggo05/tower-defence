@@ -276,7 +276,7 @@ texture_filter = 1
 position = Vector2(0, -22)
 sprite_frames = SubResource("SpriteFrames_axljd")
 animation = &"attack"
-frame_progress = 0.8624387
+frame_progress = 0.7182367
 
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=766071690]
 shape = SubResource("CircleShape2D_axljd")

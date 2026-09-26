@@ -53,6 +53,7 @@ func _start(newDamage: float, newTarget: Enemy, spawnPosition: Vector2)->void:
 	needsLoading = true
 	active = false
 
+
 func _reset()->void:
 	stopClock()
 	hide()
@@ -66,7 +67,6 @@ func _reset()->void:
 	nextPosition = Vector2.ZERO
 	process_mode = Node.PROCESS_MODE_DISABLED
 	Global.projectileCount -=1
-	
 
 
 func _physics_process(delta: float) -> void:
@@ -95,6 +95,7 @@ func _physics_process(delta: float) -> void:
 func fadeOut(delta)->void:
 	modulate.a = move_toward(modulate.a, 0.0, delta)
 
+
 func updateRotation()->void: # run before update postioin so global position = last position still
 	direction = (nextPosition-lastPosition).normalized()
 	sprite.rotation = direction.angle()
@@ -105,10 +106,7 @@ func updatePosition(delta):
 	if target != null:
 		targetGlobalPosition = target.global_position
 	calucluateNextPos(delta)
-
 	updateRay()
-	
-
 
 
 func calucluateNextPos(delta)->void:
@@ -120,7 +118,6 @@ func calucluateNextPos(delta)->void:
 		updatePositionwithXCurve(delta)
 	else:
 		updatePositionwithYCurve(delta)
-	
 
 
 func updatePositionwithXCurve(delta)->void:
@@ -146,9 +143,6 @@ func updatePositionwithXCurve(delta)->void:
 		return    
 	lastPosition = global_position  
 	global_position = nextPosition
-
-
-
 
 
 func updatePositionwithYCurve(delta)->void:
@@ -209,7 +203,6 @@ func attackTarget()->void:
 			hit._getHit(damage)
 		
 		PoolManager._returnObject(self)
-
 
 
 func startClock(): runClock = true

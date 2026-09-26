@@ -7,7 +7,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_axljd"]
 shader = ExtResource("1_g8412")
 shader_parameter/VanishingValue = 0.0
-shader_parameter/LightningScrollSpeed = Vector2(-2.5, 0)
+shader_parameter/LightningScrollSpeed = Vector2(-2, 0)
 shader_parameter/basicTexture = ExtResource("2_fei50")
 
 [node name="LightningProjectileContainer" type="Node2D" unique_id=84202188 node_paths=PackedStringArray("lightningProjectile")]
@@ -16,6 +16,8 @@ lightningProjectile = NodePath("LightningProjectile")
 
 [node name="LightningProjectile" type="Line2D" parent="." unique_id=1676616324]
 material = SubResource("ShaderMaterial_axljd")
+position = Vector2(1, 0)
+points = PackedVector2Array(-1, 0, -1, 49)
 width = 50.0
 default_color = Color(1.5157021, 1.5157021, 1.5157021, 1)
 texture_mode = 2
