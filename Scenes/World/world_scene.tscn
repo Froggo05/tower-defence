@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cd8y2odc3i4sb"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_axljd"]
+vertices = PackedVector2Array(1688.0078, 74.96094, 1688.9766, 1010.9297, 400.8672, 1002.0625, 389.1172, 70.03125)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(379, 60, 391, 1012, 1699, 1021, 1698, 65)])
+
+[node name="WorldScene" type="Node2D" unique_id=495325210]
+metadata/_edit_horizontal_guides_ = [271.0]
+
+[node name="Camera" type="Camera2D" parent="." unique_id=448996699]
+limit_left = 0
+limit_top = 0
+limit_right = 1920
+limit_bottom = 1080
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=587723179]
+visible = false
+position = Vector2(-121, 2)
+navigation_polygon = SubResource("NavigationPolygon_axljd")

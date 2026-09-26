@@ -1,6 +1,5 @@
-extends Node2D
-
-class_name Projectile
+extends Projectile
+class_name movingProjectile
 #flags	
 var oneShot: bool = true
 var active :bool = false

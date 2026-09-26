@@ -24,6 +24,7 @@ func nextDay()->void:
 func _process(_delta: float) -> void:
 	pass
 
+
 func _physics_process(_delta: float) -> void:
 	#print("L: ",LeftclickPressed, " R: ", RightclickPressed)
 	if LeftclickPressed:
@@ -57,6 +58,7 @@ func spawnUnit(spawnPosition: Vector2)->void:
 	newUnit.name = "Unit#" + str(Global.unitCount)
 	worldScene.add_child(newUnit)
 
+
 func spawnEnemy(spawnPosition: Vector2):
 	Global.enemyCount += 1
 	var newEnemy: Enemy = Global.entityList["enemy"].instantiate()
@@ -64,6 +66,7 @@ func spawnEnemy(spawnPosition: Vector2):
 	newEnemy.name = "Enemy#" + str(Global.enemyCount)
 	Global.targetList.append(newEnemy)
 	worldScene.add_child(newEnemy)
+
 
 func changeObservedCore(newCore)->void:
 	currentCore = newCore

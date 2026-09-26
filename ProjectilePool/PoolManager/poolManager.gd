@@ -1,16 +1,29 @@
 extends Node
 
-var pool: Dictionary = {"basicProjectile" : []}
+var pool: Dictionary = {"basicProjectile" : [], "lightningProjectile" : []}
 @onready var basicProjectileScene = preload("uid://0ax2j8etcyia")
+var projectileScenes: Dictionary = {"basicProjectile" : "uid://0ax2j8etcyia", "lightningProjectile" : "uid://csbu8ufgkguet" }
 
 func _ready() -> void:
+	loadProjectileScenes()
+	
 	initialisePool(2000, "basicProjectile")
+	initialisePool(2000, "lightningProjectile")
+
+
+func loadProjectileScenes()->void:
+	for child in projectileScenes:
+		projectileScenes[child] = load(projectileScenes[child])
+		pool[child] = []
 
 func initialisePool(amount: int, objectType: String)->void:
 	for i in range(amount):
-		var newProjectile: Projectile = basicProjectileScene.instantiate()
+		var newProjectile: Projectile = projectileScenes[objectType].instantiate()
+		
 		newProjectile.name = str(Global.projectileCount) + "#basicProjectile"
+		
 		Global.projectileCount +=1
+		
 		newProjectile._reset()
 		pool[objectType].append(newProjectile)
 

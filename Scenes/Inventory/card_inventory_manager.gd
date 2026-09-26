@@ -193,7 +193,7 @@ func createCard(cellPosition: Vector2i, data: CardResource) -> CardBase:
 	
 	var centerPosArr = []
 	for y in range(cellPosition.y ,cellPosition.y + data.size.y):
-		for x in range( cellPosition.x , cellPosition.x + data.size.x):
+		for x in range(cellPosition.x , cellPosition.x + data.size.x):
 			Inventory[x][y].card = newCard
 			centerPosArr.append(Inventory[x][y].getCenterPoint())
 			#print("Added card at: ", Vector2i(x,y))

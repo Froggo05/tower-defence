@@ -76,7 +76,7 @@ func moveTowardTarget(delta: float)->void:
 func updateMoveFactor()->void:
 	moveFactor = move_toward(minMoveFactor, maxMoveFactor, global_position.distance_squared_to(targetPosition))
 
+
 func _process(delta: float) -> void:
 	if !pickedUp && global_position != targetPosition:
 		moveTowardTarget(delta)
-	

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://0ax2j8etcyia"]
 
-[ext_resource type="Script" uid="uid://bupyg6c3de4m5" path="res://Scenes/Units/basic_projectile.gd" id="1_vr1wd"]
-[ext_resource type="Texture2D" uid="uid://fgvjef64pacq" path="res://Scenes/Units/Textures/Arrow.png" id="2_whhts"]
+[ext_resource type="Script" uid="uid://bupyg6c3de4m5" path="res://Scenes/Units/Projectiles/Basic/basic_projectile.gd" id="1_vr1wd"]
+[ext_resource type="Texture2D" uid="uid://fgvjef64pacq" path="res://Scenes/Units/Sprites/Arrow.png" id="2_whhts"]
 
 [sub_resource type="Curve" id="Curve_whhts"]
 _data = [Vector2(0, 0), 0.0, 1.736, 0, 0, Vector2(0.49803916, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.736, 0.0, 0, 0]
@@ -15,9 +15,6 @@ point_count = 2
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.50196075, 0.8012048), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_axljd"]
-radius = 29.017237
-
 [node name="BasicProjectile" type="Node2D" unique_id=94788006 node_paths=PackedStringArray("Ray", "shadowSprite", "sprite")]
 script = ExtResource("1_vr1wd")
 Ray = NodePath("RayCast2D")
@@ -25,6 +22,7 @@ movementCurve = SubResource("Curve_whhts")
 projectileMaxHeight = 0.3
 axisCorrectionCurve = SubResource("Curve_83rr5")
 speedCurve = SubResource("Curve_sldn5")
+fadeRate = null
 shadowSprite = NodePath("Shadow")
 sprite = NodePath("Sprite")
 
@@ -41,13 +39,6 @@ texture_filter = 1
 scale = Vector2(6.9999995, 6.9999995)
 texture = ExtResource("2_whhts")
 flip_h = true
-
-[node name="Attackbox" type="Area2D" parent="." unique_id=1183665927]
-visible = false
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Attackbox" unique_id=1231366925]
-shape = SubResource("CircleShape2D_axljd")
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=645722319]
 target_position = Vector2(0, 0)

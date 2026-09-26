@@ -23,13 +23,13 @@ signal mousePressed(card: CardBase)
 signal cardPurchased()
 
 func setCard(newCard: CardBase)->void:
-	print("Set card: ", newCard.name)
+	#print("Set card: ", newCard.name)
 	card = newCard
 	add_child(card)
-	print(card)
+	#print(card)
 	card.global_position = card_target.global_position
 	card.targetPosition =  card_target.global_position
-	print(global_position, " ", card.global_position)
+	#print(global_position, " ", card.global_position)
 
 
 func _process(_delta: float) -> void:

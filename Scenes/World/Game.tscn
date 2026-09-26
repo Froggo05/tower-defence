@@ -2,10 +2,10 @@
 
 [ext_resource type="Theme" uid="uid://v1ubk6fnbab2" path="res://Theme/Theme.tres" id="1_7kj4d"]
 [ext_resource type="Script" uid="uid://ip0jpdgd1w8w" path="res://Scenes/World/game.gd" id="1_bvkne"]
-[ext_resource type="PackedScene" uid="uid://m4llt3qg2jeo" path="res://Scenes/Core/Core.tscn" id="3_ih2u4"]
+[ext_resource type="PackedScene" uid="uid://cd8y2odc3i4sb" path="res://Scenes/World/world_scene.tscn" id="3_bvkne"]
 [ext_resource type="PackedScene" uid="uid://bxi25owp2kmkv" path="res://Scenes/GUI/GUI.tscn" id="4_bvkne"]
 
-[node name="Game" type="Control" unique_id=1126262729 node_paths=PackedStringArray("currentCore", "worldScene", "GUI")]
+[node name="Game" type="Control" unique_id=1126262729 node_paths=PackedStringArray("worldScene", "GUI")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,22 +15,10 @@ grow_vertical = 2
 mouse_filter = 1
 theme = ExtResource("1_7kj4d")
 script = ExtResource("1_bvkne")
-currentCore = NodePath("WorldScene/Core")
 worldScene = NodePath("WorldScene")
 GUI = NodePath("GUI")
 
-[node name="WorldScene" type="Node2D" parent="." unique_id=563467010]
-
-[node name="Core" parent="WorldScene" unique_id=39129889 instance=ExtResource("3_ih2u4")]
-visible = false
-position = Vector2(1150, 313)
-
-[node name="Camera" type="Camera2D" parent="WorldScene" unique_id=701365482]
-limit_left = 0
-limit_top = 0
-limit_right = 1920
-limit_bottom = 1080
+[node name="WorldScene" parent="." unique_id=495325210 instance=ExtResource("3_bvkne")]
 
 [node name="GUI" parent="." unique_id=1095052953 instance=ExtResource("4_bvkne")]
-visible = true
 layout_mode = 1
