@@ -56,7 +56,7 @@ func spawnUnit(spawnPosition: Vector2)->void:
 	var newUnit:Unit = Global.entityList["unit"].instantiate()
 	newUnit.global_position = spawnPosition
 	newUnit.name = "Unit#" + str(Global.unitCount)
-	worldScene.add_child(newUnit)
+	worldScene.unitContainer.add_child(newUnit)
 
 
 func spawnEnemy(spawnPosition: Vector2):

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CardResource" format=3 uid="uid://dssp2ias1nepm"]
+
+[ext_resource type="Script" uid="uid://cp5ipcea517nl" path="res://Scenes/WorldElements/Inventory/Cards/cardResources/CardResource.gd" id="1_01l01"]
+[ext_resource type="Texture2D" uid="uid://cnnm4h5edboti" path="res://Scenes/WorldElements/Inventory/Cards/MaterialCards/Log.png" id="2_5ltt1"]
+
+[resource]
+script = ExtResource("1_01l01")
+isMaterial = true
+texture = ExtResource("2_5ltt1")
+metadata/_custom_type_script = "uid://cp5ipcea517nl"

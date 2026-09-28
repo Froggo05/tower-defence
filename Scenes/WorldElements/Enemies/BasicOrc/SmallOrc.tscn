@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://dwb4cdvam3ofp"]
+
+[ext_resource type="Texture2D" uid="uid://c7llsr33m3reo" path="res://Scenes/WorldElements/Enemies/BasicOrc/BasicOrcIdle.png" id="1_e0uxd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fre34"]
+atlas = ExtResource("1_e0uxd")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lsavb"]
+atlas = ExtResource("1_e0uxd")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxve3"]
+atlas = ExtResource("1_e0uxd")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_di3xb"]
+atlas = ExtResource("1_e0uxd")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hdwfk"]
+atlas = ExtResource("1_e0uxd")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5kgt"]
+atlas = ExtResource("1_e0uxd")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eswkp"]
+atlas = ExtResource("1_e0uxd")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_us08j"]
+atlas = ExtResource("1_e0uxd")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xasot"]
+atlas = ExtResource("1_e0uxd")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qna6u"]
+atlas = ExtResource("1_e0uxd")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_axljd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fre34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lsavb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wxve3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_di3xb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hdwfk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u5kgt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eswkp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_us08j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xasot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qna6u")
+}],
+"loop": 1,
+"name": &"Idle",
+"speed": 12.0
+}]
+
+[node name="SmallOrc" type="Node2D" unique_id=873699510]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2103216115]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_axljd")
+animation = &"Idle"
+frame_progress = 0.47391236

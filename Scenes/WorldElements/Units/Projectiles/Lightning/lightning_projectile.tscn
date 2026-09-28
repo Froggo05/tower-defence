@@ -1,0 +1,137 @@
+[gd_scene format=3 uid="uid://csbu8ufgkguet"]
+
+[ext_resource type="Script" uid="uid://j7nc20i8k1bs" path="res://Scenes/WorldElements/Units/Projectiles/Lightning/lightning_projectile.gd" id="1_0igvq"]
+[ext_resource type="Shader" uid="uid://055j21kvphi1" path="res://ShaderResources/textureFrames.gdshader" id="2_kbgum"]
+[ext_resource type="Texture2D" uid="uid://c6vn1sbvwf1da" path="res://Scenes/WorldElements/Units/Projectiles/Lightning/LightningBoltHorizontalTest.png" id="3_qg4nv"]
+[ext_resource type="Texture2D" uid="uid://dcjuqo27dyxpe" path="res://Scenes/WorldElements/Units/Sprites/LightningWizard/Projectile/LightningBolt.png" id="4_kdrve"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_axljd"]
+shader = ExtResource("2_kbgum")
+shader_parameter/horizontal_frames = 14
+shader_parameter/fps = 12.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5178i"]
+atlas = ExtResource("4_kdrve")
+region = Rect2(0, 64, 512, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j26lo"]
+atlas = ExtResource("4_kdrve")
+region = Rect2(0, 0, 512, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkrj2"]
+atlas = ExtResource("4_kdrve")
+region = Rect2(0, 128, 512, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sbx83"]
+atlas = ExtResource("4_kdrve")
+region = Rect2(0, 192, 512, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1gfs"]
+atlas = ExtResource("4_kdrve")
+region = Rect2(0, 256, 512, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjyf8"]
+atlas = ExtResource("4_kdrve")
+region = Rect2(0, 320, 512, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uyv3m"]
+atlas = ExtResource("4_kdrve")
+region = Rect2(0, 384, 512, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnxww"]
+atlas = ExtResource("4_kdrve")
+region = Rect2(0, 448, 512, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61xrx"]
+atlas = ExtResource("4_kdrve")
+region = Rect2(0, 512, 512, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dm2tu"]
+atlas = ExtResource("4_kdrve")
+region = Rect2(0, 576, 512, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3e1m"]
+atlas = ExtResource("4_kdrve")
+region = Rect2(0, 640, 512, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nmjbg"]
+atlas = ExtResource("4_kdrve")
+region = Rect2(0, 704, 512, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_axljd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5178i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j26lo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5178i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qkrj2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sbx83")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q1gfs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjyf8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uyv3m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mnxww")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_61xrx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dm2tu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3e1m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nmjbg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5178i")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="LightningProjectileContainer" type="Node2D" unique_id=84202188 node_paths=PackedStringArray("lightningProjectile")]
+script = ExtResource("1_0igvq")
+lightningProjectile = NodePath("LightningProjectile")
+lifetime = null
+
+[node name="LightningProjectile" type="Line2D" parent="." unique_id=1676616324]
+texture_filter = 1
+material = SubResource("ShaderMaterial_axljd")
+position = Vector2(1, 0)
+scale = Vector2(1, 0.44186047)
+points = PackedVector2Array(0, 0, 135, -97.94736, 291, 1)
+width = 64.0
+default_color = Color(1.5157021, 1.5157021, 1.5157021, 1)
+texture = ExtResource("3_qg4nv")
+texture_mode = 2
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=493939410]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1542178743]
+texture_filter = 1
+scale = Vector2(1, 0.671875)
+sprite_frames = SubResource("SpriteFrames_axljd")
+autoplay = "default"
+frame = 12
+frame_progress = 0.4064842
+centered = false
+offset = Vector2(0, -32)

@@ -1,11 +1,17 @@
 [gd_scene format=3 uid="uid://cd8y2odc3i4sb"]
 
+[ext_resource type="Script" uid="uid://c3rhc3wgqj1w7" path="res://Scenes/World/world_scene.gd" id="1_he56u"]
+[ext_resource type="Texture2D" uid="uid://2tcsrfg1kajy" path="res://Scenes/WorldElements/Assets/castleMockup.png" id="2_svd0m"]
+[ext_resource type="PackedScene" uid="uid://dm36bf8tb7f1" path="res://Scenes/WorldElements/Units/Lightning/LigthningWizard.tscn" id="3_hpkcl"]
+
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_axljd"]
 vertices = PackedVector2Array(1688.0078, 74.96094, 1688.9766, 1010.9297, 400.8672, 1002.0625, 389.1172, 70.03125)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(379, 60, 391, 1012, 1699, 1021, 1698, 65)])
 
-[node name="WorldScene" type="Node2D" unique_id=495325210]
+[node name="WorldScene" type="Node2D" unique_id=495325210 node_paths=PackedStringArray("unitContainer")]
+script = ExtResource("1_he56u")
+unitContainer = NodePath("UnitContainer")
 metadata/_edit_horizontal_guides_ = [271.0]
 
 [node name="Camera" type="Camera2D" parent="." unique_id=448996699]
@@ -16,5 +22,15 @@ limit_bottom = 1080
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=587723179]
 visible = false
-position = Vector2(-121, 2)
+position = Vector2(-90, 23)
 navigation_polygon = SubResource("NavigationPolygon_axljd")
+
+[node name="UnitContainer" type="Node2D" parent="." unique_id=1531586747]
+
+[node name="Castle" type="Sprite2D" parent="." unique_id=1061686234]
+position = Vector2(956.99994, 598)
+scale = Vector2(1.455, 1.455)
+texture = ExtResource("2_svd0m")
+
+[node name="LigthningWizard" parent="." unique_id=1176254785 instance=ExtResource("3_hpkcl")]
+position = Vector2(865, 260)

@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://bxi25owp2kmkv"]
+
+[ext_resource type="Theme" uid="uid://v1ubk6fnbab2" path="res://Theme/Theme.tres" id="1_k3ivt"]
+[ext_resource type="Texture2D" uid="uid://f5w4rl0arx6m" path="res://Scenes/WorldElements/Assets/HealthBarGreyScale.png" id="2_s6kyy"]
+[ext_resource type="Script" uid="uid://chgk30emgbnpy" path="res://Scenes/WorldElements/GUI/gui.gd" id="2_wf68y"]
+[ext_resource type="Script" uid="uid://cbehnju1nbo8d" path="res://Scenes/World/fortress_health_bar.gd" id="3_slhow"]
+[ext_resource type="Script" uid="uid://7bi3v0m038kw" path="res://Scenes/WorldElements/GUI/stats.gd" id="4_s358i"]
+[ext_resource type="PackedScene" uid="uid://do1wmn2x04efg" path="res://Scenes/WorldElements/GUI/MenuManager/menu_manager.tscn" id="6_r14bo"]
+[ext_resource type="Script" uid="uid://dgasuoniijcd3" path="res://Scenes/WorldElements/GUI/mouse_manager.gd" id="8_7fy40"]
+[ext_resource type="Texture2D" uid="uid://cgeqm281su0x7" path="res://Scenes/WorldElements/Assets/MouseSelectArea.png" id="8_ekorw"]
+
+[node name="GUI" type="Control" unique_id=1095052953 node_paths=PackedStringArray("guiHealthBar", "menuManager")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("1_k3ivt")
+script = ExtResource("2_wf68y")
+guiHealthBar = NodePath("GUIHealthBar")
+menuManager = NodePath("MouseManager/MenuManager")
+metadata/_edit_use_anchors_ = true
+
+[node name="GUIHealthBar" type="TextureProgressBar" parent="." unique_id=585776593]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+offset_right = 200.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_progress = ExtResource("2_s6kyy")
+script = ExtResource("3_slhow")
+minProgressColour = Color(0.83513546, 0, 0.25823402, 1)
+maxProgressColour = Color(1.4439225e-06, 0.6448821, 0.25049123, 1)
+interpSpeed = 2.5
+
+[node name="Stats" type="Label" parent="." unique_id=1549377497]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("4_s358i")
+
+[node name="Label" type="Label" parent="." unique_id=2128666026]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 378.0
+offset_right = 43.0
+offset_bottom = 401.0
+
+[node name="MouseManager" type="Control" parent="." unique_id=1011832851 node_paths=PackedStringArray("menuManager")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("8_7fy40")
+menuManager = NodePath("MenuManager")
+minimiumArea = 1000.0
+
+[node name="MenuManager" parent="MouseManager" unique_id=1690813115 instance=ExtResource("6_r14bo")]
+layout_mode = 1
+offset_left = 5.0
+offset_top = -1.0
+offset_right = 5.0
+offset_bottom = -1.0
+
+[node name="MouseSelectionArea" type="NinePatchRect" parent="MouseManager" unique_id=1760126508]
+texture_filter = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("8_ekorw")
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
