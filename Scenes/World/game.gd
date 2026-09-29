@@ -29,10 +29,10 @@ func _physics_process(_delta: float) -> void:
 	#print("L: ",LeftclickPressed, " R: ", RightclickPressed)
 	if LeftclickPressed:
 		LeftclickPressed = false
-		spawnUnit(get_global_mouse_position())
+		Global.summonUnit(get_global_mouse_position())
 	if RightclickPressed:
 		RightclickPressed = false
-		spawnEnemy(get_global_mouse_position())
+		Global.summonEnemy(get_global_mouse_position(), "enemy")
 	mousePosLabel.text = str(get_global_mouse_position())
 
 
@@ -49,24 +49,6 @@ func mouseInput(event: InputEvent)->void:
 		RightclickPressed = true
 	if event.is_action_released("Rightclick"):
 		RightclickPressed = false
-
-
-func spawnUnit(spawnPosition: Vector2)->void:
-	Global.unitCount += 1
-	var newUnit:Unit = Global.entityList["unit"].instantiate()
-	newUnit.global_position = spawnPosition
-	newUnit.name = "Unit#" + str(Global.unitCount)
-	worldScene.unitContainer.add_child(newUnit)
-
-
-func spawnEnemy(spawnPosition: Vector2):
-	Global.enemyCount += 1
-	var newEnemy: Enemy = Global.entityList["enemy"].instantiate()
-	newEnemy.global_position = spawnPosition
-	newEnemy.name = "Enemy#" + str(Global.enemyCount)
-	Global.targetList.append(newEnemy)
-	worldScene.add_child(newEnemy)
-
 
 func changeObservedCore(newCore)->void:
 	currentCore = newCore

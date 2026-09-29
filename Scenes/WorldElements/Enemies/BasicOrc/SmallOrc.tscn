@@ -87,3 +87,5 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_axljd")
 animation = &"Idle"
 frame_progress = 0.47391236
+
+[node name="NavAgent" type="NavigationAgent2D" parent="." unique_id=463911785]

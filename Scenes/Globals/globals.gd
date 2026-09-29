@@ -22,9 +22,16 @@ var projectileCount: int = 0
 var nextTarget :Core
 var currentHealthBar: healthBar
 var currentlyAvaliableCards: Array[String] = ["uid://c5mkw4xmmuod1"]
+var enemysInCurrentDay: Array = []
+
+var worldScene: Node2D
 
 #units
 var targetList: Array = []
+
+#game state controls
+var waveActive: bool = true
+
 
 func addToAvaliableCards(UID)->void:
 	currentlyAvaliableCards.append(UID)
@@ -44,3 +51,20 @@ func _loadProjectiles()->void:
 func _loadEntities()->void:
 	for entity in entityList:
 		entityList[entity]  = load(entityList[entity])
+
+
+func summonUnit(spawnPosition: Vector2)->void:
+	Global.unitCount += 1
+	var newUnit:Unit = Global.entityList["unit"].instantiate()
+	newUnit.global_position = spawnPosition
+	newUnit.name = "Unit#" + str(Global.unitCount)
+	worldScene.unitContainer.add_child(newUnit)
+
+
+func summonEnemy(spawnPosition: Vector2, enemyType: String):
+	Global.enemyCount += 1
+	var newEnemy: Enemy = Global.entityList[enemyType].instantiate()
+	newEnemy.global_position = spawnPosition
+	newEnemy.name = "Enemy#" + str(Global.enemyCount)
+	Global.targetList.append(newEnemy)
+	worldScene.enemyContainer.add_child(newEnemy)

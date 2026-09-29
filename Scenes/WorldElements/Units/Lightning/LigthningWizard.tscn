@@ -330,12 +330,14 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_axljd"]
 radius = 14.035668
 
-[node name="LigthningWizard" type="Node2D" unique_id=1176254785 node_paths=PackedStringArray("aniSprite", "aniPlayer", "navAgent")]
+[node name="LigthningWizard" type="Node2D" unique_id=1176254785 node_paths=PackedStringArray("lightningProjectilePoint", "aniSprite", "aniPlayer", "navAgent", "selectionModule")]
 scale = Vector2(0.54, 0.54)
 script = ExtResource("1_jkued")
+lightningProjectilePoint = NodePath("AnimatedSprite2D/LightningProjectileMarker")
 aniSprite = NodePath("AnimatedSprite2D")
 aniPlayer = NodePath("AnimationPlayer")
 navAgent = NodePath("NavAgent")
+selectionModule = NodePath("SelectionModule")
 
 [node name="SelectionModule" parent="." unique_id=1834226937 instance=ExtResource("2_x326v")]
 
@@ -345,9 +347,12 @@ navAgent = NodePath("NavAgent")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_axljd")
 animation = &"attack"
-frame = 33
-frame_progress = 1.0
+frame = 25
+frame_progress = 0.34971517
 offset = Vector2(0, -22.5)
+
+[node name="LightningProjectileMarker" type="Node2D" parent="AnimatedSprite2D" unique_id=1661746645]
+position = Vector2(0, -49.999996)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1560287782]
 libraries/ = SubResource("AnimationLibrary_wef3f")

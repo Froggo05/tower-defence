@@ -19,7 +19,7 @@ var currentTarget: Enemy
 @export var projectileSpread: float = 75.0
 
 @export var navAgent: NavigationAgent2D
-
+@export var selectionModule: Node2D
 #clock settings
 
 @export var attackSpeed: float = 0.01
