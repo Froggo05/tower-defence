@@ -198,7 +198,7 @@ func updateRay()->void:
 
 func attackTarget()->void:
 	var hit = Ray.get_collider()
-	if hit is Hitbox:
+	if hit is EnemyHitbox:
 		if hit.has_method("_getHit"):
 			hit._getHit(damage)
 		

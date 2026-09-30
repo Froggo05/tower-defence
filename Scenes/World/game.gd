@@ -32,7 +32,7 @@ func _physics_process(_delta: float) -> void:
 		Global.summonUnit(get_global_mouse_position())
 	if RightclickPressed:
 		RightclickPressed = false
-		Global.summonEnemy(get_global_mouse_position(), "enemy")
+		Global.summonEnemy(get_global_mouse_position(), "smallOrc")
 	mousePosLabel.text = str(get_global_mouse_position())
 
 

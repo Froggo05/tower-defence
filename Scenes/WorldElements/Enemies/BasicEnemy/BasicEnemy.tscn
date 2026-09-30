@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://b27eegnueu6ys"]
 
 [ext_resource type="Script" uid="uid://b1m43ohc3x17a" path="res://Scenes/WorldElements/Enemies/BasicEnemy/basic_enemy.gd" id="1_11u8t"]
-[ext_resource type="Script" uid="uid://byuhbqidw6uoi" path="res://Scenes/WorldElements/Enemies/BasicEnemy/hitbox.gd" id="2_11u8t"]
 [ext_resource type="Texture2D" uid="uid://d3krbf18nueos" path="res://Scenes/WorldElements/Enemies/BasicEnemy/OrcProtoypeuseonly.png" id="2_tbx3a"]
+[ext_resource type="PackedScene" uid="uid://c255lovkupggu" path="res://Scenes/WorldElements/Enemies/BasicEnemy/enemyHitbox.tscn" id="3_ysgdo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_axljd"]
-radius = 39.623226
+radius = 6.0827627
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_60jb5"]
 atlas = ExtResource("2_tbx3a")
@@ -67,12 +67,11 @@ gradient = SubResource("Gradient_bey7i")
 [sub_resource type="CircleShape2D" id="CircleShape2D_m8s3d"]
 radius = 23.021729
 
-[node name="BasicEnemy" type="RigidBody2D" unique_id=1460330496 node_paths=PackedStringArray("hitbox")]
+[node name="BasicEnemy" type="RigidBody2D" unique_id=1460330496]
 collision_mask = 4
 gravity_scale = 0.0
 freeze = true
 script = ExtResource("1_11u8t")
-hitbox = NodePath("Hitbox")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=227709781]
 shape = SubResource("CircleShape2D_axljd")
@@ -96,12 +95,10 @@ position = Vector2(32, 0)
 scale = Vector2(1, 0.1875)
 texture = SubResource("GradientTexture2D_m8s3d")
 
-[node name="Hitbox" type="Area2D" parent="." unique_id=1707923409]
-collision_mask = 0
-script = ExtResource("2_11u8t")
+[node name="Hitbox" parent="." unique_id=1140627119 instance=ExtResource("3_ysgdo")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=832608950]
-shape = SubResource("CircleShape2D_axljd")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=2015777068]
+shape = SubResource("CircleShape2D_m8s3d")
 
 [node name="AttackRange" type="Area2D" parent="." unique_id=1912617483]
 visible = false

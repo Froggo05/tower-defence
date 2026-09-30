@@ -111,7 +111,7 @@ func timer(delta)->void:
 	
 
 func _on_attack_range_area_entered(area: Area2D) -> void:
-	if area.Parent is Enemy:
+	if area is EnemyHitbox:
 		targetList.append(area.Parent)
 		print(area.Parent)
 

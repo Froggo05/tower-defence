@@ -9,7 +9,7 @@ enum CardRarity {
 }
 
 #loaders (places to look for enemys or units if i want to spawn stuff (maybe projectiles too))
-var entityList: Dictionary = {"unit": "uid://do5p2oo1evqfk", "enemy": "uid://b27eegnueu6ys"}
+var entityList: Dictionary = {"unit": "uid://do5p2oo1evqfk", "enemy": "uid://b27eegnueu6ys", "smallOrc" : "uid://dwb4cdvam3ofp"}
 var projectileList: Dictionary = {"projectile": "uid://0ax2j8etcyia"}
 
 #important vars

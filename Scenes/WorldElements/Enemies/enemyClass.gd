@@ -10,9 +10,9 @@ var isTargeted: bool = false
 var direction: Vector2 = Vector2(1.0, 0)
 
 var clock: float = 0.0
-var moveInterval: float = 1.0
+var moveInterval: float = 0.25
 var canMove: bool = true
-var impulse: float = 500.0
+var impulse: float = 25.0
 var frictionConstant: float = 5.0
 var movementToggle: bool = true
 var velocity: Vector2 = Vector2.ZERO
@@ -33,14 +33,14 @@ func _process(delta: float) -> void:
 	if health <= 0:
 		Global.enemyCount -= 1
 		queue_free()
-	if !movementToggle:
-		return
+	#if !movementToggle:
+		#return
 	
 	timer(delta)
 	updatePosition(delta)
 	
 	if move_and_collide(velocity * delta):
-		velocity = Vector2.ZERO
+		velocity /= 1.25
 		canMove = false
 		movementToggle = false
 
@@ -62,7 +62,7 @@ func updatePosition(delta)->void:
 
 func applyImpulse(_delta)->void:
 	if canMove:
-		velocity = impulse * direction
+		velocity += impulse * direction
 		canMove = false
 
 

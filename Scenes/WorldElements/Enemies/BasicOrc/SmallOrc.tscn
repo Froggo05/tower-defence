@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://bqtepcbb0ef8y" path="res://Scenes/WorldElements/Enemies/BasicOrc/state_machine.gd" id="2_e8yxm"]
 [ext_resource type="Texture2D" uid="uid://bstqjq3c6rbg5" path="res://Scenes/WorldElements/Enemies/BasicOrc/BasicOrcAttackKeys.png" id="2_ioagx"]
 [ext_resource type="Script" uid="uid://cct5ucdlqlpfx" path="res://Scenes/WorldElements/Enemies/BasicOrc/idle.gd" id="3_cgu8g"]
+[ext_resource type="PackedScene" uid="uid://c255lovkupggu" path="res://Scenes/WorldElements/Enemies/BasicEnemy/enemyHitbox.tscn" id="4_q754w"]
 [ext_resource type="Script" uid="uid://bdjik40d5sa6a" path="res://StatemachineClass/state.gd" id="6_6ohtn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6ohtn"]
@@ -168,18 +169,24 @@ radius = 16.27882
 [sub_resource type="CircleShape2D" id="CircleShape2D_axljd"]
 radius = 22.022715
 
-[node name="SmallOrc" type="RigidBody2D" unique_id=1508798940 node_paths=PackedStringArray("stateMachine", "aniSprite", "aniPlayer", "hitbox")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_axljd"]
+size = Vector2(40, 34.5)
+
+[node name="SmallOrc" type="RigidBody2D" unique_id=1508798940 node_paths=PackedStringArray("stateMachine", "aniSprite", "aniPlayer")]
+gravity_scale = 0.0
 script = ExtResource("1_cgu8g")
 stateMachine = NodePath("StateMachine")
 aniSprite = NodePath("AnimatedSprite2D")
 aniPlayer = NodePath("AnimationPlayer")
-hitbox = NodePath("Hitbox")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2103216115]
 texture_filter = 1
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_axljd")
-animation = &"Idle"
+animation = &"Attack"
 autoplay = "Idle"
+frame = 2
+frame_progress = 1.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1062415785]
 libraries/ = SubResource("AnimationLibrary_6ohtn")
@@ -187,13 +194,15 @@ libraries/ = SubResource("AnimationLibrary_6ohtn")
 [node name="NavAgent" type="NavigationAgent2D" parent="." unique_id=463911785]
 
 [node name="CollisionArea" type="CollisionShape2D" parent="." unique_id=735494609]
-visible = false
+scale = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_gum6o")
 
-[node name="Hitbox" type="Area2D" parent="." unique_id=442220883]
-visible = false
+[node name="Hitbox" parent="." unique_id=1140627119 instance=ExtResource("4_q754w")]
+scale = Vector2(0.5, 0.5)
+collision_mask = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1804650140]
+scale = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_axljd")
 
 [node name="StateMachine" type="Node" parent="." unique_id=802054042 node_paths=PackedStringArray("starting_state")]
@@ -213,5 +222,16 @@ metadata/_custom_type_script = "uid://bdjik40d5sa6a"
 script = ExtResource("6_6ohtn")
 metadata/_custom_type_script = "uid://bdjik40d5sa6a"
 
+[node name="AttackRange" type="Area2D" parent="." unique_id=932549986]
+scale = Vector2(0.5, 0.5)
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange" unique_id=221966928]
+position = Vector2(0, -24.75)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_axljd")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]
