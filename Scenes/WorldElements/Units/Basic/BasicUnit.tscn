@@ -4,9 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://d24gpggyn1b23" path="res://Scenes/WorldElements/Units/Sprites/SmolArcherIdle.png" id="2_8m62v"]
 [ext_resource type="Texture2D" uid="uid://bihl4l3j8vp25" path="res://Scenes/WorldElements/Units/Sprites/SmolArcherAttack.png" id="3_vtdey"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_3ptfe"]
-radius = 18.439089
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_78lln"]
 atlas = ExtResource("2_8m62v")
 region = Rect2(0, 0, 11, 9)
@@ -228,13 +225,11 @@ animations = [{
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_6kvvk"]
 gradient = SubResource("Gradient_78lln")
 
-[node name="BasicUnit" type="CharacterBody2D" unique_id=1211809047]
+[node name="BasicUnit" type="Node2D" unique_id=1905790668 node_paths=PackedStringArray("aniSprite", "navAgent")]
 script = ExtResource("1_tjjca")
+aniSprite = NodePath("AnimatedSprite2D")
+navAgent = NodePath("NavigationAgent2D")
 attackSpeed = 2.0
-
-[node name="EnemyCollider" type="CollisionShape2D" parent="." unique_id=1327838859]
-position = Vector2(-1, 0)
-shape = SubResource("CircleShape2D_3ptfe")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=884412740]
 texture_filter = 1

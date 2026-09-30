@@ -1,6 +1,23 @@
 [gd_scene format=3 uid="uid://dwb4cdvam3ofp"]
 
+[ext_resource type="Script" uid="uid://f5o7d22ktwrl" path="res://Scenes/WorldElements/Enemies/BasicOrc/small_orc.gd" id="1_cgu8g"]
 [ext_resource type="Texture2D" uid="uid://c7llsr33m3reo" path="res://Scenes/WorldElements/Enemies/BasicOrc/BasicOrcIdle.png" id="1_e0uxd"]
+[ext_resource type="Script" uid="uid://bqtepcbb0ef8y" path="res://Scenes/WorldElements/Enemies/BasicOrc/state_machine.gd" id="2_e8yxm"]
+[ext_resource type="Texture2D" uid="uid://bstqjq3c6rbg5" path="res://Scenes/WorldElements/Enemies/BasicOrc/BasicOrcAttackKeys.png" id="2_ioagx"]
+[ext_resource type="Script" uid="uid://cct5ucdlqlpfx" path="res://Scenes/WorldElements/Enemies/BasicOrc/idle.gd" id="3_cgu8g"]
+[ext_resource type="Script" uid="uid://bdjik40d5sa6a" path="res://StatemachineClass/state.gd" id="6_6ohtn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ohtn"]
+atlas = ExtResource("2_ioagx")
+region = Rect2(0, 0, 80, 105)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q754w"]
+atlas = ExtResource("2_ioagx")
+region = Rect2(80, 0, 80, 105)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dlt6"]
+atlas = ExtResource("2_ioagx")
+region = Rect2(160, 0, 80, 105)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fre34"]
 atlas = ExtResource("1_e0uxd")
@@ -46,6 +63,20 @@ region = Rect2(576, 0, 64, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_6ohtn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q754w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0dlt6")
+}],
+"loop": 0,
+"name": &"Attack",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_fre34")
 }, {
 "duration": 1.0,
@@ -78,14 +109,109 @@ animations = [{
 "loop": 1,
 "name": &"Idle",
 "speed": 12.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"Walk",
+"speed": 12.0
 }]
 
-[node name="SmallOrc" type="Node2D" unique_id=873699510]
+[sub_resource type="Animation" id="Animation_6ohtn"]
+resource_name = "Attack"
+
+[sub_resource type="Animation" id="Animation_cgu8g"]
+resource_name = "Idle"
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_3p5ew"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ioagx"]
+resource_name = "Walk"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33333337, 0.6666667),
+"transitions": PackedFloat32Array(1, 2, 2),
+"update": 0,
+"values": [0.0, 0.36651915, -0.37350047]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6ohtn"]
+_data = {
+&"Attack": SubResource("Animation_6ohtn"),
+&"Idle": SubResource("Animation_cgu8g"),
+&"RESET": SubResource("Animation_3p5ew"),
+&"Walk": SubResource("Animation_ioagx")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gum6o"]
+radius = 16.27882
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_axljd"]
+radius = 22.022715
+
+[node name="SmallOrc" type="RigidBody2D" unique_id=1508798940 node_paths=PackedStringArray("stateMachine", "aniSprite", "aniPlayer", "hitbox")]
+script = ExtResource("1_cgu8g")
+stateMachine = NodePath("StateMachine")
+aniSprite = NodePath("AnimatedSprite2D")
+aniPlayer = NodePath("AnimationPlayer")
+hitbox = NodePath("Hitbox")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2103216115]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_axljd")
 animation = &"Idle"
-frame_progress = 0.47391236
+autoplay = "Idle"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1062415785]
+libraries/ = SubResource("AnimationLibrary_6ohtn")
 
 [node name="NavAgent" type="NavigationAgent2D" parent="." unique_id=463911785]
+
+[node name="CollisionArea" type="CollisionShape2D" parent="." unique_id=735494609]
+visible = false
+shape = SubResource("CircleShape2D_gum6o")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=442220883]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1804650140]
+shape = SubResource("CircleShape2D_axljd")
+
+[node name="StateMachine" type="Node" parent="." unique_id=802054042 node_paths=PackedStringArray("starting_state")]
+script = ExtResource("2_e8yxm")
+starting_state = NodePath("Idle")
+metadata/_custom_type_script = "uid://c5v7w2hxqwvm8"
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=1751462417]
+script = ExtResource("3_cgu8g")
+metadata/_custom_type_script = "uid://bdjik40d5sa6a"
+
+[node name="Walk" type="Node" parent="StateMachine" unique_id=1663765988]
+script = ExtResource("6_6ohtn")
+metadata/_custom_type_script = "uid://bdjik40d5sa6a"
+
+[node name="Attack" type="Node" parent="StateMachine" unique_id=552259867]
+script = ExtResource("6_6ohtn")
+metadata/_custom_type_script = "uid://bdjik40d5sa6a"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

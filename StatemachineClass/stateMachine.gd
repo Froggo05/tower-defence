@@ -6,6 +6,7 @@ var state_map: Dictionary
 var  current_state: State = null
 var _active: bool = false : set = _set_active
 
+signal changingState(stateName:String)
 
 func _ready() -> void:
 	_create_state_map()
@@ -46,6 +47,8 @@ func _change_state(state_name: String) -> void:
 	current_state = state_map[state_name]
 	current_state._enter()
 	current_state.previous_state = previous_state
+	
+	changingState.emit(current_state.name)
 	
 func _return_to_previous_state()->void:
 	_change_state(current_state.previous_state)

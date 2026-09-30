@@ -149,6 +149,10 @@ region = Rect2(192, 485, 64, 97)
 atlas = ExtResource("1_qrlvj")
 region = Rect2(0, 0, 64, 97)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6vw3"]
+atlas = ExtResource("1_qrlvj")
+region = Rect2(0, 0, 64, 97)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_axljd"]
 animations = [{
 "frames": [{
@@ -266,7 +270,10 @@ animations = [{
 "name": &"idle",
 "speed": 12.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6vw3")
+}],
 "loop": 1,
 "name": &"walk",
 "speed": 12.0
@@ -287,6 +294,9 @@ tracks/0/keys = {
 "values": [0.0]
 }
 
+[sub_resource type="Animation" id="Animation_wef3f"]
+resource_name = "attack"
+
 [sub_resource type="Animation" id="Animation_a6vw3"]
 resource_name = "idle"
 loop_mode = 1
@@ -297,10 +307,10 @@ tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.23333333, 0.6666667),
-"transitions": PackedFloat32Array(0.59460425, 0.9330329),
+"times": PackedFloat32Array(0.26666668, 0.6333333),
+"transitions": PackedFloat32Array(0.9330329, 0.59460425),
 "update": 0,
-"values": [-0.11868239, 0.11868239]
+"values": [0.11868239, -0.11868239]
 }
 
 [sub_resource type="Animation" id="Animation_3thbw"]
@@ -323,6 +333,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wef3f"]
 _data = {
 &"RESET": SubResource("Animation_x326v"),
+&"attack": SubResource("Animation_wef3f"),
 &"idle": SubResource("Animation_a6vw3"),
 &"walk": SubResource("Animation_3thbw")
 }
@@ -346,9 +357,7 @@ selectionModule = NodePath("SelectionModule")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=945541962]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_axljd")
-animation = &"attack"
-frame = 25
-frame_progress = 0.34971517
+animation = &"walk"
 offset = Vector2(0, -22.5)
 
 [node name="LightningProjectileMarker" type="Node2D" parent="AnimatedSprite2D" unique_id=1661746645]
@@ -359,6 +368,7 @@ libraries/ = SubResource("AnimationLibrary_wef3f")
 autoplay = &"idle"
 
 [node name="AttackRange" type="RayCast2D" parent="." unique_id=1254866988]
+visible = false
 target_position = Vector2(500, 0)
 
 [node name="Hitbox" parent="." unique_id=1698997493 instance=ExtResource("2_jkued")]
