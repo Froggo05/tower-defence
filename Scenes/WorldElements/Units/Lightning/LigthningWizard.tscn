@@ -351,6 +351,7 @@ navAgent = NodePath("NavAgent")
 selectionModule = NodePath("SelectionModule")
 
 [node name="SelectionModule" parent="." unique_id=1834226937 instance=ExtResource("2_x326v")]
+visible = false
 
 [node name="NavAgent" type="NavigationAgent2D" parent="." unique_id=638696279]
 
@@ -368,7 +369,6 @@ libraries/ = SubResource("AnimationLibrary_wef3f")
 autoplay = &"idle"
 
 [node name="AttackRange" type="RayCast2D" parent="." unique_id=1254866988]
-visible = false
 target_position = Vector2(500, 0)
 
 [node name="Hitbox" parent="." unique_id=1698997493 instance=ExtResource("2_jkued")]

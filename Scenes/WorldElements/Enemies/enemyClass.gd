@@ -1,7 +1,5 @@
 extends RigidBody2D
 class_name Enemy
-
-@export var hitbox: Area2D
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 var health = 1.0
@@ -16,6 +14,14 @@ var impulse: float = 25.0
 var frictionConstant: float = 5.0
 var movementToggle: bool = true
 var velocity: Vector2 = Vector2.ZERO
+
+@export var stateMachine: StateMachine
+@export var aniSprite: AnimatedSprite2D
+@export var aniPlayer: AnimationPlayer
+@export var navAgent: NavigationAgent2D
+
+var collidingWith: Array = []
+
 
 func timer(delta)->void:
 	if canMove:
@@ -33,16 +39,8 @@ func _process(delta: float) -> void:
 	if health <= 0:
 		Global.enemyCount -= 1
 		queue_free()
-	#if !movementToggle:
-		#return
-	
+
 	timer(delta)
-	updatePosition(delta)
-	
-	if move_and_collide(velocity * delta):
-		velocity /= 1.25
-		canMove = false
-		movementToggle = false
 
 
 func attack(target: Area2D)-> void:
@@ -79,3 +77,62 @@ func _attack_range_entered(area: Area2D) -> void:
 	if area.has_method("_getHit"):
 		sprite.play()
 		area._getHit(damage)
+
+
+func _ready() -> void:
+	_connectSignals()
+
+func _physics_process(delta: float) -> void:
+	_updateRotation()
+	_updateCollisions()
+	
+	updatePosition(delta)
+	
+	if move_and_collide(velocity * delta):
+		velocity /= 1.25
+		canMove = false
+		movementToggle = false
+
+func _updateCollisions()->void:
+	for area in collidingWith:
+		if area.Parent is orcBase:
+			var dir = global_position.direction_to(area.Parent.global_position)
+			var strength = 2
+			var pushImpulse = strength * dir
+			area.getPushed(pushImpulse)
+			#print("Pushing Body: ", area.Parent.name, " With Force: ", pushImpulse)
+
+func _connectSignals()->void:
+	stateMachine.changingState.connect(_reactToStateChange)
+
+func push(pushimpulse: Vector2)->void:
+	velocity += pushimpulse
+
+
+func _updateRotation()->void:
+	rotation = velocity.normalized().angle() + deg_to_rad(90) #up != forward, +x actually is forward
+
+func _reactToStateChange(stateName: String)->void: #signal response
+	match stateName:
+		"Attack":
+			aniSprite.play(stateName)
+			aniPlayer.play(stateName)
+			await aniSprite.animation_finished
+			aniSprite.play("Idle")
+			return
+		"Idle":
+			aniSprite.play(stateName)
+			aniPlayer.play(stateName)
+			return
+		"Walk":
+			aniSprite.play(stateName)
+			aniPlayer.play(stateName)
+			return
+
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	if area is EnemyHitbox:
+		collidingWith.append(area)
+
+func _on_hitbox_area_exited(area: Area2D) -> void:
+	if area is EnemyHitbox:
+		collidingWith.erase(area)

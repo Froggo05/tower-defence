@@ -9,10 +9,9 @@ shader = ExtResource("2_kbgum")
 shader_parameter/horizontal_frames = 14
 shader_parameter/fps = 12.0
 
-[node name="LightningProjectileContainer" type="Node2D" unique_id=84202188 node_paths=PackedStringArray("lightningProjectile")]
+[node name="LightningProjectileContainer" type="Node2D" unique_id=84202188 node_paths=PackedStringArray("line2D")]
 script = ExtResource("1_0igvq")
-lightningProjectile = NodePath("LightningProjectile")
-lifetime = null
+line2D = NodePath("LightningProjectile")
 
 [node name="LightningProjectile" type="Line2D" parent="." unique_id=1676616324]
 texture_filter = 1

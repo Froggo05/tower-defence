@@ -35,7 +35,11 @@ var targetList: Array = []
 var waveActive: bool = true
 
 #global funcs
-#@deprecated
+
+static func closeEnough(A, B) -> bool:
+	var comparison = A.snappedf(0.05) == B.snappedf(0.05)
+	return comparison
+
 func addToAvaliableCards(UID)->void:
 	currentlyAvaliableCards.append(UID)
 func removeFromAvaliableCards(UID)->void:

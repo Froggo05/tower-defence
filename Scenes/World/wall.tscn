@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://dxpsaw7cq4mkh"]
+
+[ext_resource type="Script" uid="uid://cujk43ecaiyh1" path="res://Scenes/World/Wall/wall.gd" id="1_yr834"]
+[ext_resource type="PackedScene" uid="uid://ug8l1iv71q1n" path="res://Scenes/WorldElements/Units/Classes/hitbox.tscn" id="2_egvxt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m8s3d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_egvxt"]
+size = Vector2(20, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plxga"]
+size = Vector2(20, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sxg2m"]
+size = Vector2(20, 58)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ld0b8"]
+size = Vector2(20, 84)
+
+[node name="Wall" type="Node2D" unique_id=1913152320 node_paths=PackedStringArray("unitSpace")]
+script = ExtResource("1_yr834")
+unitSpace = NodePath("StandableSpace")
+
+[node name="Hitbox" parent="." unique_id=1698997493 instance=ExtResource("2_egvxt")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1378185340]
+shape = SubResource("RectangleShape2D_m8s3d")
+
+[node name="StandableSpace" type="ColorRect" parent="." unique_id=1482317461]
+offset_left = -7.0
+offset_top = -7.0
+offset_right = 7.0
+offset_bottom = 7.0
+color = Color(0.5529412, 0, 1, 0.4745098)
+
+[node name="Button" type="Button" parent="." unique_id=887072926]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+button_mask = 2
+
+[node name="DetectionShells" type="Node2D" parent="." unique_id=1322554586]
+
+[node name="Shell0" type="Area2D" parent="DetectionShells" unique_id=1120912150]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionShells/Shell0" unique_id=1695576610]
+position = Vector2(0, -13.5)
+shape = SubResource("RectangleShape2D_egvxt")
+debug_color = Color(0.99736506, 0, 0.1773471, 0.41960785)
+
+[node name="Shell1" type="Area2D" parent="DetectionShells" unique_id=987479605]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionShells/Shell1" unique_id=645864683]
+position = Vector2(0, -20.5)
+shape = SubResource("RectangleShape2D_plxga")
+debug_color = Color(0.99736506, 0, 0.1773471, 0.41960785)
+
+[node name="Shell2" type="Area2D" parent="DetectionShells" unique_id=933270906]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionShells/Shell2" unique_id=1234397079]
+position = Vector2(0, -39)
+shape = SubResource("RectangleShape2D_sxg2m")
+debug_color = Color(0.99736506, 0, 0.1773471, 0.41960785)
+
+[node name="Shell3" type="Area2D" parent="DetectionShells" unique_id=1251680441]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionShells/Shell3" unique_id=929103582]
+position = Vector2(0, -52)
+shape = SubResource("RectangleShape2D_ld0b8")
+debug_color = Color(0.99736506, 0, 0.1773471, 0.41960785)

@@ -1,1 +1,1 @@
-extends Hitbox
+extends Area2D

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://uql0fqvddu8v" path="res://Scenes/WorldElements/Units/Basic/basic_unit.gd" id="1_tjjca"]
 [ext_resource type="Texture2D" uid="uid://d24gpggyn1b23" path="res://Scenes/WorldElements/Units/Sprites/SmolArcherIdle.png" id="2_8m62v"]
 [ext_resource type="Texture2D" uid="uid://bihl4l3j8vp25" path="res://Scenes/WorldElements/Units/Sprites/SmolArcherAttack.png" id="3_vtdey"]
+[ext_resource type="PackedScene" uid="uid://b4skdixcqroe4" path="res://Scenes/World/unit_position_particle.tscn" id="4_ead5g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_78lln"]
 atlas = ExtResource("2_8m62v")
@@ -256,5 +257,7 @@ polygon = PackedVector2Array(0, 0, 519, 282, 516, -247)
 [node name="AttackTimer" type="Timer" parent="." unique_id=167258846]
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1462583842]
+
+[node name="UnitPositionParticle" parent="." unique_id=491563849 instance=ExtResource("4_ead5g")]
 
 [connection signal="area_entered" from="AttackRange" to="." method="_on_attack_range_area_entered"]

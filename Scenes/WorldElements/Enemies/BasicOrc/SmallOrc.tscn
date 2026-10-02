@@ -164,29 +164,27 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gum6o"]
-radius = 16.27882
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_axljd"]
-radius = 22.022715
+radius = 32.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_axljd"]
 size = Vector2(40, 34.5)
 
-[node name="SmallOrc" type="RigidBody2D" unique_id=1508798940 node_paths=PackedStringArray("stateMachine", "aniSprite", "aniPlayer")]
+[node name="SmallOrc" type="RigidBody2D" unique_id=1508798940 node_paths=PackedStringArray("stateMachine", "aniSprite", "aniPlayer", "navAgent")]
 gravity_scale = 0.0
 script = ExtResource("1_cgu8g")
 stateMachine = NodePath("StateMachine")
 aniSprite = NodePath("AnimatedSprite2D")
 aniPlayer = NodePath("AnimationPlayer")
+navAgent = NodePath("NavAgent")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2103216115]
 texture_filter = 1
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_axljd")
-animation = &"Attack"
+animation = &"Idle"
 autoplay = "Idle"
-frame = 2
-frame_progress = 1.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1062415785]
 libraries/ = SubResource("AnimationLibrary_6ohtn")
