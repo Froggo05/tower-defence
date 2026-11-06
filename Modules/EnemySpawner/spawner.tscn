@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bbl4fqahrns72"]
 
-[ext_resource type="Texture2D" uid="uid://cgeqm281su0x7" path="res://Scenes/WorldElements/Assets/MouseSelectArea.png" id="1_cdy7b"]
+[ext_resource type="Texture2D" uid="uid://cgeqm281su0x7" path="res://Assets/MouseSelectArea.png" id="1_cdy7b"]
 [ext_resource type="Script" uid="uid://mts5vaaduw7f" path="res://Modules/EnemySpawner/spawner.gd" id="2_c7yd3"]
 
 [node name="Spawner" type="NinePatchRect" unique_id=1317329464]

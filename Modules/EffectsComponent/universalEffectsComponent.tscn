@@ -1,0 +1,311 @@
+[gd_scene format=3 uid="uid://cxybhb7f6kpnx"]
+
+[ext_resource type="Texture2D" uid="uid://bj78bvd0upf3p" path="res://Modules/EffectsComponent/Textures/healingParticle.png" id="1_qxm57"]
+[ext_resource type="Script" uid="uid://6xor4j446rfy" path="res://Modules/EffectsComponent/universalEffectsComponent.gd" id="1_smgwi"]
+
+[sub_resource type="Animation" id="Animation_qxm57"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Healing/HealingRing:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Healing/HealingRingTrail:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Healing/HealingParticle:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:flash_colour")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:flash_amount")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_g7ylr"]
+resource_name = "damaged"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:flash_colour")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:flash_amount")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.19999999, 0.46666667, 0.6, 0.96666664),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.5, 0.1, 0.25, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_32ej1"]
+resource_name = "healing"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Healing/HealingRing:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.96666664),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Healing/HealingRingTrail:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.96666664),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Healing/HealingParticle:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.96666664),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:flash_colour")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.050708726, 1, 0, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:flash_amount")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.26666668, 0.43333334, 0.6666667, 0.96666664),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.4, 0.0, 0.25, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qxm57"]
+_data = {
+&"RESET": SubResource("Animation_qxm57"),
+&"damaged": SubResource("Animation_g7ylr"),
+&"healing": SubResource("Animation_32ej1")
+}
+
+[sub_resource type="Gradient" id="Gradient_smgwi"]
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0.25051335, 0.27104723, 0.27926078)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.54509807, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_axljd"]
+gradient = SubResource("Gradient_smgwi")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Curve" id="Curve_qxm57"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.55119824, 0.6090226), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_32ej1"]
+curve = SubResource("Curve_qxm57")
+
+[sub_resource type="Curve" id="Curve_smgwi"]
+_data = [Vector2(0.019607842, 0.010100961), 0.0, 2.9090917, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qxm57"]
+curve = SubResource("Curve_smgwi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g7ylr"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_qxm57")
+color = Color(0.09133333, 1, 0.060000002, 1)
+alpha_curve = SubResource("CurveTexture_32ej1")
+
+[sub_resource type="Gradient" id="Gradient_32ej1"]
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0.16632444, 0.2587269, 0.29979467)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.32941177, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qxm57"]
+gradient = SubResource("Gradient_32ej1")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Curve" id="Curve_32ej1"]
+_data = [Vector2(0, 0.65656567), 0.0, 0.0, 0, 0, Vector2(0.24618736, 0.65656567), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_smgwi"]
+curve = SubResource("Curve_32ej1")
+
+[sub_resource type="Curve" id="Curve_g7ylr"]
+_data = [Vector2(0.019607842, 0.010100961), 0.0, 2.9090917, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_cximo"]
+curve = SubResource("Curve_g7ylr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_smgwi"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_cximo")
+color = Color(0.5456667, 1, 0.53, 1)
+alpha_curve = SubResource("CurveTexture_smgwi")
+
+[sub_resource type="Curve" id="Curve_qfw6f"]
+_data = [Vector2(0.13289759, 0), 0.0, 0.0, 0, 0, Vector2(0.28976032, 1), 0.0, -2.125, 0, 1, Vector2(0.76034856, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_3udc4"]
+curve = SubResource("Curve_qfw6f")
+
+[sub_resource type="Curve" id="Curve_onw3u"]
+_limits = [-10.0, 10.0, 0.0, 1.0]
+_data = [Vector2(0, 0.39999962), 0.0, 0.0, 0, 0, Vector2(0.22193879, 5.5999994), 0.0, 0.0, 0, 0, Vector2(0.4642857, -4.4799995), 0.0, 0.0, 0, 0, Vector2(0.7423469, 5.839999), 0.0, 0.0, 0, 0, Vector2(0.99999, -0.1600008), 0.0, 0.0, 0, 0, Vector2(1, -10), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="CurveTexture" id="CurveTexture_g7ylr"]
+curve = SubResource("Curve_onw3u")
+
+[sub_resource type="Curve" id="Curve_cximo"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 360), 0.0, 0.0, 0, 0, Vector2(1, -360), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_dullf"]
+curve = SubResource("Curve_cximo")
+
+[sub_resource type="Curve" id="Curve_g5s4m"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.12794614), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_luos8"]
+curve = SubResource("Curve_g5s4m")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_axljd"]
+particle_flag_disable_z = true
+angle_min = -9.9999895
+angle_max = 10.0000105
+angle_curve = SubResource("CurveTexture_g7ylr")
+angular_velocity_curve = SubResource("CurveTexture_dullf")
+radial_velocity_min = 104.449974
+radial_velocity_max = 293.52997
+radial_velocity_curve = SubResource("CurveTexture_luos8")
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_3udc4")
+
+[node name="UniversalEffectsComponent" type="AnimationPlayer" unique_id=2044374402]
+root_node = NodePath("UniversalEffectsComponent")
+libraries/ = SubResource("AnimationLibrary_qxm57")
+autoplay = &"RESET"
+
+[node name="UniversalEffectsComponent" type="Node2D" parent="." unique_id=1993352277 node_paths=PackedStringArray("animationPlayer")]
+script = ExtResource("1_smgwi")
+flash_colour = Color(1, 0, 0, 1)
+animationPlayer = NodePath("..")
+
+[node name="Healing" type="Node2D" parent="UniversalEffectsComponent" unique_id=1843155501]
+
+[node name="HealingRing" type="GPUParticles2D" parent="UniversalEffectsComponent/Healing" unique_id=652403889]
+emitting = false
+amount = 1
+texture = SubResource("GradientTexture2D_axljd")
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_g7ylr")
+
+[node name="HealingRingTrail" type="GPUParticles2D" parent="UniversalEffectsComponent/Healing" unique_id=1185552875]
+emitting = false
+amount = 1
+texture = SubResource("GradientTexture2D_qxm57")
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_smgwi")
+
+[node name="HealingParticle" type="GPUParticles2D" parent="UniversalEffectsComponent/Healing" unique_id=564413047]
+texture_filter = 1
+emitting = false
+amount = 20
+texture = ExtResource("1_qxm57")
+explosiveness = 0.75
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_axljd")
+
+[node name="Damaged" type="Node2D" parent="UniversalEffectsComponent" unique_id=807440394]

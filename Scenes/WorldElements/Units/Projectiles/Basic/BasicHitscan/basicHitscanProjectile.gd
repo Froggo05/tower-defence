@@ -10,6 +10,7 @@ var lifeClock: float = 0.0
 var isActive: bool = false
 var isLoaded: bool = false
 
+@warning_ignore("unused_parameter")
 func _start(newDamage: float, newTarget: Enemy, spawnPosition: Vector2)->void:
 	pass
 

@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://copg8g5t543od"]
+
+[ext_resource type="Script" uid="uid://dlubjeq05atp" path="res://Modules/HealthComponent/healthComponent.gd" id="1_1xtid"]
+
+[node name="HealthComponent" type="Area2D" unique_id=1858486418 node_paths=PackedStringArray("progressBar")]
+script = ExtResource("1_1xtid")
+progressBar = NodePath("ProgressBar")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=555017467]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+step = 1.0

@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://c681mrvm6ivda"]
+
+[ext_resource type="Script" uid="uid://d3wvgt1cvbetr" path="res://Scenes/WorldElements/GUI/MenuManager/Inventory/Item/item.gd" id="1_hvuqc"]
+[ext_resource type="Script" uid="uid://bet3qcju1ttno" path="res://Scenes/WorldElements/GUI/MenuManager/Inventory/Item/AttributesResource.gd" id="2_2ky4l"]
+[ext_resource type="Texture2D" uid="uid://j4ia1x7knvhy" path="res://icon.svg" id="3_2ky4l"]
+
+[sub_resource type="Resource" id="Resource_j5x6h"]
+script = ExtResource("2_2ky4l")
+metadata/_custom_type_script = "uid://bet3qcju1ttno"
+
+[node name="TestItem" type="Control" unique_id=2137495195 node_paths=PackedStringArray("sprite")]
+custom_minimum_size = Vector2(128, 128)
+custom_maximum_size = Vector2(128, 128)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 128.0
+offset_bottom = 128.0
+offset_transform_enabled = true
+mouse_filter = 2
+script = ExtResource("1_hvuqc")
+attributes = SubResource("Resource_j5x6h")
+sprite = NodePath("Sprite")
+moveFactor = 1000.0
+
+[node name="Sprite" type="TextureRect" parent="." unique_id=925538866]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+mouse_filter = 2
+texture = ExtResource("3_2ky4l")

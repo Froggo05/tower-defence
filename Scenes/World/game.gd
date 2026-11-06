@@ -4,26 +4,18 @@ var LeftclickPressed:bool = false
 var RightclickPressed:bool = false
 
 #exports
-@export var currentCore: Core
 @export var worldScene: Node2D
 @export var GUI: GUIManager
-#onreadys
-@onready var mousePosLabel: Label = $GUI/Label
 
 func _ready() -> void:
 	Global.gold = 1000
-	Global.nextTarget = currentCore
-	Global.currentHealthBar = GUI.guiHealthBar
-	Global.currentHealthBar._updateHealth(Global.currentHealthBar.maxHealthPoints)
 	nextDay()
 
 func nextDay()->void:
 	GUI.menuManager.menuDict["MerchantMenu"].generateSale()
-	
 
 func _process(_delta: float) -> void:
 	pass
-
 
 func _physics_process(_delta: float) -> void:
 	#print("L: ",LeftclickPressed, " R: ", RightclickPressed)
@@ -33,12 +25,9 @@ func _physics_process(_delta: float) -> void:
 	if RightclickPressed:
 		RightclickPressed = false
 		Global.summonEnemy(get_global_mouse_position(), "smallOrc")
-	mousePosLabel.text = str(get_global_mouse_position())
-
 
 func _unhandled_input(event: InputEvent) -> void:
 	mouseInput(event)
-
 
 func mouseInput(event: InputEvent)->void:
 	if event.is_action_pressed("Leftclick"):
@@ -51,5 +40,4 @@ func mouseInput(event: InputEvent)->void:
 		RightclickPressed = false
 
 func changeObservedCore(newCore)->void:
-	currentCore = newCore
 	Global.currentHealthBar._changeObserved(newCore.health)

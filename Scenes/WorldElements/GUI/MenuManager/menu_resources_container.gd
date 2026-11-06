@@ -1,2 +1,6 @@
 class_name MenuResourceContainer extends Control
-@export var InventoryManager: CardInventoryManager
+
+func _ready()->void:
+	for child in get_children():
+		if child is InventoryManager:
+			MenuManager.avaliableInventories.set(child.IUID, child)

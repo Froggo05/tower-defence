@@ -5,10 +5,10 @@
 [ext_resource type="Script" uid="uid://b4kpj75nf14b5" path="res://Scenes/WorldElements/GUI/MenuManager/menu_manager.gd" id="2_cpndi"]
 [ext_resource type="PackedScene" uid="uid://7kgi4wsaqwi8" path="res://Scenes/WorldElements/GUI/MenuManager/GameplayGUI/gameplay_gui.tscn" id="4_5qr3h"]
 [ext_resource type="PackedScene" uid="uid://040cfwho8yb7" path="res://Scenes/WorldElements/GUI/MenuManager/StartMenu/start_menu.tscn" id="5_f4a2y"]
-[ext_resource type="PackedScene" uid="uid://bgqvb6gq07m85" path="res://Scenes/WorldElements/Inventory/card_inventory_manager.tscn" id="5_xb0jk"]
 [ext_resource type="Script" uid="uid://buqpeq752ryvg" path="res://Scenes/WorldElements/GUI/MenuManager/menu_resources_container.gd" id="6_be1tq"]
+[ext_resource type="PackedScene" uid="uid://tkofxeb5hbe6" path="res://Scenes/WorldElements/GUI/MenuManager/Inventory/inventory.tscn" id="7_sohft"]
 
-[node name="MenuManager" type="Control" unique_id=1690813115 node_paths=PackedStringArray("menuResourceContainer", "defaultMenu", "startMenu")]
+[node name="MenuManager" type="Control" unique_id=1690813115 node_paths=PackedStringArray("menuResourceContainer", "inventory", "defaultMenu", "startMenu")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,32 +19,45 @@ mouse_filter = 1
 theme = ExtResource("1_ab07y")
 script = ExtResource("2_cpndi")
 menuResourceContainer = NodePath("MenuResourcesContainer")
+inventory = NodePath("MenuResourcesContainer/Inventory")
 defaultMenu = NodePath("GameplayGUI")
 startMenu = NodePath("StartMenu")
+metadata/_edit_use_anchors_ = true
 
-[node name="MerchantMenu" parent="." unique_id=1036665437 node_paths=PackedStringArray("cardInventoryManager") instance=ExtResource("1_xkxm8")]
+[node name="MenuResourcesContainer" type="Control" parent="." unique_id=826891072]
 layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 1
-cardInventoryManager = NodePath("../MenuResourcesContainer/CardInventoryManager")
+script = ExtResource("6_be1tq")
+metadata/_edit_use_anchors_ = true
 
-[node name="GameplayGUI" parent="." unique_id=1534566029 node_paths=PackedStringArray("cardInventoryManager") instance=ExtResource("4_5qr3h")]
+[node name="Inventory" parent="MenuResourcesContainer" unique_id=1819180068 instance=ExtResource("7_sohft")]
 layout_mode = 1
-cardInventoryManager = NodePath("../MenuResourcesContainer/CardInventoryManager")
+offset_right = 448.0
+offset_bottom = 384.0
+offset_transform_enabled = true
+inventorySize = Vector2i(7, 6)
+
+[node name="Button" type="Button" parent="MenuResourcesContainer" unique_id=2072284631]
+layout_mode = 0
+offset_left = 1531.0
+offset_top = 905.0
+offset_right = 1731.0
+offset_bottom = 942.0
+text = "Add item to inv"
+
+[node name="GameplayGUI" parent="." unique_id=1534566029 instance=ExtResource("4_5qr3h")]
+layout_mode = 1
 
 [node name="StartMenu" parent="." unique_id=783130587 instance=ExtResource("5_f4a2y")]
 layout_mode = 1
 
-[node name="MenuResourcesContainer" type="Control" parent="." unique_id=826891072 node_paths=PackedStringArray("InventoryManager")]
+[node name="MerchantMenu" parent="." unique_id=1036665437 instance=ExtResource("1_xkxm8")]
 layout_mode = 1
-anchors_preset = 0
 mouse_filter = 1
-script = ExtResource("6_be1tq")
-InventoryManager = NodePath("CardInventoryManager")
 
-[node name="CardInventoryManager" parent="MenuResourcesContainer" unique_id=759476098 instance=ExtResource("5_xb0jk")]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+[connection signal="pressed" from="MenuResourcesContainer/Button" to="." method="_on_button_pressed"]

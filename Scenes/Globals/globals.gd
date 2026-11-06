@@ -21,7 +21,6 @@ var enemyCount: int = 0
 var projectileCount: int = 0
 
 ##references -in place for global use
-var nextTarget :Core
 var currentHealthBar: healthBar
 var worldScene: Node2D
 var currentlyAvaliableCards: Array[String] = ["uid://c5mkw4xmmuod1"]
@@ -40,10 +39,10 @@ static func closeEnough(A, B) -> bool:
 	var comparison = A.snappedf(0.05) == B.snappedf(0.05)
 	return comparison
 
-func addToAvaliableCards(UID)->void:
-	currentlyAvaliableCards.append(UID)
-func removeFromAvaliableCards(UID)->void:
-	currentlyAvaliableCards.erase(UID)
+func addToAvaliableCards(uid)->void:
+	currentlyAvaliableCards.append(uid)
+func removeFromAvaliableCards(uid)->void:
+	currentlyAvaliableCards.erase(uid)
 
 #G	-summon funcs
 func summonUnit(spawnPosition: Vector2)->void:

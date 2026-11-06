@@ -31,20 +31,18 @@ window/stretch/aspect="expand"
 [file_customization]
 
 folder_colors={
+"res://Assets/": "yellow",
 "res://Modules/": "purple",
 "res://ProjectilePool/": "green",
 "res://ProjectilePool/PoolManager/": "green",
+"res://Scenes/": "green",
 "res://Scenes/Globals/": "green",
 "res://Scenes/World/": "green",
 "res://Scenes/WorldElements/": "green",
-"res://Scenes/WorldElements/Assets/": "yellow",
-"res://Scenes/WorldElements/Core/": "pink",
-"res://Scenes/WorldElements/Enemies/": "green",
 "res://Scenes/WorldElements/GUI/": "green",
-"res://Scenes/WorldElements/GUI/DemoMenuManager/": "red",
 "res://Scenes/WorldElements/GUI/MenuManager/": "green",
-"res://Scenes/WorldElements/Inventory/": "orange",
-"res://Scenes/WorldElements/Units/": "green",
+"res://Scenes/WorldElements/Inventory/": "red",
+"res://Scenes/WorldElements/Units/": "red",
 "res://ShaderResources/": "purple",
 "res://StatemachineClass/": "purple",
 "res://Theme/": "yellow"

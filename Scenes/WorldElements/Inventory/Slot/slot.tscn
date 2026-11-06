@@ -13,7 +13,6 @@ script = ExtResource("1_50nia")
 label = NodePath("Label")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1875011233]
-visible = false
 layout_mode = 0
 offset_right = 10.0
 offset_bottom = 10.0

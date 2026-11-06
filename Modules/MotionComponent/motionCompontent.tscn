@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bvlag0gejjx7j"]
+
+[ext_resource type="Script" uid="uid://fmsulqty60dv" path="res://Modules/MotionComponent/motionComponent.gd" id="1_c8gqf"]
+
+[node name="MotionComponent" type="Node2D" unique_id=1100529476 node_paths=PackedStringArray("navAgent")]
+show_behind_parent = true
+top_level = true
+script = ExtResource("1_c8gqf")
+navAgent = NodePath("NavAgent")
+
+[node name="NavAgent" type="NavigationAgent2D" parent="." unique_id=1295195801]
+path_max_distance = 15.0
+debug_enabled = true
+
+[connection signal="navigation_finished" from="NavAgent" to="." method="_on_navigation_finished"]
+[connection signal="path_changed" from="NavAgent" to="." method="_on_nav_agent_path_changed"]

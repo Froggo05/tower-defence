@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://bnpc3x54j2idn"]
+
+[ext_resource type="Script" uid="uid://qm4f1i3r4tuy" path="res://Scenes/WorldElements/GUI/MenuManager/Inventory/Slot/slot.gd" id="1_y2dbw"]
+[ext_resource type="Texture2D" uid="uid://bvdwf1xp3kq3h" path="res://Assets/Inventory/InventorySlotTileSet2.png" id="2_67id8"]
+[ext_resource type="Texture2D" uid="uid://cqs2b58tsu0ht" path="res://Assets/Inventory/InventorySlotTileSet1.png" id="3_q4r4e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_636u5"]
+resource_local_to_scene = true
+atlas = ExtResource("2_67id8")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ropfv"]
+resource_local_to_scene = true
+atlas = ExtResource("3_q4r4e")
+region = Rect2(0, 0, 8, 8)
+
+[node name="Slot" type="Control" unique_id=1398576218 node_paths=PackedStringArray("TextureDict", "label")]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 64.0
+offset_bottom = 64.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 1
+script = ExtResource("1_y2dbw")
+TextureDict = {
+"DefaultTexture": NodePath("DefaultTexture"),
+"HoverTexture": NodePath("HoverTexture")
+}
+label = NodePath("Label")
+
+[node name="HoverTexture" type="TextureRect" parent="." unique_id=386137145]
+texture_filter = 1
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = SubResource("AtlasTexture_636u5")
+
+[node name="DefaultTexture" type="TextureRect" parent="." unique_id=2014298784]
+texture_filter = 1
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = SubResource("AtlasTexture_ropfv")
+
+[node name="Label" type="Label" parent="." unique_id=959346371]
+layout_mode = 1
+offset_right = 64.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 12
+text = "x:  y: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="." to="." method="on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="on_mouse_exited"]

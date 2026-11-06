@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://8s768tmsdhc8"]
+
+[ext_resource type="Script" uid="uid://cvwiwercjiiks" path="res://Modules/CollisionComponent/collisionComponent.gd" id="1_wye1j"]
+
+[node name="CollisionComponent" type="Area2D" unique_id=1774352897]
+script = ExtResource("1_wye1j")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

@@ -1,23 +1,19 @@
 [gd_scene format=3 uid="uid://cd8y2odc3i4sb"]
 
 [ext_resource type="Script" uid="uid://c3rhc3wgqj1w7" path="res://Scenes/World/world_scene.gd" id="1_he56u"]
-[ext_resource type="Texture2D" uid="uid://2tcsrfg1kajy" path="res://Scenes/WorldElements/Assets/castleMockup.png" id="2_svd0m"]
+[ext_resource type="Texture2D" uid="uid://2tcsrfg1kajy" path="res://Assets/castleMockup.png" id="2_svd0m"]
 [ext_resource type="PackedScene" uid="uid://dxpsaw7cq4mkh" path="res://Scenes/World/wall.tscn" id="3_dwyh8"]
 [ext_resource type="PackedScene" uid="uid://dm36bf8tb7f1" path="res://Scenes/WorldElements/Units/Lightning/LigthningWizard.tscn" id="3_hpkcl"]
 [ext_resource type="PackedScene" uid="uid://bbl4fqahrns72" path="res://Modules/EnemySpawner/spawner.tscn" id="4_0pyd3"]
 [ext_resource type="Script" uid="uid://c5lu4k1st24va" path="res://Scenes/World/enemy_spawner.gd" id="4_bcrb4"]
-[ext_resource type="PackedScene" uid="uid://m4llt3qg2jeo" path="res://Scenes/WorldElements/Core/Core.tscn" id="7_qbr5h"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_axljd"]
-vertices = PackedVector2Array(1103.25, 980.1719, 1116.9609, 983.4219, 883.71094, 983.53906, 923.8672, 946.2578, 1915.9063, 983, 1364.0078, 983.28125, 1394.0391, 975.6328, 1459.7031, 927.1875, 1049.7734, 890.3125, 944.9531, 910.75, 1907.0781, -79.02344, 1481.2891, 253, 1443.2031, 103.72656, 1447.7422, 394.52344, 529.7969, 921.27344, 575.8672, 983.71875, 16.960938, 983.9922, 947.2422, 804.53125, 1047.3594, 813.2031, 491.71094, 772, 13.03125, -82.96875, 525.2578, 630.47656, 1475.6719, 849.46875, 925.3203, 219.21875, 1028.0469, 114.25, 1025.7578, 220.46875, 695.3828, 474.22656, 922.90625, 142.10938, 615.1172, 577, 512.1328, 406.14063, 553.64844, 450.85938, 1357.8828, 448, 1394.7578, 38.070313, 869.4297, 52.25, 1049.1328, 78.74219, 1476.6875, 677.9219, 688.85156, 295.78125, 648.9531, 254.89063, 663.47656, 190.79688, 714.46094, 174.64844, 752.40625, 191.03906, 769.7031, 215.89063, 1204.2109, 213.9375, 1245.0938, 174.03906, 1309.1797, 188.57031, 1325.3281, 239.54688, 1308.9375, 277.5, 1284.1016, 294.78906, 1283.8281, 736.6406, 1323.7188, 777.52344, 1309.1875, 841.6094, 1258.2109, 857.7578, 1220.2578, 841.3672, 1202.9766, 816.53125, 768.78906, 811.0625, 727.89844, 850.9531, 663.8125, 836.4219, 647.65625, 785.4375, 664.0469, 747.4922, 688.89844, 730.21094, 1093.8516, 37.21875, 727.90625, 18.703125, 692.22656, 574.59375, 1280.7734, 450.40625, 1277.2969, 558.1875, 1419.0313, 581.5625, 1460.5469, 626.28125, 1317.0391, 22.101563, 1145.4922, 21.078125, 578.6406, 56.789063, 512.97656, 105.22656, 497.0078, 182.95313, 495.9922, 354.5, 589.15625, 471.9375, 1383.5234, 560.47656)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6), PackedInt32Array(4, 6, 7), PackedInt32Array(8, 0, 3, 9), PackedInt32Array(10, 4, 11, 12), PackedInt32Array(13, 11, 4), PackedInt32Array(14, 15, 16), PackedInt32Array(8, 9, 17, 18), PackedInt32Array(19, 14, 16, 20), PackedInt32Array(21, 19, 20), PackedInt32Array(4, 7, 22), PackedInt32Array(23, 24, 25, 26), PackedInt32Array(24, 23, 27), PackedInt32Array(28, 21, 20, 29, 30), PackedInt32Array(31, 13, 4), PackedInt32Array(10, 12, 32), PackedInt32Array(24, 27, 33, 34), PackedInt32Array(4, 22, 35), PackedInt32Array(36, 37, 38, 39, 40, 41), PackedInt32Array(42, 43, 44, 45, 46, 47), PackedInt32Array(48, 49, 50, 51, 52, 53), PackedInt32Array(54, 55, 56, 57, 58, 59), PackedInt32Array(60, 34, 33, 61), PackedInt32Array(26, 36, 41, 23), PackedInt32Array(18, 17, 59, 62, 26, 25, 42, 47, 63, 64, 53), PackedInt32Array(64, 48, 53), PackedInt32Array(17, 54, 59), PackedInt32Array(63, 31, 4, 65), PackedInt32Array(4, 35, 66), PackedInt32Array(10, 32, 67), PackedInt32Array(20, 10, 67, 68), PackedInt32Array(20, 68, 60, 61), PackedInt32Array(20, 61, 69), PackedInt32Array(20, 69, 70), PackedInt32Array(20, 70, 71), PackedInt32Array(20, 71, 72), PackedInt32Array(20, 72, 29), PackedInt32Array(28, 30, 73), PackedInt32Array(28, 73, 26, 62), PackedInt32Array(74, 64, 63), PackedInt32Array(65, 74, 63), PackedInt32Array(65, 4, 66)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(3, -93, 1917, -89, 1926, 993, 7, 994)])
 
-[node name="WorldScene" type="Node2D" unique_id=495325210 node_paths=PackedStringArray("unitContainer", "enemyContainer", "core")]
+[node name="WorldScene" type="Node2D" unique_id=495325210 node_paths=PackedStringArray("unitContainer", "enemyContainer")]
 script = ExtResource("1_he56u")
 unitContainer = NodePath("UnitContainer")
 enemyContainer = NodePath("EnemyContainer")
-core = NodePath("Core")
 metadata/_edit_horizontal_guides_ = [271.0]
 
 [node name="Camera" type="Camera2D" parent="." unique_id=448996699]
@@ -37,6 +33,7 @@ scale = Vector2(1.1923438, 1.1923438)
 texture = ExtResource("2_svd0m")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="NavigationRegion2D/Castle" unique_id=1261599320]
+visible = false
 scale = Vector2(1.0000001, 1.0000001)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="NavigationRegion2D/Castle/StaticBody2D2" unique_id=524127665]
@@ -44,6 +41,7 @@ position = Vector2(-331.35593, -143.42197)
 polygon = PackedVector2Array(78.073395, 104.003784, 0.07574463, 102.326416, -26.762177, 86.39142, -59.470856, 51.166687, -72.05112, 10.909821, -71.212494, -130.82782, -58.632202, -192.05174, -7.4724426, -229.79254, 114.13678, -260.82385, 227.35913, -233.98596, 269.2934, -163.53647, 270.97076, -109.86067, 153.55493, -112.376724, 140.13599, -131.66647, 103.23389, -147.60147, 52.91284, -131.66647, 38.65512, -68.76517, 73.04123, -33.540436)
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="NavigationRegion2D/Castle" unique_id=1639051700]
+visible = false
 position = Vector2(10.902946, -0.83868426)
 scale = Vector2(1.0000001, 1.0000001)
 
@@ -53,6 +51,7 @@ rotation = 1.5707964
 polygon = PackedVector2Array(78.073395, 104.003784, 0.07574463, 102.326416, -26.762177, 86.39142, -59.470856, 51.166687, -72.05112, 10.909821, -71.212494, -130.82782, -58.632202, -192.05174, -7.4724426, -229.79254, 114.13678, -260.82385, 227.35913, -233.98596, 269.2934, -163.53647, 270.97076, -109.86067, 153.55493, -112.376724, 140.13599, -131.66647, 103.23389, -147.60147, 52.91284, -131.66647, 38.65512, -68.76517, 73.04123, -33.540436)
 
 [node name="StaticBody2D5" type="StaticBody2D" parent="NavigationRegion2D/Castle" unique_id=230827933]
+visible = false
 position = Vector2(3.3547883, 11.741579)
 rotation = 1.5707964
 scale = Vector2(1.0000001, 1.0000001)
@@ -63,6 +62,7 @@ rotation = 1.5707964
 polygon = PackedVector2Array(21.23471, 236.15674, -56.76294, 234.47937, -83.60086, 218.54437, -116.30954, 183.31964, -128.8898, 143.06277, -128.05118, 1.3251343, -115.47089, -59.89879, -64.31113, -97.63959, 57.298096, -128.6709, 170.52045, -101.83301, 212.45471, -31.383514, 214.13208, 22.292282, 96.71625, 19.77623, 83.2973, 0.4864807, 46.395203, -15.448517, -3.9258423, 0.4864807, -18.183563, 63.387787, 16.202545, 98.61252)
 
 [node name="StaticBody2D6" type="StaticBody2D" parent="NavigationRegion2D/Castle" unique_id=1844783371]
+visible = false
 position = Vector2(-11.741528, 3.3547363)
 rotation = 3.1415927
 scale = Vector2(1.0000001, 1.0000001)
@@ -92,24 +92,37 @@ position = Vector2(702, 324)
 script = ExtResource("4_bcrb4")
 
 [node name="Spawner" parent="EnemySpawner" unique_id=950099987 instance=ExtResource("4_0pyd3")]
+texture_filter = 1
 offset_left = 2.0
 offset_top = -515.0
 offset_right = 1922.0
 offset_bottom = -11.0
+patch_margin_left = 3
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
 
 [node name="Spawner2" parent="EnemySpawner" unique_id=1381633671 instance=ExtResource("4_0pyd3")]
+texture_filter = 1
 offset_left = -884.0
 offset_top = -6.0
 offset_right = -13.0
 offset_bottom = 1090.0
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
 
 [node name="Spawner3" parent="EnemySpawner" unique_id=1119181690 instance=ExtResource("4_0pyd3")]
-offset_left = 1938.0
-offset_top = -6.0
-offset_right = 2595.0
-offset_bottom = 1090.0
+texture_filter = 1
+offset_left = 1940.0
+offset_top = -3.0
+offset_right = 2597.0
+offset_bottom = 1093.0
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
 
 [node name="EnemyContainer" type="Node2D" parent="." unique_id=171685134]
-
-[node name="Core" parent="." unique_id=39129889 instance=ExtResource("7_qbr5h")]
-position = Vector2(985, 600)
