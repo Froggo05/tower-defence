@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bkt037ltaye2g"]
+
+[ext_resource type="Theme" uid="uid://v1ubk6fnbab2" path="res://Assets/Theme/Theme.tres" id="1_5ula4"]
+[ext_resource type="Script" uid="uid://dvp55m7d175t1" path="res://Scenes/WorldElements/GUI/MenuManager/ForgeMenu/forge_menu.gd" id="1_xm81f"]
+
+[node name="ForgeMenu" type="Control" unique_id=2098623128]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_5ula4")
+script = ExtResource("1_xm81f")
+
+[node name="Background" type="Panel" parent="." unique_id=1521723307]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_5ula4")
+
+[node name="BackButton" type="Button" parent="." unique_id=510251449]
+layout_mode = 1
+offset_right = 296.0
+offset_bottom = 113.0
+text = "Exit Forge"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

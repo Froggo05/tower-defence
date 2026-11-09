@@ -2,15 +2,28 @@
 
 [ext_resource type="Script" uid="uid://fmsulqty60dv" path="res://Modules/MotionComponent/motionComponent.gd" id="1_c8gqf"]
 
-[node name="MotionComponent" type="Node2D" unique_id=1100529476 node_paths=PackedStringArray("navAgent")]
+[node name="MotionComponent" type="Node2D" unique_id=1100529476 node_paths=PackedStringArray("navAgent", "velocityLine", "currentTargetPosition")]
 show_behind_parent = true
-top_level = true
 script = ExtResource("1_c8gqf")
 navAgent = NodePath("NavAgent")
+velocityLine = NodePath("VelocityLine")
+currentTargetPosition = NodePath("CurrentTarget")
+rotationSpeed = 100.0
+frictionConst = 0.01
 
 [node name="NavAgent" type="NavigationAgent2D" parent="." unique_id=1295195801]
-path_max_distance = 15.0
+path_desired_distance = 50.0
+target_desired_distance = 50.0
 debug_enabled = true
 
+[node name="VelocityLine" type="Line2D" parent="." unique_id=718309897]
+visible = false
+points = PackedVector2Array(0, 0, 0, 0)
+default_color = Color(1, 0, 0, 1)
+
+[node name="CurrentTarget" type="Line2D" parent="." unique_id=132479501]
+visible = false
+points = PackedVector2Array(0, 0, 0, 0)
+default_color = Color(1, 1, 1, 0.4627451)
+
 [connection signal="navigation_finished" from="NavAgent" to="." method="_on_navigation_finished"]
-[connection signal="path_changed" from="NavAgent" to="." method="_on_nav_agent_path_changed"]

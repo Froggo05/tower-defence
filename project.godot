@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Global="*uid://d1ej663ojnf1b"
 PoolManager="*uid://wgs7c7pusxiy"
+INVGLOBAL="*uid://bi8byrfnpwg5c"
 
 [display]
 
@@ -32,20 +33,20 @@ window/stretch/aspect="expand"
 
 folder_colors={
 "res://Assets/": "yellow",
+"res://Assets/Theme/": "yellow",
+"res://BaseStatemachine/": "purple",
+"res://GlobalScripts/": "blue",
+"res://GlobalScripts/ProjectilePool/": "blue",
+"res://GlobalScripts/ProjectilePool/PoolManager/": "blue",
 "res://Modules/": "purple",
-"res://ProjectilePool/": "green",
-"res://ProjectilePool/PoolManager/": "green",
 "res://Scenes/": "green",
-"res://Scenes/Globals/": "green",
-"res://Scenes/World/": "green",
 "res://Scenes/WorldElements/": "green",
+"res://Scenes/WorldElements/Entities/Rock/": "orange",
 "res://Scenes/WorldElements/GUI/": "green",
 "res://Scenes/WorldElements/GUI/MenuManager/": "green",
-"res://Scenes/WorldElements/Inventory/": "red",
-"res://Scenes/WorldElements/Units/": "red",
+"res://Scenes/WorldElements/World/": "green",
 "res://ShaderResources/": "purple",
-"res://StatemachineClass/": "purple",
-"res://Theme/": "yellow"
+"res://Test Scene/": "purple"
 }
 
 [input]
@@ -61,9 +62,12 @@ Rightclick={
 ]
 }
 
+[navigation]
+
+2d/merge_rasterizer_cell_scale=0.00999999999999999
+
 [physics]
 
-common/physics_ticks_per_second=30
 3d/physics_engine="Jolt Physics"
 common/physics_interpolation=true
 

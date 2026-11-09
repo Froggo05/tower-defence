@@ -4,7 +4,7 @@ class_name Item extends Control
 #-----enums-----
 
 #-----sub-components-----
-
+@export var valueDisplay: Label
 #-----signals-----
 
 #-----variables-----
@@ -19,8 +19,8 @@ var targetPosition: Vector2
 #-----private-----
 func _ready() -> void:
 	sprite.scale = INVGLOBAL.uiScale/(sprite.texture.get_size() / INVGLOBAL.invCellPixelSize) #calculate the ratio between this image and the inv slot tile size img
-	print(sprite.scale)
-	self.custom_minimum_size = sprite.size
+	#print(sprite.scale)
+	self.custom_minimum_size = sprite.size * sprite.scale
 	pass
 
 func _physics_process(delta: float) -> void:
@@ -35,7 +35,7 @@ func getTags()-> Dictionary:
 	var tagDict: Dictionary = {}
 	var attributeList = attributes.get_property_list()
 	for attribute: Dictionary in attributeList:
-		tagDict = {attribute["name"]: attributes.get(attribute["name"])}
+		tagDict = {attribute["name"]: attributes.get(attribute["name"])} #its not stupid trust
 	return tagDict
 
 func calculateItemPositionInSlots(slotSize: Vector2)->Vector2:

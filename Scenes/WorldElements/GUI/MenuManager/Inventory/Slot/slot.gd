@@ -170,6 +170,7 @@ func on_mouse_exited() -> void:
 func animateHover()->void:
 	_resetTween()
 	tween.parallel().tween_property(TextureDict["DefaultTexture"], "modulate", Color(1.0, 1.0, 1.0, 0.0), 0.001)
+	
 func animateHoverDisolve()->void:
 	_resetTween()
 	tween.parallel().tween_property(TextureDict["DefaultTexture"], "modulate", Color(1.0, 1.0, 1.0, 1.0), 1)

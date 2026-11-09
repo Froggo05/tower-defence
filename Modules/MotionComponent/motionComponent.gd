@@ -7,26 +7,22 @@ enum TARGETMOVEMENT{
 
 #-----sub-components-----
 @export var navAgent: NavigationAgent2D
-@export var parent: Node2D
+@export var parent: Entity
 @export var motionAnimationTree: AnimationTree
+
+#debug
+@export var velocityLine: Line2D 
+@export var currentTargetPosition: Line2D
 #-----signals-----
 
 #-----variables-----
 
 	#Motion
-@export var speed: float = 0.5
+@export var speed: float = 100.0
 @export var rotationSpeed: float = 1.0
 @export var frictionConst: float = 5.0
 var targetDirection: Vector2 = Vector2.ZERO
 var velocity: Vector2 = Vector2.ZERO
-
-	#NavAgent
-var targetPosition: Vector2:
-	set(value):
-		assert(navAgent != null, "Accessing Without NavAgent Set")
-		navAgent.target_position = value
-	get():
-		return navAgent.target_position
 
 var nextNavPoint: Vector2 = Vector2.ZERO
 var atTarget: bool = false
@@ -37,57 +33,47 @@ var animationBlend: Vector2 = Vector2.ZERO
 func _setVelocity()->void:
 	velocity = targetDirection * speed
 
-func _navUpdate()->void:
-	nextNavPoint = navAgent.get_next_path_position()
-	targetDirection = parent.global_position.direction_to(nextNavPoint)
+func _rotateToTarget(_delta: float)->void:
+	parent.global_rotation_degrees = targetDirection.angle()#rotate_toward(parent.global_rotation, deg_to_rad(), delta * rotationSpeed)
 
-func _positionUpdate(delta: float)->void:
-	_rotateToTarget(delta)
-	_updateVelocity(delta)
-	parent.global_position += velocity * delta
-
-func _rotateToTarget(delta: float)->void:
-	parent.global_rotation = deg_to_rad(rotate_toward(parent.global_rotation, deg_to_rad(targetDirection.angle()), delta * rotationSpeed))
-
+@warning_ignore("unused_parameter")
 func _updateVelocity(delta)->void:
-	velocity = velocity.move_toward(Vector2.ZERO, delta * frictionConst)
+	if atTarget:
+		velocity = Vector2.ZERO
+		
+	velocity = velocity.lerp(Vector2.ZERO, delta * frictionConst)
+	velocityLine.set_point_position(1, velocity)
 
 func _updateAnimations()->void:
 	motionAnimationTree.set("parameters/MotionSpace/blend_position", animationBlend)
 	#print(motionAnimationTree.get("parameters/MotionSpace/blend_position"))
 
 func _physics_process(delta: float) -> void:
-	if atTarget:
-		if animationBlend == Vector2.ZERO:
-			return
-		animationBlend = animationBlend.lerp(Vector2.ZERO, delta * 10.0)
-		_updateAnimations()
-		return
+	animationBlend = animationBlend.lerp(velocity, delta * 10.0)
+	if motionAnimationTree != null:
+		motionAnimationTree.set("parameters/MotionSpace/blend_position", animationBlend)
 	
-	animationBlend = animationBlend.lerp(targetDirection, delta * 10.0)
-	_updateAnimations()
-	_navUpdate() #first # potential optimisation. Instead of happening every physics process, update it as it gets closer to the target (if the target moves, if it doesnt only do it once)
-	_positionUpdate(delta) #second always
+	nextNavPoint = navAgent.get_next_path_position()
+	targetDirection = parent.global_position.direction_to(nextNavPoint)
+	
+	if atTarget:
+		velocity = Vector2.ZERO
+	velocity = targetDirection * speed
+	velocityLine.set_point_position(1, velocity)
+	currentTargetPosition.set_point_position(1, to_local(navAgent.target_position))
+	
+	parent.rotation = targetDirection.angle()
+	parent.global_position += velocity * delta
 
 #-----public-----
 func setTarget(point: Vector2)->void: ##GlobalPosition
 	atTarget = false
-	targetPosition = point
-	navAgent.target_position = targetPosition
-	
-	_navUpdate()
+	navAgent.target_position = point
+	nextNavPoint = navAgent.get_next_path_position()
 	_setVelocity()
-	_updateAnimations()
+	#_updateAnimations()
 
 #-----signal responses-----
 func _on_navigation_finished() -> void:
-	print("Target Reached")
+	#print("Target Reached")
 	atTarget = true
-
-func _on_nav_waypoint_reached(details: Dictionary) -> void:
-	_navUpdate()
-
-
-func _on_nav_agent_path_changed() -> void:
-	_navUpdate()
-	_setVelocity()

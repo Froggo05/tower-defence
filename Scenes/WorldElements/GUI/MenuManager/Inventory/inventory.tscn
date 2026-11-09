@@ -4,21 +4,34 @@
 [ext_resource type="Script" uid="uid://c4emdbk5bgyup" path="res://Scenes/WorldElements/GUI/MenuManager/Inventory/item_grid.gd" id="2_ej740"]
 
 [node name="Inventory" type="Control" unique_id=1819180068 node_paths=PackedStringArray("inventorySlotGridContainer")]
+custom_minimum_size = Vector2(704, 192)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 64.0
-offset_bottom = 64.0
+offset_right = 704.0
+offset_bottom = 192.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_5rpxs")
 inventorySlotGridContainer = NodePath("ItemGrid")
+inventorySize = Vector2i(11, 3)
+IUID = 3916494838
 
 [node name="ItemGrid" type="GridContainer" parent="." unique_id=1752849925]
-layout_mode = 0
-offset_right = 64.0
-offset_bottom = 64.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -352.0
+offset_top = -96.0
+offset_right = 352.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
+columns = 11
 script = ExtResource("2_ej740")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
@@ -26,3 +39,67 @@ script = ExtResource("2_ej740")
 [connection signal="resized" from="ItemGrid" to="." method="_on_item_grid_resized"]
 [connection signal="mouse_entered" from="ItemGrid/(0, 0)" to="ItemGrid/(0, 0)" method="on_mouse_entered"]
 [connection signal="mouse_exited" from="ItemGrid/(0, 0)" to="ItemGrid/(0, 0)" method="on_mouse_exited"]
+[connection signal="mouse_entered" from="ItemGrid/(1, 0)" to="ItemGrid/(1, 0)" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemGrid/(1, 0)" to="ItemGrid/(1, 0)" method="on_mouse_exited"]
+[connection signal="mouse_entered" from="ItemGrid/(2, 0)" to="ItemGrid/(2, 0)" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemGrid/(2, 0)" to="ItemGrid/(2, 0)" method="on_mouse_exited"]
+[connection signal="mouse_entered" from="ItemGrid/(3, 0)" to="ItemGrid/(3, 0)" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemGrid/(3, 0)" to="ItemGrid/(3, 0)" method="on_mouse_exited"]
+[connection signal="mouse_entered" from="ItemGrid/(4, 0)" to="ItemGrid/(4, 0)" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemGrid/(4, 0)" to="ItemGrid/(4, 0)" method="on_mouse_exited"]
+[connection signal="mouse_entered" from="ItemGrid/(5, 0)" to="ItemGrid/(5, 0)" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemGrid/(5, 0)" to="ItemGrid/(5, 0)" method="on_mouse_exited"]
+[connection signal="mouse_entered" from="ItemGrid/(6, 0)" to="ItemGrid/(6, 0)" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemGrid/(6, 0)" to="ItemGrid/(6, 0)" method="on_mouse_exited"]
+[connection signal="mouse_entered" from="ItemGrid/(7, 0)" to="ItemGrid/(7, 0)" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemGrid/(7, 0)" to="ItemGrid/(7, 0)" method="on_mouse_exited"]
+[connection signal="mouse_entered" from="ItemGrid/(8, 0)" to="ItemGrid/(8, 0)" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemGrid/(8, 0)" to="ItemGrid/(8, 0)" method="on_mouse_exited"]
+[connection signal="mouse_entered" from="ItemGrid/(9, 0)" to="ItemGrid/(9, 0)" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemGrid/(9, 0)" to="ItemGrid/(9, 0)" method="on_mouse_exited"]
+[connection signal="mouse_entered" from="ItemGrid/(10, 0)" to="ItemGrid/(10, 0)" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemGrid/(10, 0)" to="ItemGrid/(10, 0)" method="on_mouse_exited"]
+[connection signal="mouse_entered" from="ItemGrid/(0, 1)" to="ItemGrid/(0, 1)" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemGrid/(0, 1)" to="ItemGrid/(0, 1)" method="on_mouse_exited"]
+[connection signal="mouse_entered" from="ItemGrid/(1, 1)" to="ItemGrid/(1, 1)" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemGrid/(1, 1)" to="ItemGrid/(1, 1)" method="on_mouse_exited"]
+[connection signal="mouse_entered" from="ItemGrid/(2, 1)" to="ItemGrid/(2, 1)" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemGrid/(2, 1)" to="ItemGrid/(2, 1)" method="on_mouse_exited"]
+[connection signal="mouse_entered" from="ItemGrid/(3, 1)" to="ItemGrid/(3, 1)" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemGrid/(3, 1)" to="ItemGrid/(3, 1)" method="on_mouse_exited"]
+[connection signal="mouse_entered" from="ItemGrid/(4, 1)" to="ItemGrid/(4, 1)" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemGrid/(4, 1)" to="ItemGrid/(4, 1)" method="on_mouse_exited"]
+[connection signal="mouse_entered" from="ItemGrid/(5, 1)" to="ItemGrid/(5, 1)" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemGrid/(5, 1)" to="ItemGrid/(5, 1)" method="on_mouse_exited"]
+[connection signal="mouse_entered" from="ItemGrid/(6, 1)" to="ItemGrid/(6, 1)" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemGrid/(6, 1)" to="ItemGrid/(6, 1)" method="on_mouse_exited"]
+[connection signal="mouse_entered" from="ItemGrid/(7, 1)" to="ItemGrid/(7, 1)" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemGrid/(7, 1)" to="ItemGrid/(7, 1)" method="on_mouse_exited"]
+[connection signal="mouse_entered" from="ItemGrid/(8, 1)" to="ItemGrid/(8, 1)" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemGrid/(8, 1)" to="ItemGrid/(8, 1)" method="on_mouse_exited"]
+[connection signal="mouse_entered" from="ItemGrid/(9, 1)" to="ItemGrid/(9, 1)" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemGrid/(9, 1)" to="ItemGrid/(9, 1)" method="on_mouse_exited"]
+[connection signal="mouse_entered" from="ItemGrid/(10, 1)" to="ItemGrid/(10, 1)" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemGrid/(10, 1)" to="ItemGrid/(10, 1)" method="on_mouse_exited"]
+[connection signal="mouse_entered" from="ItemGrid/(0, 2)" to="ItemGrid/(0, 2)" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemGrid/(0, 2)" to="ItemGrid/(0, 2)" method="on_mouse_exited"]
+[connection signal="mouse_entered" from="ItemGrid/(1, 2)" to="ItemGrid/(1, 2)" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemGrid/(1, 2)" to="ItemGrid/(1, 2)" method="on_mouse_exited"]
+[connection signal="mouse_entered" from="ItemGrid/(2, 2)" to="ItemGrid/(2, 2)" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemGrid/(2, 2)" to="ItemGrid/(2, 2)" method="on_mouse_exited"]
+[connection signal="mouse_entered" from="ItemGrid/(3, 2)" to="ItemGrid/(3, 2)" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemGrid/(3, 2)" to="ItemGrid/(3, 2)" method="on_mouse_exited"]
+[connection signal="mouse_entered" from="ItemGrid/(4, 2)" to="ItemGrid/(4, 2)" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemGrid/(4, 2)" to="ItemGrid/(4, 2)" method="on_mouse_exited"]
+[connection signal="mouse_entered" from="ItemGrid/(5, 2)" to="ItemGrid/(5, 2)" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemGrid/(5, 2)" to="ItemGrid/(5, 2)" method="on_mouse_exited"]
+[connection signal="mouse_entered" from="ItemGrid/(6, 2)" to="ItemGrid/(6, 2)" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemGrid/(6, 2)" to="ItemGrid/(6, 2)" method="on_mouse_exited"]
+[connection signal="mouse_entered" from="ItemGrid/(7, 2)" to="ItemGrid/(7, 2)" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemGrid/(7, 2)" to="ItemGrid/(7, 2)" method="on_mouse_exited"]
+[connection signal="mouse_entered" from="ItemGrid/(8, 2)" to="ItemGrid/(8, 2)" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemGrid/(8, 2)" to="ItemGrid/(8, 2)" method="on_mouse_exited"]
+[connection signal="mouse_entered" from="ItemGrid/(9, 2)" to="ItemGrid/(9, 2)" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemGrid/(9, 2)" to="ItemGrid/(9, 2)" method="on_mouse_exited"]
+[connection signal="mouse_entered" from="ItemGrid/(10, 2)" to="ItemGrid/(10, 2)" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemGrid/(10, 2)" to="ItemGrid/(10, 2)" method="on_mouse_exited"]

@@ -7,22 +7,24 @@ class_name MenuManager extends Control
 @export var defaultMenu: Menu
 @export var startMenu: Menu
 
-#-----Vars-----
-var activeMenu: Menu
+static var coreHealthBar: CoreHealthBar
+
+#-----variables-----
 var menuDict: Dictionary = {}
-
 var dragInstance: Drag
-
 var leftclickActive: bool = false
-
+var rightclickActive: bool = false
 static var avaliableInventories: Dictionary[int, InventoryManager] = {}
-
-#-----public------
-
-
+static var playerInventoryIUID: int
+static var activeMenu: Menu
+static var inventoryMoveFactor: float = 10.0
 #-----private-----
 func _ready() -> void:
 	_establishScene()
+	coreHealthBar = %CoreHealthBar
+
+func _process(delta: float) -> void:
+	activeMenu.update(delta)
 
 func _connectSignals()->void: #manages dynamic symbols
 	for child in get_children():
@@ -56,6 +58,10 @@ func _physics_process(_delta: float) -> void:
 		_updateDrag()
 
 func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("Rightclick"):
+		rightclickActive = true
+	if event.is_action_released("Rightclick"):
+		rightclickActive = false
 	if event.is_action_pressed("Leftclick"):
 		leftclickActive = true
 		_startDrag()
@@ -102,6 +108,8 @@ func _endDrag()->void:
 		return
 	dragInstance.endDrag()
 
+#-----public------
+
 #-----signals------
 func _return()->void:
 	_setMenu(defaultMenu)
@@ -126,3 +134,9 @@ static func getSlot(invPosition:Vector2i ,iuid: int)->Slot:
 	
 	var slot = inv.inventoryGrid[invPosition.x][invPosition.y]
 	return slot
+
+static func getPlayerInventory()->InventoryManager:
+	return getInventoryManager(playerInventoryIUID)
+
+static func requestActiveMenuChange(menu: String)->void:
+	activeMenu.menuChangeRequest(menu)

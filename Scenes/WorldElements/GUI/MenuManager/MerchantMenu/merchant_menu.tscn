@@ -1,29 +1,49 @@
 [gd_scene format=3 uid="uid://b513rabiu4iv8"]
 
-[ext_resource type="Theme" uid="uid://v1ubk6fnbab2" path="res://Theme/Theme.tres" id="1_w6pl3"]
+[ext_resource type="Theme" uid="uid://v1ubk6fnbab2" path="res://Assets/Theme/Theme.tres" id="1_w6pl3"]
 [ext_resource type="Script" uid="uid://ce368vp841nla" path="res://Scenes/WorldElements/GUI/MenuManager/MerchantMenu/merchant_menu.gd" id="2_g3a88"]
-[ext_resource type="Texture2D" uid="uid://b3krf5ie0vw44" path="res://Theme/Menu.png" id="3_7h3mx"]
+[ext_resource type="Texture2D" uid="uid://b3krf5ie0vw44" path="res://Assets/Theme/Menu.png" id="3_7h3mx"]
 
-[node name="MerchantMenu" type="Control" unique_id=1036665437 node_paths=PackedStringArray("slotContainer", "inventoryTarget")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3umtj"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.92494345, 0.096242554, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dgwuk"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.101960786, 1, 0.101960786, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="MerchantMenu" type="Control" unique_id=1036665437 node_paths=PackedStringArray("itemList", "inventoryTarget")]
 layout_mode = 3
-anchor_left = -0.20729166
-anchor_top = 0.0046296297
-anchor_right = 0.79270834
-anchor_bottom = 1.0046296
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_w6pl3")
 script = ExtResource("2_g3a88")
-slotContainer = NodePath("Background/TextureRect/SlotContainer")
-inventoryTarget = NodePath("InventoryTarget")
-metadata/_edit_use_anchors_ = true
+itemList = NodePath("Background/TextureRect/ItemList")
+inventoryTarget = NodePath("MarginContainer/InventoryTarget")
 
-[node name="Background" type="MarginContainer" parent="." unique_id=1797511940]
-propagate_maximum_size = false
+[node name="Background" type="Panel" parent="." unique_id=102026836]
 layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -31,45 +51,71 @@ theme = ExtResource("1_w6pl3")
 
 [node name="TextureRect" type="TextureRect" parent="Background" unique_id=895104046]
 texture_filter = 1
-layout_mode = 2
-theme = ExtResource("1_w6pl3")
-texture = ExtResource("3_7h3mx")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="SlotContainer" type="HBoxContainer" parent="Background/TextureRect" unique_id=1870691252]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -283.0
-offset_top = -213.0
-offset_right = 283.0
-offset_bottom = 213.0
-grow_horizontal = 2
+offset_top = -423.5
+offset_right = 845.0
+offset_bottom = 423.5
 grow_vertical = 2
 theme = ExtResource("1_w6pl3")
-alignment = 1
+texture = ExtResource("3_7h3mx")
+expand_mode = 4
+stretch_mode = 5
 
-[node name="BackButton" type="Button" parent="." unique_id=192935136]
+[node name="ItemList" type="ItemList" parent="Background/TextureRect" unique_id=1637669433]
 layout_mode = 0
-offset_left = 555.0
-offset_top = 135.0
-offset_right = 641.0
-offset_bottom = 172.0
-text = "Back
+offset_left = 175.0
+offset_top = 279.5
+offset_right = 215.0
+offset_bottom = 319.5
+
+[node name="Buttons" type="HBoxContainer" parent="Background/TextureRect" unique_id=1705427562]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -303.25
+offset_top = -75.0
+offset_right = 303.25
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="BackButton" type="Button" parent="Background/TextureRect/Buttons" unique_id=192935136]
+custom_minimum_size = Vector2(300, 75)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_3umtj")
+text = "Cancel
 "
 
-[node name="InventoryTarget" type="Control" parent="." unique_id=261290008]
+[node name="CompleteDeal" type="Button" parent="Background/TextureRect/Buttons" unique_id=1318688288]
+custom_minimum_size = Vector2(300, 75)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_dgwuk")
+text = "Make The Deal"
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=61801138]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
+offset_left = -668.0
+offset_top = -212.0
+offset_bottom = 212.0
 grow_horizontal = 0
 grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 20
 
-[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[node name="InventoryTarget" type="Control" parent="MarginContainer" unique_id=261290008]
+custom_minimum_size = Vector2(448, 384)
+layout_mode = 2
+
+[connection signal="pressed" from="Background/TextureRect/Buttons/BackButton" to="." method="_on_back_button_pressed"]

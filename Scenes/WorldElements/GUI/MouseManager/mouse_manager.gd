@@ -9,7 +9,8 @@ var mouseDragStart: Vector2
 var mouseDragSize: Vector2
 
 func _process(_delta: float) -> void:
-	selectionAreaUpdate()
+	#selectionAreaUpdate()
+	pass
 
 func setArea()->void:
 	mouseDragSize =  get_global_mouse_position() - mouseDragStart

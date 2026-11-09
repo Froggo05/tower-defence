@@ -5,6 +5,7 @@ class_name HealthComponent extends Area2D
 @export var progressBar: ProgressBar
 @export var barTexture: Texture2D
 @export var animationPlayer: AnimationPlayer
+var isDead: bool = false
 
 @export_category("Variables")
 @export var HealthBarScale: float = 1.0
@@ -21,6 +22,7 @@ var health: float = 0.0:
 		health = clampf(value, 0.0, MaxHealth)
 		if health <= 0.0:
 			died.emit()
+			isDead = true
 	get():
 		return health
 
@@ -34,21 +36,23 @@ func _ready() -> void:
 	_setup()
 
 func _physics_process(delta: float) -> void:
-	_healthbarInterp(delta)
+	if progressBar != null:
+		_healthbarInterp(delta)
 
 func _setup()->void:
 	health = MaxHealth
-	progressBar.value = health
-	progressBar.size.x = MaxHealth * HealthBarScale
 	
-	progressBar.position.y = -Hitbox.shape.get_rect().size.y/2 - progressBar.size.y - barVerticlePadding
-	progressBar.position.x = -progressBar.size.x/2
+	if progressBar != null:
+		progressBar.value = health
+		var progressSize = Vector2(MaxHealth * HealthBarScale, 27.0)
+		progressBar.set_deferred("size", progressSize) #may have issues later, anchors shouldnt matter here because no control node tree but will see ig
+		progressBar.set_deferred("position", Vector2(-progressSize.x/2 ,-Hitbox.shape.get_rect().size.y/2 - progressSize.y - barVerticlePadding))
 
-func _damage(damage: float)->void:
-	health -= damage
-	damaged.emit(damage)
+func damage(damageAmt: float)->void:
+	health -= damageAmt
+	damaged.emit(damageAmt)
 
-func _heal(healing: float)->void:
+func heal(healing: float)->void:
 	health += healing
 	healed.emit(healing)
 

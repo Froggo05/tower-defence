@@ -1,45 +1,169 @@
 [gd_scene format=3 uid="uid://7kgi4wsaqwi8"]
 
 [ext_resource type="Script" uid="uid://cewffvj11k778" path="res://Scenes/WorldElements/GUI/MenuManager/GameplayGUI/gameplay_gui.gd" id="1_ggo0g"]
+[ext_resource type="Theme" uid="uid://v1ubk6fnbab2" path="res://Assets/Theme/Theme.tres" id="2_2gc5r"]
 
-[node name="Gameplay" type="Control" unique_id=1534566029 node_paths=PackedStringArray("inventoryTarget")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2gc5r"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mpuml"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ew8rx"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="GameplayGUI" type="Control" unique_id=1534566029 node_paths=PackedStringArray("inventoryTarget", "coreHealthBarTarget")]
 layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("2_2gc5r")
+script = ExtResource("1_ggo0g")
+inventoryTarget = NodePath("InventoryTarget")
+coreHealthBarTarget = NodePath("CoreHealthBarTarget")
+
+[node name="MerchantStall" type="ColorRect" parent="." unique_id=1251044160]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = -185.0
+offset_top = -119.99997
+offset_right = -20.32666
+offset_bottom = -53.99997
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
-script = ExtResource("1_ggo0g")
-inventoryTarget = NodePath("InventoryTarget")
+scale = Vector2(0.75, 0.75)
+theme = ExtResource("2_2gc5r")
+color = Color(1, 0.7490196, 0, 1)
 
-[node name="InventoryTarget" type="Control" parent="." unique_id=408360892]
+[node name="Button" type="Button" parent="MerchantStall" unique_id=1414304220]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_2gc5r")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2gc5r")
+text = "Merchant"
+
+[node name="UnitCamp" type="ColorRect" parent="." unique_id=1009994533]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 97.0
+offset_top = -176.0
+offset_right = 244.0
+offset_bottom = -70.35791
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+theme = ExtResource("2_2gc5r")
+color = Color(0.73724973, 0.26246846, 0.24866796, 1)
+
+[node name="Button" type="Button" parent="UnitCamp" unique_id=2030211948]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_2gc5r")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mpuml")
+text = "Unit Camp"
+
+[node name="Forge" type="ColorRect" parent="." unique_id=1083416631]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 45.0
+offset_top = 42.0
+offset_right = 158.22241
+offset_bottom = 161.09314
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+theme = ExtResource("2_2gc5r")
+color = Color(0.35906908, 0.35906908, 0.35906908, 1)
+
+[node name="Button" type="Button" parent="Forge" unique_id=1120192793]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_right = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_2gc5r")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ew8rx")
+text = "Forge"
+
+[node name="InventoryTarget" type="Control" parent="." unique_id=1132624989]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_top = -380.0
-offset_bottom = -380.0
+offset_left = -20.0
+offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
+size_flags_vertical = 3
 
-[node name="MerchantButton" type="Button" parent="." unique_id=1904008045]
+[node name="CoreHealthBarTarget" type="Control" parent="." unique_id=1314388145]
+custom_minimum_size = Vector2(0, 45)
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 799.0
-offset_top = 483.0
-offset_right = 936.0
-offset_bottom = 514.0
-grow_horizontal = 0
-grow_vertical = 2
-text = "MerchantButton"
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -45.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 3
 
-[connection signal="pressed" from="MerchantButton" to="." method="_on_merchant_button_pressed"]
+[connection signal="pressed" from="MerchantStall/Button" to="." method="_on_merchant_button_pressed"]
+[connection signal="pressed" from="UnitCamp/Button" to="." method="_on_camp_button_pressed"]
+[connection signal="pressed" from="Forge/Button" to="." method="_on_forge_button_pressed"]

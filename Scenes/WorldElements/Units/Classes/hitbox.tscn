@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://ug8l1iv71q1n"]
-
-[ext_resource type="Script" uid="uid://bloa550pfugo8" path="res://Scenes/WorldElements/Units/Classes/hitbox.gd" id="1_1apqg"]
-
-[node name="Hitbox" type="Area2D" unique_id=1698997493]
-script = ExtResource("1_1apqg")

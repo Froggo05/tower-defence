@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bbl4fqahrns72"]
+
+[ext_resource type="Texture2D" uid="uid://cgeqm281su0x7" path="res://Assets/MouseSelectArea.png" id="1_cdy7b"]
+[ext_resource type="Script" uid="uid://mts5vaaduw7f" path="res://Scenes/WorldElements/World/EnemySpawner/spawner.gd" id="2_c7yd3"]
+
+[node name="Spawner" type="NinePatchRect" unique_id=1317329464]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_cdy7b")
+script = ExtResource("2_c7yd3")
+metadata/_custom_type_script = "uid://mts5vaaduw7f"

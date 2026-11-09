@@ -14,6 +14,9 @@ signal change_menu(menuName: String)
 
 
 #PublicMethods - used by other nodes
+@warning_ignore("unused_parameter")
+func update(delta: float)->void:
+	pass
 func activate()->void:
 	show()
 	process_mode = Node.PROCESS_MODE_INHERIT
@@ -21,6 +24,9 @@ func deactivate()->void:
 	hide()
 	process_mode = Node.PROCESS_MODE_DISABLED
 
+@warning_ignore("unused_parameter")
+func menuChangeRequest(menu: String)->void:
+	pass
 #PrivateMethods - only used within this node(class) - shown with an _ prefix
 func _ready() -> void:
 	deactivate()

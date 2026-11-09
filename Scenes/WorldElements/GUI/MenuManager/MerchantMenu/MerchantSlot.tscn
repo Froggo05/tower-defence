@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bqvyylr4y52pn"]
 
-[ext_resource type="Theme" uid="uid://v1ubk6fnbab2" path="res://Theme/Theme.tres" id="1_36fva"]
+[ext_resource type="Theme" uid="uid://v1ubk6fnbab2" path="res://Assets/Theme/Theme.tres" id="1_36fva"]
 [ext_resource type="Script" uid="uid://hgsd1ds701im" path="res://Scenes/WorldElements/GUI/MenuManager/MerchantMenu/merchant_slot.gd" id="2_lknpg"]
 [ext_resource type="Script" uid="uid://d2n12jtw372n4" path="res://Scenes/WorldElements/GUI/MenuManager/MerchantMenu/shop_slot_pannel.gd" id="3_evbgr"]
 
@@ -53,4 +53,3 @@ grow_vertical = 2
 
 [connection signal="button_down" from="ShopSlotPannel" to="ShopSlotPannel" method="_on_button_down"]
 [connection signal="button_up" from="ShopSlotPannel" to="ShopSlotPannel" method="_on_button_up"]
-[connection signal="cardPurchased" from="ShopSlotPannel" to="." method="_on_card_purchased"]

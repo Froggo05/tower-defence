@@ -1,12 +1,15 @@
 [gd_scene format=3 uid="uid://do1wmn2x04efg"]
 
-[ext_resource type="Theme" uid="uid://v1ubk6fnbab2" path="res://Theme/Theme.tres" id="1_ab07y"]
+[ext_resource type="Theme" uid="uid://v1ubk6fnbab2" path="res://Assets/Theme/Theme.tres" id="1_ab07y"]
 [ext_resource type="PackedScene" uid="uid://b513rabiu4iv8" path="res://Scenes/WorldElements/GUI/MenuManager/MerchantMenu/merchant_menu.tscn" id="1_xkxm8"]
 [ext_resource type="Script" uid="uid://b4kpj75nf14b5" path="res://Scenes/WorldElements/GUI/MenuManager/menu_manager.gd" id="2_cpndi"]
 [ext_resource type="PackedScene" uid="uid://7kgi4wsaqwi8" path="res://Scenes/WorldElements/GUI/MenuManager/GameplayGUI/gameplay_gui.tscn" id="4_5qr3h"]
 [ext_resource type="PackedScene" uid="uid://040cfwho8yb7" path="res://Scenes/WorldElements/GUI/MenuManager/StartMenu/start_menu.tscn" id="5_f4a2y"]
 [ext_resource type="Script" uid="uid://buqpeq752ryvg" path="res://Scenes/WorldElements/GUI/MenuManager/menu_resources_container.gd" id="6_be1tq"]
 [ext_resource type="PackedScene" uid="uid://tkofxeb5hbe6" path="res://Scenes/WorldElements/GUI/MenuManager/Inventory/inventory.tscn" id="7_sohft"]
+[ext_resource type="PackedScene" uid="uid://cfa61w1pfw655" path="res://Scenes/WorldElements/GUI/MenuManager/CampMenu/camp_menu.tscn" id="8_gkyad"]
+[ext_resource type="PackedScene" uid="uid://bkt037ltaye2g" path="res://Scenes/WorldElements/GUI/MenuManager/ForgeMenu/forge_menu.tscn" id="9_k0p76"]
+[ext_resource type="Script" uid="uid://b6javx34p1gu8" path="res://Scenes/WorldElements/GUI/MenuManager/core_health_bar.gd" id="10_k0p76"]
 
 [node name="MenuManager" type="Control" unique_id=1690813115 node_paths=PackedStringArray("menuResourceContainer", "inventory", "defaultMenu", "startMenu")]
 layout_mode = 3
@@ -19,36 +22,10 @@ mouse_filter = 1
 theme = ExtResource("1_ab07y")
 script = ExtResource("2_cpndi")
 menuResourceContainer = NodePath("MenuResourcesContainer")
-inventory = NodePath("MenuResourcesContainer/Inventory")
+inventory = NodePath("MenuResourcesContainer/PlayerInventory")
 defaultMenu = NodePath("GameplayGUI")
 startMenu = NodePath("StartMenu")
 metadata/_edit_use_anchors_ = true
-
-[node name="MenuResourcesContainer" type="Control" parent="." unique_id=826891072]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-script = ExtResource("6_be1tq")
-metadata/_edit_use_anchors_ = true
-
-[node name="Inventory" parent="MenuResourcesContainer" unique_id=1819180068 instance=ExtResource("7_sohft")]
-layout_mode = 1
-offset_right = 448.0
-offset_bottom = 384.0
-offset_transform_enabled = true
-inventorySize = Vector2i(7, 6)
-
-[node name="Button" type="Button" parent="MenuResourcesContainer" unique_id=2072284631]
-layout_mode = 0
-offset_left = 1531.0
-offset_top = 905.0
-offset_right = 1731.0
-offset_bottom = 942.0
-text = "Add item to inv"
 
 [node name="GameplayGUI" parent="." unique_id=1534566029 instance=ExtResource("4_5qr3h")]
 layout_mode = 1
@@ -59,5 +36,62 @@ layout_mode = 1
 [node name="MerchantMenu" parent="." unique_id=1036665437 instance=ExtResource("1_xkxm8")]
 layout_mode = 1
 mouse_filter = 1
+
+[node name="CampMenu" parent="." unique_id=1147653994 instance=ExtResource("8_gkyad")]
+layout_mode = 1
+
+[node name="ForgeMenu" parent="." unique_id=2098623128 instance=ExtResource("9_k0p76")]
+layout_mode = 1
+
+[node name="MenuResourcesContainer" type="Control" parent="." unique_id=826891072]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("6_be1tq")
+
+[node name="PlayerInventory" parent="MenuResourcesContainer" unique_id=1819180068 instance=ExtResource("7_sohft")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.022916667
+anchor_top = 0.022222223
+anchor_right = 0.25625
+anchor_bottom = 0.37777779
+offset_left = -128.0
+offset_right = 128.0
+offset_bottom = -192.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+IUID = 543217023
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="MenuResourcesContainer" unique_id=2072284631]
+layout_mode = 0
+offset_left = 1531.0
+offset_top = 905.0
+offset_right = 1731.0
+offset_bottom = 942.0
+text = "Add item to inv"
+
+[node name="CoreHealthBar" type="ProgressBar" parent="MenuResourcesContainer" unique_id=1253212220]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -33.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("10_k0p76")
 
 [connection signal="pressed" from="MenuResourcesContainer/Button" to="." method="_on_button_pressed"]

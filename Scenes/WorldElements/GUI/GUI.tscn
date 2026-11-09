@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bxi25owp2kmkv"]
 
-[ext_resource type="Theme" uid="uid://v1ubk6fnbab2" path="res://Theme/Theme.tres" id="1_k3ivt"]
+[ext_resource type="Theme" uid="uid://v1ubk6fnbab2" path="res://Assets/Theme/Theme.tres" id="1_k3ivt"]
 [ext_resource type="Script" uid="uid://chgk30emgbnpy" path="res://Scenes/WorldElements/GUI/gui.gd" id="2_wf68y"]
 [ext_resource type="Script" uid="uid://7bi3v0m038kw" path="res://Scenes/WorldElements/GUI/stats.gd" id="4_s358i"]
 [ext_resource type="PackedScene" uid="uid://do1wmn2x04efg" path="res://Scenes/WorldElements/GUI/MenuManager/menu_manager.tscn" id="6_r14bo"]
@@ -38,6 +38,7 @@ script = ExtResource("8_7fy40")
 minimiumArea = 1000.0
 
 [node name="MouseSelectionArea" type="NinePatchRect" parent="MouseManager" unique_id=1760126508]
+visible = false
 texture_filter = 1
 layout_mode = 0
 offset_right = 40.0

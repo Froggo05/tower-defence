@@ -20,7 +20,7 @@ enum SLOTCHECK{
 	get():
 		return clamp(inventorySize, Vector2i(0,0), Vector2i(50,50))
 var initialMousePos: Vector2 = Vector2.ZERO
-var IUID: int
+@export var IUID: int
 var inventoryGrid: Array[Array]:
 	get():
 		return inventorySlotGridContainer.InventoryGrid
@@ -111,4 +111,4 @@ func _on_mouse_exited() -> void:
 	INVGLOBAL.mouseIsHovering = false
 
 func _on_item_grid_resized() -> void:
-	size = inventorySlotGridContainer.size
+	custom_minimum_size = inventorySlotGridContainer.size

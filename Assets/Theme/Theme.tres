@@ -1,0 +1,11 @@
+[gd_resource type="Theme" format=3 uid="uid://v1ubk6fnbab2"]
+
+[ext_resource type="FontFile" uid="uid://ja2aej7gikrv" path="res://Assets/Theme/hardpixel/Hardpixel.OTF" id="1_2ufmn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3tda2"]
+bg_color = Color(0, 0, 0, 0.18039216)
+
+[resource]
+default_font = ExtResource("1_2ufmn")
+default_font_size = 24
+Panel/styles/panel = SubResource("StyleBoxFlat_3tda2")

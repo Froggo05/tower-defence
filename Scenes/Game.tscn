@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://c5sxfgo7qf6vx"]
+
+[ext_resource type="Theme" uid="uid://v1ubk6fnbab2" path="res://Assets/Theme/Theme.tres" id="1_7kj4d"]
+[ext_resource type="Script" uid="uid://ip0jpdgd1w8w" path="res://Scenes/game.gd" id="1_bvkne"]
+[ext_resource type="PackedScene" uid="uid://cd8y2odc3i4sb" path="res://Scenes/WorldElements/World/WorldScene/world_scene.tscn" id="3_bvkne"]
+[ext_resource type="Script" uid="uid://gjeeyk2ebvq1" path="res://Scenes/day_night_cycle.gd" id="4_b2bpf"]
+[ext_resource type="PackedScene" uid="uid://bxi25owp2kmkv" path="res://Scenes/WorldElements/GUI/GUI.tscn" id="4_bvkne"]
+
+[sub_resource type="Gradient" id="Gradient_b2bpf"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.70434785)
+colors = PackedColorArray(0.3868435, 0.3868435, 0.3868435, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_axljd"]
+gradient = SubResource("Gradient_b2bpf")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Animation" id="Animation_7lihs"]
+resource_name = "TorchLight"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6666667, 0.87285554),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2.25, 2.25), Vector2(2.49, 2.49), Vector2(2.005, 2.005), Vector2(2.59, 2.59)]
+}
+
+[sub_resource type="Animation" id="Animation_b2bpf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fgofq"]
+_data = {
+&"CampFlicker": SubResource("Animation_7lihs"),
+&"RESET": SubResource("Animation_b2bpf")
+}
+
+[node name="Game" type="Control" unique_id=1126262729 node_paths=PackedStringArray("worldScene", "GUI")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("1_7kj4d")
+script = ExtResource("1_bvkne")
+worldScene = NodePath("DayNightCycle/WorldScene")
+GUI = NodePath("GUI")
+
+[node name="DayNightCycle" type="CanvasModulate" parent="." unique_id=1611915610]
+script = ExtResource("4_b2bpf")
+secondsPerHour = 1.0
+nightColour = Color(0.3284335, 0.45705426, 0.7960183, 1)
+
+[node name="WorldScene" parent="DayNightCycle" unique_id=495325210 instance=ExtResource("3_bvkne")]
+
+[node name="PointLight2D" type="PointLight2D" parent="DayNightCycle" unique_id=1309748580]
+position = Vector2(1135, 334)
+color = Color(3.5162017, 1.0471244, 0, 0)
+texture = SubResource("GradientTexture2D_axljd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DayNightCycle" unique_id=371072480]
+libraries/ = SubResource("AnimationLibrary_fgofq")
+autoplay = &"CampFlicker"
+
+[node name="GUI" parent="." unique_id=1095052953 instance=ExtResource("4_bvkne")]
+layout_mode = 1

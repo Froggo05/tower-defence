@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cfa61w1pfw655"]
+
+[ext_resource type="Script" uid="uid://ro856wnvggem" path="res://Scenes/WorldElements/GUI/MenuManager/CampMenu/camp_menu.gd" id="1_2urir"]
+[ext_resource type="Theme" uid="uid://v1ubk6fnbab2" path="res://Assets/Theme/Theme.tres" id="1_mx156"]
+
+[node name="CampMenu" type="Control" unique_id=1147653994]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_mx156")
+script = ExtResource("1_2urir")
+metadata/_edit_use_anchors_ = true
+
+[node name="Background" type="Panel" parent="." unique_id=1283500642]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_mx156")
+
+[node name="BackButton" type="Button" parent="." unique_id=942424868]
+layout_mode = 1
+offset_right = 207.0
+offset_bottom = 87.0
+text = "Exit Camp"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

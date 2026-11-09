@@ -1,4 +1,3 @@
-class_name StaticEntity extends Node2D
+class_name StaticEntity extends Entity
 
 @export var healthComponent: HealthComponent
-@export var animationPlayer: AnimationPlayer

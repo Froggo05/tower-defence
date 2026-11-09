@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://cg63gtldex25q"]
+
+[ext_resource type="Script" uid="uid://nfi3jjs16s3j" path="res://Scenes/WorldElements/World/WorldScene/Core/core.gd" id="1_nwqxc"]
+[ext_resource type="Shader" uid="uid://bktff25qsvypq" path="res://Modules/EffectsComponent/Shaders/flash.gdshader" id="2_l0dpm"]
+[ext_resource type="PackedScene" uid="uid://copg8g5t543od" path="res://Modules/HealthComponent/healthComponent.tscn" id="2_qop5q"]
+[ext_resource type="PackedScene" uid="uid://cxybhb7f6kpnx" path="res://Modules/EffectsComponent/universalEffectsComponent.tscn" id="3_yqmdw"]
+[ext_resource type="Texture2D" uid="uid://du7oe2kcvq5bd" path="res://Assets/Core/Core.png" id="4_yqmdw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l0dpm"]
+shader = ExtResource("2_l0dpm")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_colour = Color(1, 0, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l0dpm"]
+radius = 41.354874
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_axljd"]
+radius = 41.354874
+
+[node name="Core" type="Node2D" unique_id=1175429500 node_paths=PackedStringArray("healthComponent")]
+script = ExtResource("1_nwqxc")
+healthComponent = NodePath("HealthComponent")
+metadata/_custom_type_script = "uid://84qubgv07m3l"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1131404262]
+texture_filter = 1
+material = SubResource("ShaderMaterial_l0dpm")
+texture = ExtResource("4_yqmdw")
+
+[node name="StaticBody" type="StaticBody2D" parent="." unique_id=672315660]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody" unique_id=642904650]
+shape = SubResource("CircleShape2D_l0dpm")
+
+[node name="HealthComponent" parent="." unique_id=1858486418 node_paths=PackedStringArray("Hitbox", "animationPlayer") instance=ExtResource("2_qop5q")]
+collision_layer = 2
+collision_mask = 0
+Hitbox = NodePath("CollisionShape2D")
+animationPlayer = NodePath("../UniversalEffectsComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HealthComponent" unique_id=1057250424]
+shape = SubResource("CircleShape2D_axljd")
+
+[node name="UniversalEffectsComponent" parent="." unique_id=2044374402 instance=ExtResource("3_yqmdw")]
