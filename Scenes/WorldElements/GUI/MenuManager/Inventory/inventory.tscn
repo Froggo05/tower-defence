@@ -14,7 +14,7 @@ size_flags_vertical = 3
 script = ExtResource("1_5rpxs")
 inventorySlotGridContainer = NodePath("ItemGrid")
 inventorySize = Vector2i(11, 3)
-IUID = 3916494838
+IUID = 1049019358
 
 [node name="ItemGrid" type="GridContainer" parent="." unique_id=1752849925]
 layout_mode = 1

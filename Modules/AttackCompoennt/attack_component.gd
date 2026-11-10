@@ -7,6 +7,7 @@ var target: HealthComponent
 @export var attackCooldown: float = 1.0/12 * 8.0
 var canAttack: bool = true
 
+
 @export var damage: float = 1.0
 
 @warning_ignore("unused_parameter")
@@ -29,7 +30,6 @@ func _on_area_entered(area: Area2D) -> void:
 	if area is HealthComponent:
 		target = area as HealthComponent
 		enemyInRange = true
-		print("Has target")
 
 func attackTimer(delta: float)->void:
 	if canAttack:

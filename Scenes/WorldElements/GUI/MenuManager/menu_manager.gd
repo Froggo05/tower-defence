@@ -2,6 +2,7 @@ class_name MenuManager extends Control
 
 #-----sub-components-----
 @onready var baseItemPacked: PackedScene = preload("uid://c681mrvm6ivda")
+@onready var testItemTwoPacked: PackedScene = preload("uid://b213hlu6gh4mt")
 @export var menuResourceContainer: MenuResourceContainer
 @export var inventory: InventoryManager
 @export var defaultMenu: Menu
@@ -72,7 +73,7 @@ func _input(event: InputEvent) -> void:
 func _updateDrag()->void:
 	if dragInstance == null:
 		return
-	dragInstance.setItemTargetPos(get_global_mouse_position())
+	dragInstance.setItemTargetPos(get_global_mouse_position() - dragInstance.initialClickOffset)
 	dragInstance.update()
 
 func _startDrag()->void:
@@ -92,7 +93,7 @@ func _startDrag()->void:
 		return
 	
 	#print("Starting Drag")
-	dragInstance = Drag.new(item)
+	dragInstance = Drag.new(item, get_global_mouse_position())
 
 func _getInventorySlotHovered()->Slot:
 	if !INVGLOBAL.mouseIsHovering:
@@ -118,9 +119,6 @@ func _changeMenu(menuName: String)->void:
 	var menu: Menu = menuDict[menuName]
 	_setMenu(menu)
 
-func _on_button_pressed() -> void:
-	var item: Item = baseItemPacked.instantiate()
-	inventory.addItemToInventory(item)
 
 #----static-----
 static func getInventoryManager(iuid: int)->InventoryManager:
@@ -140,3 +138,11 @@ static func getPlayerInventory()->InventoryManager:
 
 static func requestActiveMenuChange(menu: String)->void:
 	activeMenu.menuChangeRequest(menu)
+
+func _on_button_pressed() -> void:
+	var item: Item = baseItemPacked.instantiate()
+	inventory.addItemToInventory(item)
+
+func _on_button_2_pressed() -> void:
+	var item: Item = testItemTwoPacked.instantiate()
+	inventory.addItemToInventory(item)

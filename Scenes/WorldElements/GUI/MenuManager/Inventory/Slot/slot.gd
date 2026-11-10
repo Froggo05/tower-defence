@@ -29,7 +29,7 @@ enum TextureIndex{
 var atlastSize: Vector2i = Vector2i(4,4)
 var textureCellSize: Vector2 = Vector2(8.0,8.0)
 
-var sizePixels: Vector2
+static var sizePixels: Vector2
 #-----signals-----
 signal slotHovered(inventoryType: Vector2i, IUID: int)
 

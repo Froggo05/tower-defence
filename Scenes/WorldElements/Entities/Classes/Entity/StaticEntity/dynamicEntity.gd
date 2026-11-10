@@ -4,7 +4,7 @@ class_name DynamicEntity extends Entity
 @export var healthComponent: HealthComponent
 @export var collisionComponent: CollisionComponent
 @export var universalEffectsComponent: AnimationPlayer
-
+var state: STATE = STATE.IDLE
 enum STATE{
 	IDLE,
 	RUN,

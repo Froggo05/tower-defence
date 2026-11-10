@@ -23,6 +23,7 @@ enum TARGETMOVEMENT{
 @export var frictionConst: float = 5.0
 var targetDirection: Vector2 = Vector2.ZERO
 var velocity: Vector2 = Vector2.ZERO
+@export var canRotate: bool = true
 
 var nextNavPoint: Vector2 = Vector2.ZERO
 var atTarget: bool = false

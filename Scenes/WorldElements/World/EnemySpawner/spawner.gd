@@ -31,6 +31,7 @@ func spawnEnemy(enemyType: String)->void:
 	var spawnPoint = _randomPoint(spawnArea)
 	var newEntity: DynamicEntity = Global.summonEntity(spawnPoint, enemyType)
 	newEntity.motionComponent.setTarget(Global.core.getClosestPos(spawnPoint))
+	newEntity.state = newEntity.STATE.RUN
 
 func spawnTimer(delta: float)->void:
 	clock += delta

@@ -57,4 +57,8 @@ func heal(healing: float)->void:
 	healed.emit(healing)
 
 func _healthbarInterp(delta)->void:
-	progressBar.value = lerpf(progressBar.value, health, delta * barChangeFactor)
+	if progressBar != null:
+		progressBar.value = lerpf(progressBar.value, health, delta * barChangeFactor)
+
+func queryHealth()->float:
+	return health

@@ -57,7 +57,7 @@ func placeItem(inventoryPos: Vector2i, item: Item)->void:
 				slot.setItem(item)
 	else:
 		MenuManager.getInventoryManager(item.IUID).placeItem(item.invPosition, item) #works because item.invPosition hasnt been updated by our method yet and the past position should be valid
-		push_warning("Cant move: ", item," REASON: " ,SLOTCHECK.find_key(cellCheck))
+		push_warning("Cant move: ", item, " REASON: ", SLOTCHECK.find_key(cellCheck))
 
 func removeItem(inventoryPos: Vector2i, item: Item)->void:	
 	var itemBounds: Vector2i = Vector2i(inventoryPos.x + item.invSize.x, inventoryPos.y + item.invSize.y)
@@ -71,7 +71,10 @@ func removeItem(inventoryPos: Vector2i, item: Item)->void:
 
 func checkItemDropPosition(inventoryPos: Vector2i, item: Item)->int:
 	var itemBounds: Vector2i = Vector2i(inventoryPos.x + item.invSize.x, inventoryPos.y + item.invSize.y)
-			
+		
+	if inventoryPos.x < 0 or inventoryPos.y < 0:
+		return SLOTCHECK.NULL
+		
 	var yrange = range(inventoryPos.y, itemBounds.y)
 	var xrange = range(inventoryPos.x, itemBounds.x)
 	
@@ -93,6 +96,9 @@ func checkItemDropPosition(inventoryPos: Vector2i, item: Item)->int:
 	return SLOTCHECK.EMPTY
 
 func checkCell(cellPosition: Vector2i, item: Item)->int:
+	if cellPosition.x < 0 or cellPosition.y < 0:
+		return SLOTCHECK.NULL
+	
 	var slot: = inventoryGrid[cellPosition.x][cellPosition.y] as Slot
 	if slot.hasItem:
 		if slot.itemContained == item:

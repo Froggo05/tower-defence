@@ -12,9 +12,10 @@ func activate()->void:
 		child.show()
 	playerInventory = MenuManager.getPlayerInventory()
 	inventoryTarget.custom_minimum_size = playerInventory.custom_minimum_size
-	MenuManager.coreHealthBar.custom_minimum_size = Vector2(size.x, coreHealthBarTarget.size.y)
+	_setCoreHealthBar()
+	MenuManager.coreHealthBar.show()
+
 	playerInventory.show()
-	_setCoreHealthBarPos()
 	process_mode = Node.PROCESS_MODE_INHERIT
 
 func deactivate()->void:
@@ -32,9 +33,12 @@ func update(delta: float)->void:
 func _updateInventoryPosition(delta: float)->void: #inventoryTarget.position.y - MenuManager.coreHealthBar.custom_minimum_size.y, its - because of y axis + being downward
 	playerInventory.position = lerp(playerInventory.position, Vector2(inventoryTarget.position.x, inventoryTarget.position.y - MenuManager.coreHealthBar.custom_minimum_size.y), delta * MenuManager.inventoryMoveFactor)
 
-func _setCoreHealthBarPos() ->void:
-	MenuManager.coreHealthBar.position = coreHealthBarTarget.position
-	MenuManager.coreHealthBar.show()
+func _updateHealthBar(delta)->void:
+	Global.core.healthComponent.c
+
+func _setCoreHealthBar() ->void:
+	MenuManager.coreHealthBar.custom_minimum_size = Vector2(size.x, coreHealthBarTarget.size.y)
+
 
 #-----signals------
 
