@@ -46,97 +46,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 mouse_filter = 1
 theme = ExtResource("2_2gc5r")
 script = ExtResource("1_ggo0g")
 inventoryTarget = NodePath("InventoryTarget")
 coreHealthBarTarget = NodePath("CoreHealthBarTarget")
-
-[node name="MerchantStall" type="ColorRect" parent="." unique_id=1251044160]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -185.0
-offset_top = -119.99997
-offset_right = -20.32666
-offset_bottom = -53.99997
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.75, 0.75)
-theme = ExtResource("2_2gc5r")
-color = Color(1, 0.7490196, 0, 1)
-
-[node name="Button" type="Button" parent="MerchantStall" unique_id=1414304220]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("2_2gc5r")
-theme_override_styles/normal = SubResource("StyleBoxFlat_2gc5r")
-text = "Merchant"
-
-[node name="UnitCamp" type="ColorRect" parent="." unique_id=1009994533]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 97.0
-offset_top = -176.0
-offset_right = 244.0
-offset_bottom = -70.35791
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.75, 0.75)
-theme = ExtResource("2_2gc5r")
-color = Color(0.73724973, 0.26246846, 0.24866796, 1)
-
-[node name="Button" type="Button" parent="UnitCamp" unique_id=2030211948]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("2_2gc5r")
-theme_override_styles/normal = SubResource("StyleBoxFlat_mpuml")
-text = "Unit Camp"
-
-[node name="Forge" type="ColorRect" parent="." unique_id=1083416631]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 45.0
-offset_top = 42.0
-offset_right = 158.22241
-offset_bottom = 161.09314
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.75, 0.75)
-theme = ExtResource("2_2gc5r")
-color = Color(0.35906908, 0.35906908, 0.35906908, 1)
-
-[node name="Button" type="Button" parent="Forge" unique_id=1120192793]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -4.0
-offset_right = -4.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("2_2gc5r")
-theme_override_styles/normal = SubResource("StyleBoxFlat_ew8rx")
-text = "Forge"
+metadata/_edit_use_anchors_ = true
 
 [node name="InventoryTarget" type="Control" parent="." unique_id=1132624989]
 layout_mode = 1
@@ -164,6 +81,69 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 3
 
-[connection signal="pressed" from="MerchantStall/Button" to="." method="_on_merchant_button_pressed"]
-[connection signal="pressed" from="UnitCamp/Button" to="." method="_on_camp_button_pressed"]
-[connection signal="pressed" from="Forge/Button" to="." method="_on_forge_button_pressed"]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=768152263]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
+
+[node name="MerchantStall" type="ColorRect" parent="VBoxContainer" unique_id=1251044160]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+theme = ExtResource("2_2gc5r")
+color = Color(1, 0.7490196, 0, 1)
+
+[node name="Button" type="Button" parent="VBoxContainer/MerchantStall" unique_id=1414304220]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_2gc5r")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2gc5r")
+text = "Merchant"
+
+[node name="UnitCamp" type="ColorRect" parent="VBoxContainer" unique_id=1009994533]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+theme = ExtResource("2_2gc5r")
+color = Color(0.73724973, 0.26246846, 0.24866796, 1)
+
+[node name="Button" type="Button" parent="VBoxContainer/UnitCamp" unique_id=2030211948]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_2gc5r")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mpuml")
+text = "Unit Camp"
+
+[node name="Forge" type="ColorRect" parent="VBoxContainer" unique_id=1083416631]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+theme = ExtResource("2_2gc5r")
+color = Color(0.35906908, 0.35906908, 0.35906908, 1)
+
+[node name="Button" type="Button" parent="VBoxContainer/Forge" unique_id=1120192793]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_right = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_2gc5r")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ew8rx")
+text = "Forge"
+
+[connection signal="pressed" from="VBoxContainer/MerchantStall/Button" to="." method="_on_merchant_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/UnitCamp/Button" to="." method="_on_camp_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Forge/Button" to="." method="_on_forge_button_pressed"]

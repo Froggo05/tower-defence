@@ -50,20 +50,24 @@ func _updateAnimations()->void:
 	#print(motionAnimationTree.get("parameters/MotionSpace/blend_position"))
 
 func _physics_process(delta: float) -> void:
+	
+
 	animationBlend = animationBlend.lerp(velocity, delta * 10.0)
 	if motionAnimationTree != null:
 		motionAnimationTree.set("parameters/MotionSpace/blend_position", animationBlend)
-	
-	nextNavPoint = navAgent.get_next_path_position()
-	targetDirection = parent.global_position.direction_to(nextNavPoint)
-	
+	if !atTarget:
+		nextNavPoint = navAgent.get_next_path_position()
+		targetDirection = parent.global_position.direction_to(nextNavPoint)
+		parent.rotation = targetDirection.angle()
+		velocity = targetDirection * speed
+		
 	if atTarget:
 		velocity = Vector2.ZERO
-	velocity = targetDirection * speed
+	
 	velocityLine.set_point_position(1, velocity)
 	currentTargetPosition.set_point_position(1, to_local(navAgent.target_position))
 	
-	parent.rotation = targetDirection.angle()
+
 	parent.global_position += velocity * delta
 
 #-----public-----

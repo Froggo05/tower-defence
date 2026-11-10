@@ -203,9 +203,12 @@ radius = 6.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_plxga"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m8s3d"]
-radius = 37.01351
+radius = 22.0
 
-[node name="SmallGoblin" type="Node2D" unique_id=999352497 node_paths=PackedStringArray("attackComponent", "sprite", "motionComponent", "healthComponent", "collisionComponent", "universalEffectsComponent")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ropfv"]
+
+[node name="SmallGoblin" type="RigidBody2D" unique_id=664506044 node_paths=PackedStringArray("attackComponent", "sprite", "motionComponent", "healthComponent", "collisionComponent", "universalEffectsComponent")]
+gravity_scale = 0.0
 script = ExtResource("1_anstl")
 attackComponent = NodePath("AttackComponent")
 sprite = NodePath("Sprite2D")
@@ -254,8 +257,11 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent" unique_id=547725177]
-position = Vector2(33, 0)
+position = Vector2(18, 0)
 shape = SubResource("CircleShape2D_m8s3d")
 debug_color = Color(0.95739204, 0, 0.5354323, 0.41960785)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=835587919]
+shape = SubResource("CircleShape2D_ropfv")
 
 [connection signal="animation_finished" from="Sprite2D" to="." method="_on_sprite_2d_animation_finished"]

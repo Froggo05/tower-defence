@@ -26,7 +26,8 @@ func deactivate()->void:
 
 @warning_ignore("unused_parameter")
 func menuChangeRequest(menu: String)->void:
-	pass
+	change_menu.emit(menu)
+
 #PrivateMethods - only used within this node(class) - shown with an _ prefix
 func _ready() -> void:
 	deactivate()

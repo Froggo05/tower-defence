@@ -23,7 +23,6 @@ func deactivate()->void:
 		if child is ColorRect:
 			return
 		child.hide()
-	process_mode = Node.PROCESS_MODE_DISABLED
 
 func update(delta: float)->void:
 	_updateInventoryPosition(delta)
@@ -33,8 +32,8 @@ func update(delta: float)->void:
 func _updateInventoryPosition(delta: float)->void: #inventoryTarget.position.y - MenuManager.coreHealthBar.custom_minimum_size.y, its - because of y axis + being downward
 	playerInventory.position = lerp(playerInventory.position, Vector2(inventoryTarget.position.x, inventoryTarget.position.y - MenuManager.coreHealthBar.custom_minimum_size.y), delta * MenuManager.inventoryMoveFactor)
 
-func _updateHealthBar(delta)->void:
-	Global.core.healthComponent.c
+#func _updateHealthBar(delta)->void:
+	#Global.core.healthComponent.c
 
 func _setCoreHealthBar() ->void:
 	MenuManager.coreHealthBar.custom_minimum_size = Vector2(size.x, coreHealthBarTarget.size.y)

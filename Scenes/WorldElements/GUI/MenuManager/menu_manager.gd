@@ -73,8 +73,7 @@ func _input(event: InputEvent) -> void:
 func _updateDrag()->void:
 	if dragInstance == null:
 		return
-	dragInstance.setItemTargetPos(get_global_mouse_position() - dragInstance.initialClickOffset)
-	dragInstance.update()
+	dragInstance.update(get_global_mouse_position() - dragInstance.initialClickOffset)
 
 func _startDrag()->void:
 	if dragInstance != null:

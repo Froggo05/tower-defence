@@ -37,7 +37,7 @@ func attackTimer(delta: float)->void:
 	timer += delta
 	if timer >= attackCooldown:
 		timer -= attackCooldown
-	canAttack = true
+		canAttack = true
 
 
 func _on_area_exited(area: Area2D) -> void:

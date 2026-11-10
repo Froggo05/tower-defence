@@ -13,7 +13,6 @@ frictionConst = 0.01
 
 [node name="NavAgent" type="NavigationAgent2D" parent="." unique_id=1295195801]
 path_desired_distance = 50.0
-target_desired_distance = 50.0
 
 [node name="VelocityLine" type="Line2D" parent="." unique_id=718309897]
 visible = false

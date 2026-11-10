@@ -1,7 +1,6 @@
 extends Node2D
 
 @export var entityContainer: Node2D
-@export var core: StaticEntity
 
 func _ready() -> void:
 	Global.worldScene = self

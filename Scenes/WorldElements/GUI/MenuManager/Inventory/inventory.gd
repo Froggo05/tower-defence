@@ -34,7 +34,7 @@ func addItemToInventory(item: Item)->void:
 	for y in range(inventorySize.y):
 		for x in range(inventorySize.x):
 			if checkItemDropPosition(Vector2i(x,y), item) == SLOTCHECK.EMPTY:
-				owner.add_child(item)
+				add_child(item)
 				placeItem(Vector2i(x,y), item)
 				print("AddAdded item to: ", Vector2i(x, y))
 				return #exit the loop as has placed one item
@@ -55,6 +55,9 @@ func placeItem(inventoryPos: Vector2i, item: Item)->void:
 			for x in xrange:
 				var slot = inventoryGrid[x][y] as Slot
 				slot.setItem(item)
+		
+		item.z_index = self.z_index + 1
+		item.reparent(self, false)
 	else:
 		MenuManager.getInventoryManager(item.IUID).placeItem(item.invPosition, item) #works because item.invPosition hasnt been updated by our method yet and the past position should be valid
 		push_warning("Cant move: ", item, " REASON: ", SLOTCHECK.find_key(cellCheck))
@@ -107,6 +110,14 @@ func checkCell(cellPosition: Vector2i, item: Item)->int:
 			return SLOTCHECK.FULL
 	else:
 		return SLOTCHECK.EMPTY
+
+func disable()->void:
+	hide()
+	self.process_mode = Node.PROCESS_MODE_DISABLED
+
+func enable()->void:
+	show()
+	self.process_mode = Node.PROCESS_MODE_INHERIT
 
 #-----signal responses-----
 func _on_mouse_entered() -> void:

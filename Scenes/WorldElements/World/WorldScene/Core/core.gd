@@ -8,3 +8,8 @@ func _ready() -> void:
 func getClosestPos(entityPos: Vector2)->Vector2:
 	var rad = collision_shape_2d.shape.get("radius")
 	return global_position + (rad * -(global_position - entityPos).normalized())
+
+@warning_ignore("unused_parameter")
+func _physics_process(delta: float) -> void:
+	if healthComponent.health <= 0:
+		Global.gameOver()

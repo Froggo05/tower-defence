@@ -55,17 +55,20 @@ _data = {
 }
 
 [node name="Game" type="Control" unique_id=1126262729 node_paths=PackedStringArray("worldScene", "GUI")]
+custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 1
 theme = ExtResource("1_7kj4d")
 script = ExtResource("1_bvkne")
 worldScene = NodePath("DayNightCycle/WorldScene")
 GUI = NodePath("GUI")
+metadata/_edit_use_anchors_ = true
 
 [node name="DayNightCycle" type="CanvasModulate" parent="." unique_id=1611915610]
 script = ExtResource("4_b2bpf")

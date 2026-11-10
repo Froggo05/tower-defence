@@ -26,10 +26,13 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	_updatePosition(delta)
 
-func _updatePosition(delta)->void:
+func _updatePosition(_delta)->void:
 	#print(targetPosition, " -> ", position)
-	position = position.move_toward(targetPosition, delta * moveFactor) # WHY DOES global_position NOT WORK WHYYYY WAS IT DIFFERENT
+	global_position = targetPosition
 	#makes no sense RAHH
+func setTarget(newPosition: Vector2)->void:
+	targetPosition = newPosition
+
 #-----public-----
 func getTags()-> Dictionary:
 	var tagDict: Dictionary = {}

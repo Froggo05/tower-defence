@@ -2,6 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://v1ubk6fnbab2" path="res://Assets/Theme/Theme.tres" id="1_k3ivt"]
 [ext_resource type="Script" uid="uid://chgk30emgbnpy" path="res://Scenes/WorldElements/GUI/gui.gd" id="2_wf68y"]
+[ext_resource type="Script" uid="uid://6ua4co8enhdw" path="res://Scenes/WorldElements/GUI/mouse_pos.gd" id="4_r2xqx"]
 [ext_resource type="Script" uid="uid://7bi3v0m038kw" path="res://Scenes/WorldElements/GUI/stats.gd" id="4_s358i"]
 [ext_resource type="PackedScene" uid="uid://do1wmn2x04efg" path="res://Scenes/WorldElements/GUI/MenuManager/menu_manager.tscn" id="6_r14bo"]
 [ext_resource type="Script" uid="uid://dgasuoniijcd3" path="res://Scenes/WorldElements/GUI/MouseManager/mouse_manager.gd" id="8_7fy40"]
@@ -14,17 +15,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+size_flags_horizontal = 3
+size_flags_vertical = 3
 mouse_filter = 1
 theme = ExtResource("1_k3ivt")
 script = ExtResource("2_wf68y")
 menuManager = NodePath("MenuManager")
-
-[node name="Stats" type="Label" parent="." unique_id=1549377497]
-unique_name_in_owner = true
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-script = ExtResource("4_s358i")
 
 [node name="MouseManager" type="Control" parent="." unique_id=1011832851]
 layout_mode = 1
@@ -52,3 +49,18 @@ patch_margin_bottom = 2
 
 [node name="MenuManager" parent="." unique_id=1690813115 instance=ExtResource("6_r14bo")]
 layout_mode = 1
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1077992414]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Stats" type="Label" parent="HBoxContainer" unique_id=1549377497]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("4_s358i")
+
+[node name="MousePos" type="Label" parent="HBoxContainer" unique_id=493666063]
+layout_mode = 2
+script = ExtResource("4_r2xqx")

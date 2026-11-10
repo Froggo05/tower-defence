@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://buqpeq752ryvg" path="res://Scenes/WorldElements/GUI/MenuManager/menu_resources_container.gd" id="6_be1tq"]
 [ext_resource type="PackedScene" uid="uid://tkofxeb5hbe6" path="res://Scenes/WorldElements/GUI/MenuManager/Inventory/inventory.tscn" id="7_sohft"]
 [ext_resource type="PackedScene" uid="uid://cfa61w1pfw655" path="res://Scenes/WorldElements/GUI/MenuManager/CampMenu/camp_menu.tscn" id="8_gkyad"]
+[ext_resource type="PackedScene" uid="uid://b0e5a1ciiyhsr" path="res://Scenes/WorldElements/GUI/MenuManager/GameOver/GameOver.tscn" id="8_u2afq"]
 [ext_resource type="PackedScene" uid="uid://bkt037ltaye2g" path="res://Scenes/WorldElements/GUI/MenuManager/ForgeMenu/forge_menu.tscn" id="9_k0p76"]
 [ext_resource type="Script" uid="uid://b6javx34p1gu8" path="res://Scenes/WorldElements/GUI/MenuManager/core_health_bar.gd" id="10_k0p76"]
 
@@ -43,6 +44,9 @@ layout_mode = 1
 [node name="ForgeMenu" parent="." unique_id=2098623128 instance=ExtResource("9_k0p76")]
 layout_mode = 1
 
+[node name="GameOver" parent="." unique_id=61577780 instance=ExtResource("8_u2afq")]
+layout_mode = 1
+
 [node name="MenuResourcesContainer" type="Control" parent="." unique_id=826891072]
 layout_mode = 1
 anchors_preset = 15
@@ -57,31 +61,30 @@ script = ExtResource("6_be1tq")
 visible = false
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.022916667
-anchor_top = 0.022222223
-anchor_right = 0.25625
-anchor_bottom = 0.37777779
-offset_left = -128.0
-offset_right = 128.0
-offset_bottom = -192.0
+anchor_left = 0.314
+anchor_top = 0.77000004
+anchor_right = 0.68
+anchor_bottom = 0.9480001
+offset_left = -0.8800049
+offset_top = 0.39996338
+offset_right = 0.4000244
+offset_bottom = 0.15991211
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 offset_transform_enabled = true
-IUID = 1772020716
-metadata/_edit_use_anchors_ = true
+IUID = 2073180282
 
 [node name="CoreHealthBar" type="ProgressBar" parent="MenuResourcesContainer" unique_id=1253212220]
 unique_name_in_owner = true
 visible = false
+custom_minimum_size = Vector2(0, 45)
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+anchors_preset = -1
+anchor_top = 0.9480001
+anchor_right = 0.9990001
 anchor_bottom = 1.0
-offset_left = -2.0
-offset_top = -33.0
-offset_right = 2.0
+offset_top = 0.15991211
+offset_right = 0.9199219
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("10_k0p76")

@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://b0e5a1ciiyhsr"]
+
+[ext_resource type="Script" uid="uid://1fqt80wsur68" path="res://Scenes/WorldElements/GUI/MenuManager/GameOver/game_over.gd" id="1_eauep"]
+[ext_resource type="Theme" uid="uid://v1ubk6fnbab2" path="res://Assets/Theme/Theme.tres" id="1_qmi4k"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qmi4k"]
+font_size = 150
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qmi4k"]
+bg_color = Color(0, 0, 0, 0)
+
+[node name="GameOver" type="Control" unique_id=61577780 node_paths=PackedStringArray("ScoreLabel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("1_qmi4k")
+script = ExtResource("1_eauep")
+ScoreLabel = NodePath("TextureRect/HBoxContainer/MarginContainer/Score")
+
+[node name="TextureRect" type="Panel" parent="." unique_id=155277780]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="VBoxContainer" parent="TextureRect" unique_id=1062076757]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -54.5
+offset_top = -20.0
+offset_right = 54.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOverText" type="Label" parent="TextureRect/HBoxContainer" unique_id=633568928]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "You Lose"
+label_settings = SubResource("LabelSettings_qmi4k")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect/HBoxContainer" unique_id=155295908]
+layout_mode = 2
+
+[node name="Score" type="Label" parent="TextureRect/HBoxContainer/MarginContainer" unique_id=937124164]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel2" type="Panel" parent="TextureRect/HBoxContainer" unique_id=1941973413]
+custom_minimum_size = Vector2(100, 150)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qmi4k")
+
+[node name="Button" type="Button" parent="TextureRect/HBoxContainer" unique_id=314418127]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Run it Back? Suuurely"
+
+[node name="Panel" type="Panel" parent="TextureRect/HBoxContainer" unique_id=1994647224]
+custom_minimum_size = Vector2(100, 150)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qmi4k")
+
+[node name="Button2" type="Button" parent="TextureRect/HBoxContainer" unique_id=1242180982]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Don't be lame..."
+
+[connection signal="pressed" from="TextureRect/HBoxContainer/Button" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="TextureRect/HBoxContainer/Button2" to="." method="_on_quit_button_pressed"]

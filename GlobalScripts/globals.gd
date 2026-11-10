@@ -19,6 +19,8 @@ var food: = 500
 var entityCount: int = 0
 var entityCap: int = 500
 var projectileCount: int = 0
+
+var enemiesKilled: int = 0
 var gameActive = false
 
 ##references -in place for global use
@@ -33,9 +35,9 @@ var targetList: Array = []
 
 #global funcs
 
-static func closeEnough(A, B) -> bool:
-	var comparison = A.snappedf(0.05) == B.snappedf(0.05)
-	return comparison
+func gameOver()->void:
+	gameActive = false
+	MenuManager.requestActiveMenuChange("GameOver")
 
 #G	-summon funcs
 

@@ -68,7 +68,9 @@ func endDrag()->void:
 		#MenuManager.getInventoryManager(initialIUID).placeItem(initialItemInvPos, item) #return it to its original pos
 	_resetSlotHighlight()
 
-func update()->void:
+func update(newMousePosition: Vector2)->void:
+	
+	item.setTarget(newMousePosition)
 	if INVGLOBAL.mouseIsHovering:
 		_resetSlotHighlight()
 		@warning_ignore("narrowing_conversion")
@@ -88,7 +90,5 @@ func getHoveredCellPlusInventoryOffset()-> Vector2i:
 	if item.invSize > Vector2i.ONE:
 		hoveredCoords -=  offsetCoords
 	return hoveredCoords
-func setItemTargetPos(pos: Vector2)->void:
-	item.global_position = pos 
 
 #-----signal responses-----
