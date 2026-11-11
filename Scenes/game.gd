@@ -1,14 +1,20 @@
-extends Control
+class_name Game extends Control
 
 var LeftclickPressed:bool = false
 var RightclickPressed:bool = false
 
 #exports
-@export var worldScene: Node2D
+@export var worldScene: WorldScene
 @export var GUI: GUIManager
+
+func updateDay()->void:
+	GUI.updateDay()
+	worldScene.updateDay()
 
 func _ready() -> void:
 	Global.gold = 1000
+	Global.game = self
+	updateDay()
 	#nextDay()
 
 #func nextDay()->void:

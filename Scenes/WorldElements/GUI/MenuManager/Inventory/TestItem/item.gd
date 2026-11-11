@@ -30,12 +30,13 @@ func _physics_process(delta: float) -> void:
 	_updatePosition(delta)
 
 func _updatePosition(_delta)->void:
-	#print(targetPosition, " -> ", position)
 	global_position = targetPosition
 	#makes no sense RAHH
 
 func setTarget(newPosition: Vector2)->void:
 	targetPosition = newPosition
+	#global_position = newPosition
+	#print(newPosition)
 
 #-----public-----
 func getTags()-> Dictionary:

@@ -23,11 +23,11 @@ func stopSpawning()->void:
 	spawning = false
 
 func _physics_process(delta: float) -> void:
-	if EnemyManager.waveActive:
+	if Global.enemyManager.waveActive:
 		spawnTimer(delta)
 
 func spawnEnemy(enemyType: String)->void:
-	EnemyManager.wavePointsRemaining -= EnemyManager.enemyDetailsList[enemyType][1]
+	Global.enemyManager.wavePointsRemaining -= Global.enemyManager.enemyDetailsList[enemyType][1]
 	var spawnPoint = _randomPoint(spawnArea)
 	var newEntity: DynamicEntity = Global.summonEntity(spawnPoint, enemyType)
 	newEntity.motionComponent.setTarget(Global.core.getClosestPos(spawnPoint))
@@ -38,6 +38,6 @@ func spawnTimer(delta: float)->void:
 	if clock >= spawnInverval:
 		clock -= spawnInverval
 		spawnInverval = randf_range(0.5, 2.0)
-		var randEnemy = EnemyManager.getRandomEnemyForDay()
+		var randEnemy = Global.enemyManager.getRandomEnemyForDay()
 		if Global.entityCount + 1 < Global.entityCap:
 			spawnEnemy(randEnemy)

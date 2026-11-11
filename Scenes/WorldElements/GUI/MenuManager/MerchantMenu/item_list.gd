@@ -1,11 +1,11 @@
 class_name MerchantList extends ItemList
-var itemsArray:Array[Item] = []
+var itemsArray:Array = []
 
-func buildItemList(addItemsArray:Array[Item])->void:
+func buildItemList(addItemsArray:Array)->void:
 	itemsArray = []
 	itemsArray.resize(addItemsArray.size())
 	for currentItem in addItemsArray:
-		var itemIndex = add_item(str(currentItem.attributes.value) + "g", currentItem.attributes.texture, true)
+		var itemIndex: int = add_item(str(currentItem.attributes.value) + "g", currentItem.attributes.texture, true)
 		itemsArray[itemIndex] = currentItem
 
 
@@ -19,4 +19,5 @@ func _on_complete_deal_pressed() -> void:
 		Global.gold -= costTotal
 		for itemIndex: int  in selectedItemIndexes:
 			MenuManager.getPlayerInventory().addItemToInventory(itemsArray[itemIndex])
+			self.remove_item(itemIndex)
 			

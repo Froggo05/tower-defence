@@ -4,14 +4,15 @@ class_name EnemyManager extends Node2D
 
 var spawners: Array = []
 var wavePoints = 1000
-static var wavePointsRemaining: float = 1000
-static var waveActive: bool = false
+var wavePointsRemaining: float = 1000
+var waveActive: bool = false
 #"name" : [unlockDay, cost]
-static var enemyDetailsList: Dictionary[String, Array] = {"sgoblin" : [0, 1]}
-static var enemiesAvaliable: Array = []
+var enemyDetailsList: Dictionary[String, Array] = {"sgoblin" : [0, 1]}
+var enemiesAvaliable: Array = []
 var dayUpdated: bool = false
 
 func _ready() -> void:
+	Global.enemyManager = self
 	for child in get_children():
 		spawners.append(child)
 
@@ -31,5 +32,9 @@ func updateDay()->void:
 			enemiesAvaliable.append(enemy)
 			#enemiesAvaliable.sort_custom(func (a,b)->bool: return a[1] > b[1])
 
-static func getRandomEnemyForDay()->String:
+func reset()->void:
+	pass
+
+func getRandomEnemyForDay()->String: #CRASHING HERE FOR SOME REASON
+	print(enemiesAvaliable)
 	return enemiesAvaliable[randi_range(0, enemiesAvaliable.size() - 1)]

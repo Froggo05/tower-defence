@@ -19,6 +19,7 @@ mouse_filter = 2
 script = ExtResource("1_v2utd")
 attributes = SubResource("Resource_n3l37")
 sprite = NodePath("TextureRect")
+invSize = Vector2i(1, 2)
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=40857170]
 texture_filter = 1
@@ -26,4 +27,5 @@ layout_mode = 0
 offset_right = 32.0
 offset_bottom = 32.0
 scale = Vector2(2, 2)
+mouse_filter = 2
 texture = ExtResource("3_gmf6p")

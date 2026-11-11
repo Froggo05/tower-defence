@@ -4,26 +4,27 @@ class_name MerchantMenu extends Menu
 
 var inventoryZIndex: int
 
-static var itemDetailsList: Dictionary[String, Array] = {"BasicArcherItem" : [0, 1]}
-static var itemsAvaliable: Array = []
+var itemDetailsList: Dictionary[String, Array] = {"basicArcher" : [0, 1]}
+var itemsAvaliable: Array = []
 
 func updateDay()->void:
 	_updateAvaliableItems()
 	
-	var itemsForSale = generateItemsForCurrentDay()
+	var itemsForSale: Array = generateItemsForCurrentDay()
 	merchantList.buildItemList(itemsForSale)
 
-func generateItemsForCurrentDay()->Array[Item]:
+func generateItemsForCurrentDay()->Array:
 	var itemList:Array
 	var amtItemForSale: int = randi_range(4, 10)
 	for i in range(amtItemForSale):
-		itemList.append(itemsAvaliable[randi_range(0, itemsAvaliable.size())])
+		itemList.append(itemsAvaliable[randi_range(0, itemsAvaliable.size() - 1)].instantiate())
 	return itemList
 
 func _updateAvaliableItems()->void:
-	for item in itemDetailsList.keys():
-		if itemDetailsList[item][0] <= Global.dayCount:
-			itemsAvaliable.append(item)
+	for itemName in itemDetailsList.keys():
+		if itemDetailsList[itemName][0] <= Global.dayCount:
+			var itemPacked = Global.itemList[itemName]
+			itemsAvaliable.append(itemPacked)
 
 func activate()->void:
 	show()

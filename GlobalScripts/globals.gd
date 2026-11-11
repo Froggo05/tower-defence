@@ -29,7 +29,8 @@ var dayCount:int = 0
 ##references -in place for global use
 var worldScene: WorldScene
 var core: CastleCore
-
+var game: Game
+var enemyManager: EnemyManager
 #units
 var targetList: Array = []
 
@@ -38,7 +39,7 @@ var targetList: Array = []
 func updateDay()->void:
 	dayCount += 1
 	print("updatingDay")
-	worldScene.updateDay()
+	game.updateDay()
 
 
 func gameOver()->void:
@@ -47,6 +48,7 @@ func gameOver()->void:
 
 func restart()->void:
 	gameActive = false
+	enemyManager.reset()
 	MenuManager.requestActiveMenuChange("StartMenu")
 	pass
 

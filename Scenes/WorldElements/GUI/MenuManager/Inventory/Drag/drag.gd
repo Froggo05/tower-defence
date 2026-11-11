@@ -80,15 +80,12 @@ func update(newMousePosition: Vector2)->void:
 
 func getHoveredCellPlusInventoryOffset()-> Vector2i:
 	
-	var offsetCoords = Vector2i(round(initialClickOffset.x /Slot.sizePixels.x), round(initialClickOffset.y /Slot.sizePixels.y))
-	#var itemBounds = item.invPosition + item.invSize
-	#if !(offsetCoords.x <= itemBounds.x) or !(offsetCoords.x >= item.invPosition.x):
-		#offsetCoords.x = item.invPosition.x
-	#if !(offsetCoords.y <= itemBounds.y) or !(offsetCoords.y >= item.invPosition.y):
-		#offsetCoords.y = item.invPosition.y
+	var offsetCoords = Vector2i(round(initialClickOffset.x / Slot.sizePixels.x), round(initialClickOffset.y / Slot.sizePixels.y))
 	var hoveredCoords = INVGLOBAL.hoveredCellCoordinate
-	if item.invSize > Vector2i.ONE:
-		hoveredCoords -=  offsetCoords
+	if item.invSize.x > Vector2i.ONE.x: #annoying >:( plus im tired
+		hoveredCoords.x -=  offsetCoords.x
+	if item.invSize.y > Vector2i.ONE.y:
+		hoveredCoords.y -=  offsetCoords.y
 	return hoveredCoords
 
 #-----signal responses-----
