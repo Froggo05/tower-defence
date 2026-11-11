@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://buqpeq752ryvg" path="res://Scenes/WorldElements/GUI/MenuManager/menu_resources_container.gd" id="6_be1tq"]
 [ext_resource type="PackedScene" uid="uid://tkofxeb5hbe6" path="res://Scenes/WorldElements/GUI/MenuManager/Inventory/inventory.tscn" id="7_sohft"]
 [ext_resource type="PackedScene" uid="uid://cfa61w1pfw655" path="res://Scenes/WorldElements/GUI/MenuManager/CampMenu/camp_menu.tscn" id="8_gkyad"]
-[ext_resource type="PackedScene" uid="uid://b0e5a1ciiyhsr" path="res://Scenes/WorldElements/GUI/MenuManager/GameOver/GameOver.tscn" id="8_u2afq"]
+[ext_resource type="PackedScene" uid="uid://b0e5a1ciiyhsr" path="res://Scenes/WorldElements/GUI/MenuManager/GameOverMenu/GameOver.tscn" id="8_u2afq"]
 [ext_resource type="PackedScene" uid="uid://bkt037ltaye2g" path="res://Scenes/WorldElements/GUI/MenuManager/ForgeMenu/forge_menu.tscn" id="9_k0p76"]
 [ext_resource type="Script" uid="uid://b6javx34p1gu8" path="res://Scenes/WorldElements/GUI/MenuManager/core_health_bar.gd" id="10_k0p76"]
 
@@ -44,7 +44,7 @@ layout_mode = 1
 [node name="ForgeMenu" parent="." unique_id=2098623128 instance=ExtResource("9_k0p76")]
 layout_mode = 1
 
-[node name="GameOver" parent="." unique_id=61577780 instance=ExtResource("8_u2afq")]
+[node name="GameOverMenu" parent="." unique_id=61577780 instance=ExtResource("8_u2afq")]
 layout_mode = 1
 
 [node name="MenuResourcesContainer" type="Control" parent="." unique_id=826891072]
@@ -72,7 +72,7 @@ offset_bottom = 0.15991211
 grow_horizontal = 2
 grow_vertical = 0
 offset_transform_enabled = true
-IUID = 2073180282
+IUID = 2976788209
 
 [node name="CoreHealthBar" type="ProgressBar" parent="MenuResourcesContainer" unique_id=1253212220]
 unique_name_in_owner = true
@@ -102,13 +102,13 @@ offset_bottom = 39.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="Button2" type="Button" parent="MenuResourcesContainer/VBoxContainer" unique_id=1357673223]
-layout_mode = 2
-text = "Add 1x1 to inventory"
-
 [node name="Button" type="Button" parent="MenuResourcesContainer/VBoxContainer" unique_id=2072284631]
 layout_mode = 2
-text = "Add 2x2 to inventory"
+text = "Add random 1x1 to inventory"
 
-[connection signal="pressed" from="MenuResourcesContainer/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[node name="Button2" type="Button" parent="MenuResourcesContainer/VBoxContainer" unique_id=1357673223]
+layout_mode = 2
+text = "Add testItem to inventory"
+
 [connection signal="pressed" from="MenuResourcesContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MenuResourcesContainer/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]

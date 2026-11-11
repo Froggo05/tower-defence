@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b0e5a1ciiyhsr"]
 
-[ext_resource type="Script" uid="uid://1fqt80wsur68" path="res://Scenes/WorldElements/GUI/MenuManager/GameOver/game_over.gd" id="1_eauep"]
-[ext_resource type="Theme" uid="uid://v1ubk6fnbab2" path="res://Assets/Theme/Theme.tres" id="1_qmi4k"]
+[ext_resource type="Theme" uid="uid://v1ubk6fnbab2" path="res://Assets/Theme/Theme.tres" id="1_d24vc"]
+[ext_resource type="Script" uid="uid://1fqt80wsur68" path="res://Scenes/WorldElements/GUI/MenuManager/GameOverMenu/game_over.gd" id="2_s4r1x"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qmi4k"]
 font_size = 150
@@ -9,16 +9,15 @@ font_size = 150
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qmi4k"]
 bg_color = Color(0, 0, 0, 0)
 
-[node name="GameOver" type="Control" unique_id=61577780 node_paths=PackedStringArray("ScoreLabel")]
+[node name="GameOverMenu" type="Control" unique_id=61577780 node_paths=PackedStringArray("ScoreLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
-theme = ExtResource("1_qmi4k")
-script = ExtResource("1_eauep")
+theme = ExtResource("1_d24vc")
+script = ExtResource("2_s4r1x")
 ScoreLabel = NodePath("TextureRect/HBoxContainer/MarginContainer/Score")
 
 [node name="TextureRect" type="Panel" parent="." unique_id=155277780]
@@ -28,7 +27,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
+mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="VBoxContainer" parent="TextureRect" unique_id=1062076757]
@@ -59,25 +58,23 @@ layout_mode = 2
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Panel2" type="Panel" parent="TextureRect/HBoxContainer" unique_id=1941973413]
+[node name="SpacingPanel" type="Panel" parent="TextureRect/HBoxContainer" unique_id=1941973413]
 custom_minimum_size = Vector2(100, 150)
 layout_mode = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_qmi4k")
 
 [node name="Button" type="Button" parent="TextureRect/HBoxContainer" unique_id=314418127]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-text = "Run it Back? Suuurely"
-
-[node name="Panel" type="Panel" parent="TextureRect/HBoxContainer" unique_id=1994647224]
-custom_minimum_size = Vector2(100, 150)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_qmi4k")
+mouse_default_cursor_shape = 5
+text = "Retry"
 
 [node name="Button2" type="Button" parent="TextureRect/HBoxContainer" unique_id=1242180982]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-text = "Don't be lame..."
+mouse_default_cursor_shape = 5
+text = "Quit"
 
 [connection signal="pressed" from="TextureRect/HBoxContainer/Button" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="TextureRect/HBoxContainer/Button2" to="." method="_on_quit_button_pressed"]

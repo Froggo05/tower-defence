@@ -1,6 +1,10 @@
-extends Node2D
+class_name WorldScene extends Node2D
 
-@export var entityContainer: Node2D
+@export var enemyManager: EnemyManager
+@export var entityManager: Node2D
+
+func updateDay()->void:
+	enemyManager.updateDay()
 
 func _ready() -> void:
 	Global.worldScene = self

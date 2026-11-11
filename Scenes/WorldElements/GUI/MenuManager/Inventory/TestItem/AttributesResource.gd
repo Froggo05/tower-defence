@@ -11,6 +11,7 @@ class_name ItemAttributes extends Resource
 @export var value: int = 1
 @export var effects: Dictionary[String, String]
 @export var playable: bool = false
+@export var texture: Texture2D
 #-----private-----
 
 #-----public-----

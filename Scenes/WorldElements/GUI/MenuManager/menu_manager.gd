@@ -110,6 +110,9 @@ func _endDrag()->void:
 
 #-----public------
 
+func updateDay()->void:
+	menuDict["MerchantMenu"].updateDay()
+
 #-----signals------
 func _return()->void:
 	_setMenu(defaultMenu)
@@ -139,8 +142,10 @@ static func requestActiveMenuChange(menu: String)->void:
 	activeMenu.menuChangeRequest(menu)
 
 func _on_button_pressed() -> void:
-	var item: Item = baseItemPacked.instantiate()
-	inventory.addItemToInventory(item)
+	var keys =  Global.itemList.keys()
+	print(keys)
+	var packedItem: PackedScene = Global.itemList.get(keys[randi_range(0, keys.size() - 1)])
+	inventory.addItemToInventory(packedItem.instantiate())
 
 func _on_button_2_pressed() -> void:
 	var item: Item = testItemTwoPacked.instantiate()

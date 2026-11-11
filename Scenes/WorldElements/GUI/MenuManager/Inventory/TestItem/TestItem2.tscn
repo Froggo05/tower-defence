@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://b213hlu6gh4mt"]
+
+[ext_resource type="Script" uid="uid://d3wvgt1cvbetr" path="res://Scenes/WorldElements/GUI/MenuManager/Inventory/TestItem/item.gd" id="1_3ir71"]
+[ext_resource type="Script" uid="uid://bet3qcju1ttno" path="res://Scenes/WorldElements/GUI/MenuManager/Inventory/TestItem/AttributesResource.gd" id="2_k0k0m"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gh7jy"]
+load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+
+[sub_resource type="Resource" id="Resource_frgio"]
+script = ExtResource("2_k0k0m")
+value = 15
+texture = SubResource("CompressedTexture2D_gh7jy")
+metadata/_custom_type_script = "uid://bet3qcju1ttno"
+
+[node name="TestItem" type="Control" unique_id=2137495195 node_paths=PackedStringArray("sprite")]
+texture_filter = 1
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 64.0
+offset_bottom = 64.0
+offset_transform_enabled = true
+mouse_filter = 2
+script = ExtResource("1_3ir71")
+attributes = SubResource("Resource_frgio")
+sprite = NodePath("Sprite")
+invSize = Vector2i(2, 2)
+moveFactor = 1000.0
+
+[node name="Sprite" type="TextureRect" parent="." unique_id=925538866]
+texture_filter = 1
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+scale = Vector2(0.5, 0.5)
+mouse_filter = 2
+texture = SubResource("CompressedTexture2D_gh7jy")

@@ -24,13 +24,13 @@ func deactivate()->void:
 			return
 		child.hide()
 
-func update(delta: float)->void:
-	_updateInventoryPosition(delta)
-	pass
+#func update(delta: float)->void:
+	#_updateInventoryPosition(delta)
+	#pass
 
 #-----private-----
-func _updateInventoryPosition(delta: float)->void: #inventoryTarget.position.y - MenuManager.coreHealthBar.custom_minimum_size.y, its - because of y axis + being downward
-	playerInventory.position = lerp(playerInventory.position, Vector2(inventoryTarget.position.x, inventoryTarget.position.y - MenuManager.coreHealthBar.custom_minimum_size.y), delta * MenuManager.inventoryMoveFactor)
+#func _updateInventoryPosition(delta: float)->void: #inventoryTarget.position.y - MenuManager.coreHealthBar.custom_minimum_size.y, its - because of y axis + being downward
+	#playerInventory.position = lerp(playerInventory.position, Vector2(inventoryTarget.position.x, inventoryTarget.position.y - MenuManager.coreHealthBar.custom_minimum_size.y), delta * MenuManager.inventoryMoveFactor)
 
 #func _updateHealthBar(delta)->void:
 	#Global.core.healthComponent.c

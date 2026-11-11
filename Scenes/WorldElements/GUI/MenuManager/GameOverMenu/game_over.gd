@@ -4,12 +4,12 @@ class_name GameOverMenu extends Menu
 
 func activate()->void:
 	show()
-	ScoreLabel.text = "You made it to day " + str(DayNightManager.dayCount) + "\n" + "You killed " + str(Global.enemiesKilled) + " monsters"
+	process_mode = Node.PROCESS_MODE_INHERIT
+	ScoreLabel.text = "You made it to day " + str(Global.dayCount) + "\n" + "You killed " + str(Global.enemiesKilled) + " monsters"
 	MenuManager.getPlayerInventory().disable()
 
 func _on_restart_button_pressed() -> void:
 	Global.restart()
-
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()

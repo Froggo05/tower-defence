@@ -142,9 +142,11 @@ func getTextureAtlasRegion(index: int)->Rect2:
 
 func setItem(item: Item)->void:
 	itemContained = item
+	updateTexture(self.inventoryCoordinate - item.invPosition, item.invSize)
 
 func removeItem()->void:
 	itemContained = null
+	updateTexture(inventoryCoordinate, MenuManager.getPlayerInventory().inventorySize)
 
 func visualiseCheck(slotCheck: int)->void: 
 	match slotCheck:

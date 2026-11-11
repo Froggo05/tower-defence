@@ -17,13 +17,6 @@ func _ready() -> void:
 
 @warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:
-	if DayNightManager.isDaytime() && !dayUpdated:
-		updateDay()
-		dayUpdated = true
-	if !DayNightManager.isDaytime() && dayUpdated:
-		dayUpdated = false
-		wavePointsRemaining = wavePoints + wavePointsRemaining
-	
 	if wavePointsRemaining > 0 && !DayNightManager.isDaytime():
 		waveActive = true
 	else: 
@@ -32,8 +25,9 @@ func _physics_process(delta: float) -> void:
 
 func updateDay()->void:
 	wavePoints = 1.1 * wavePoints
+	wavePointsRemaining = wavePoints + wavePointsRemaining
 	for enemy in enemyDetailsList.keys():
-		if enemyDetailsList[enemy][0] <= DayNightManager.dayCount:
+		if enemyDetailsList[enemy][0] <= Global.dayCount:
 			enemiesAvaliable.append(enemy)
 			#enemiesAvaliable.sort_custom(func (a,b)->bool: return a[1] > b[1])
 

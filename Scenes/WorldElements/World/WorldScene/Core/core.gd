@@ -12,4 +12,5 @@ func getClosestPos(entityPos: Vector2)->Vector2:
 @warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:
 	if healthComponent.health <= 0:
-		Global.gameOver()
+		if Global.gameActive:
+			Global.gameOver()

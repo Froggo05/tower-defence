@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://nlnbvl6s0w86"]
+
+[ext_resource type="Script" uid="uid://ph4xplmwr7vj" path="res://Scenes/WorldElements/GUI/MenuManager/Inventory/Items/Fighter/basic_fighter_item.gd" id="1_a412x"]
+[ext_resource type="Script" uid="uid://bet3qcju1ttno" path="res://Scenes/WorldElements/GUI/MenuManager/Inventory/TestItem/AttributesResource.gd" id="2_rlrbx"]
+[ext_resource type="Texture2D" uid="uid://b7r52qq7241r4" path="res://Assets/Sprites/Fighter/FighterPreview.png" id="3_2mipj"]
+
+[sub_resource type="Resource" id="Resource_4uqva"]
+script = ExtResource("2_rlrbx")
+value = 12
+texture = ExtResource("3_2mipj")
+metadata/_custom_type_script = "uid://bet3qcju1ttno"
+
+[node name="BasicFighterItem" type="Control" unique_id=112468971 node_paths=PackedStringArray("sprite")]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 64.0
+offset_bottom = 64.0
+mouse_filter = 2
+script = ExtResource("1_a412x")
+attributes = SubResource("Resource_4uqva")
+sprite = NodePath("TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1353646446]
+texture_filter = 1
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+scale = Vector2(2, 2)
+texture = ExtResource("3_2mipj")

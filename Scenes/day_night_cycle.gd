@@ -19,8 +19,6 @@ var tweenActive: bool
 @export var timePause:bool = false
 var lightList: Array = []
 
-static var dayCount: int = 1
-
 func _ready() -> void:
 	poolLights()
 	totalDayLength = hoursPerDayTime + hoursPerNightTime
@@ -34,13 +32,14 @@ func poolLights()->void:
 func _process(delta: float) -> void:
 	if Global.gameActive:
 		_updateTime(delta)
-	
+
 func _updateTime(delta: float)->void:
 	if timePause:
 		return
+	
+	#TODO: FIX THISSSS
 	if !tweenActive:
 		if isDay:
-			dayCount += 1
 			_tweenToDay()
 		else:
 			_tweenToNight()

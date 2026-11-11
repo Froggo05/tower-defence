@@ -1,10 +1,4 @@
-@tool
-class_name UniversalEffectsComponent extends Node2D
-
-#Actually super elegant solution. Will need to use object pooling for units cause this code will be expensive with a lot of them
-#my own mind ^
-
-#AI CODE ALERT HERE:
+@tool class_name UniversalEffectsComponent extends Node2D
 
 const FLASH_SHADER: = preload("uid://bktff25qsvypq")
 
@@ -17,7 +11,7 @@ var _flash_colour: Color = Color.RED
 	set(value):
 		_flash_amount = clampf(value, 0.0, 1.0)
 		for sprite in _sprites:
-			var mat := sprite.material as ShaderMaterial
+			var mat: ShaderMaterial= sprite.material as ShaderMaterial
 			if mat:
 				mat.set_shader_parameter("flash_amount", _flash_amount)
 	get:
@@ -26,7 +20,7 @@ var _flash_colour: Color = Color.RED
 	set(value):
 		_flash_colour = value
 		for sprite in _sprites:
-			var mat := sprite.material as ShaderMaterial
+			var mat: ShaderMaterial = sprite.material as ShaderMaterial
 			if mat:
 				mat.set_shader_parameter("flash_colour", _flash_colour)
 	get:
@@ -35,10 +29,10 @@ var _flash_colour: Color = Color.RED
 
 func _ready() -> void:
 	for node in animationPlayer.get_parent().find_children("*", "Sprite2D", true, false):
-		var sprite := node as Sprite2D
-		var mat := ShaderMaterial.new()
-		mat.shader = FLASH_SHADER
-		mat.set_shader_parameter("flash_amount", _flash_amount)
-		mat.set_shader_parameter("flash_colour", _flash_colour)
-		sprite.material = mat
+		var sprite: Sprite2D = node as Sprite2D
+		var shaderMaterial: ShaderMaterial = ShaderMaterial.new()
+		shaderMaterial.shader = FLASH_SHADER
+		shaderMaterial.set_shader_parameter("flash_amount", _flash_amount)
+		shaderMaterial.set_shader_parameter("flash_colour", _flash_colour)
+		sprite.material = shaderMaterial
 		_sprites.append(sprite)

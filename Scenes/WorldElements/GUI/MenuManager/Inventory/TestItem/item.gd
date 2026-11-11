@@ -4,7 +4,6 @@ class_name Item extends Control
 #-----enums-----
 
 #-----sub-components-----
-@export var valueDisplay: Label
 #-----signals-----
 
 #-----variables-----
@@ -18,7 +17,11 @@ var targetPosition: Vector2
 
 #-----private-----
 func _ready() -> void:
-	sprite.scale = INVGLOBAL.uiScale/(sprite.texture.get_size() / INVGLOBAL.invCellPixelSize) #calculate the ratio between this image and the inv slot tile size img
+	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	sprite.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	sprite.texture = attributes.texture
+	sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	sprite.scale = INVGLOBAL.uiScale/(attributes.texture.get_size() / INVGLOBAL.invCellPixelSize) #calculate the ratio between this image and the inv slot tile size img
 	#print(sprite.scale)
 	self.custom_minimum_size = sprite.size * sprite.scale
 	pass
@@ -30,6 +33,7 @@ func _updatePosition(_delta)->void:
 	#print(targetPosition, " -> ", position)
 	global_position = targetPosition
 	#makes no sense RAHH
+
 func setTarget(newPosition: Vector2)->void:
 	targetPosition = newPosition
 

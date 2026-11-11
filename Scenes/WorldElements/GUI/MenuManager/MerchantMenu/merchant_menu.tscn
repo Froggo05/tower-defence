@@ -3,6 +3,7 @@
 [ext_resource type="Theme" uid="uid://v1ubk6fnbab2" path="res://Assets/Theme/Theme.tres" id="1_w6pl3"]
 [ext_resource type="Script" uid="uid://ce368vp841nla" path="res://Scenes/WorldElements/GUI/MenuManager/MerchantMenu/merchant_menu.gd" id="2_g3a88"]
 [ext_resource type="Texture2D" uid="uid://b3krf5ie0vw44" path="res://Assets/Theme/Menu.png" id="3_7h3mx"]
+[ext_resource type="Script" uid="uid://cdvdpj2o1i5hl" path="res://Scenes/WorldElements/GUI/MenuManager/MerchantMenu/item_list.gd" id="7_y4bkt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3umtj"]
 content_margin_left = 4.0
@@ -28,7 +29,7 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
-[node name="MerchantMenu" type="Control" unique_id=1036665437 node_paths=PackedStringArray("itemList", "inventoryTarget")]
+[node name="MerchantMenu" type="Control" unique_id=1036665437 node_paths=PackedStringArray("merchantList")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,8 +38,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_w6pl3")
 script = ExtResource("2_g3a88")
-itemList = NodePath("Background/TextureRect/ItemList")
-inventoryTarget = NodePath("MarginContainer/InventoryTarget")
+merchantList = NodePath("Background/TextureRect/MarginContainer/MerchantList")
 
 [node name="Background" type="Panel" parent="." unique_id=102026836]
 layout_mode = 1
@@ -52,70 +52,91 @@ theme = ExtResource("1_w6pl3")
 [node name="TextureRect" type="TextureRect" parent="Background" unique_id=895104046]
 texture_filter = 1
 layout_mode = 1
-anchors_preset = 4
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -423.5
-offset_right = 845.0
-offset_bottom = 423.5
+offset_left = -831.0
+offset_top = -497.0
+offset_right = 831.0
+offset_bottom = 497.0
+grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_w6pl3")
 texture = ExtResource("3_7h3mx")
-expand_mode = 4
 stretch_mode = 5
 
-[node name="ItemList" type="ItemList" parent="Background/TextureRect" unique_id=1637669433]
-layout_mode = 0
-offset_left = 175.0
-offset_top = 279.5
-offset_right = 215.0
-offset_bottom = 319.5
+[node name="MarginContainer" type="MarginContainer" parent="Background/TextureRect" unique_id=523730879]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -261.0
+offset_top = -200.0
+offset_right = 262.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
 
-[node name="Buttons" type="HBoxContainer" parent="Background/TextureRect" unique_id=1705427562]
+[node name="MerchantList" type="ItemList" parent="Background/TextureRect/MarginContainer" unique_id=1637669433]
+layout_mode = 2
+max_columns = 3
+fixed_column_width = 128
+icon_mode = 0
+fixed_icon_size = Vector2i(64, 64)
+script = ExtResource("7_y4bkt")
+
+[node name="ButtonMargins" type="MarginContainer" parent="Background" unique_id=2084811107]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -303.25
+offset_left = -302.0
 offset_top = -75.0
-offset_right = 303.25
+offset_right = 302.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("1_w6pl3")
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
 
-[node name="BackButton" type="Button" parent="Background/TextureRect/Buttons" unique_id=192935136]
+[node name="Buttons" type="HBoxContainer" parent="Background/ButtonMargins" unique_id=1705427562]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="Background/ButtonMargins/Buttons" unique_id=2059345744]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="BackButton" type="Button" parent="Background/ButtonMargins/Buttons/MarginContainer2" unique_id=192935136]
 custom_minimum_size = Vector2(300, 75)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_3umtj")
 text = "Cancel
 "
 
-[node name="CompleteDeal" type="Button" parent="Background/TextureRect/Buttons" unique_id=1318688288]
+[node name="MarginContainer" type="MarginContainer" parent="Background/ButtonMargins/Buttons" unique_id=63111586]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="CompleteDeal" type="Button" parent="Background/ButtonMargins/Buttons/MarginContainer" unique_id=1318688288]
 custom_minimum_size = Vector2(300, 75)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_dgwuk")
 text = "Make The Deal"
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=61801138]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -668.0
-offset_top = -212.0
-offset_bottom = 212.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 200
-theme_override_constants/margin_bottom = 20
-
-[node name="InventoryTarget" type="Control" parent="MarginContainer" unique_id=261290008]
-custom_minimum_size = Vector2(448, 384)
-layout_mode = 2
-
-[connection signal="pressed" from="Background/TextureRect/Buttons/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Background/ButtonMargins/Buttons/MarginContainer2/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Background/ButtonMargins/Buttons/MarginContainer/CompleteDeal" to="Background/TextureRect/MarginContainer/MerchantList" method="_on_complete_deal_pressed"]

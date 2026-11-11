@@ -10,6 +10,7 @@ enum CardRarity {
 
 #loaders (places to look for enemys or units if i want to spawn stuff (maybe projectiles too))
 var entityList: Dictionary = {"rock" : "uid://dpa2vcpj3su4b", "sgoblin" : "uid://butihti083ds6"}
+var itemList: Dictionary = {"basicWizard" : "uid://pv4rxr5mgvrp", "basicFighter" : "uid://nlnbvl6s0w86", "basicArcher" : "uid://iximqptbajwr"}
 var projectileList: Dictionary = {}
 
 #important vars
@@ -23,11 +24,10 @@ var projectileCount: int = 0
 var enemiesKilled: int = 0
 var gameActive = false
 
-##references -in place for global use
-var currentHealthBar: healthBar
-var worldScene: Node2D
-var enemysInCurrentDay: Array = []
+var dayCount:int = 0
 
+##references -in place for global use
+var worldScene: WorldScene
 var core: CastleCore
 
 #units
@@ -35,9 +35,20 @@ var targetList: Array = []
 
 #global funcs
 
+func updateDay()->void:
+	dayCount += 1
+	print("updatingDay")
+	worldScene.updateDay()
+
+
 func gameOver()->void:
 	gameActive = false
-	MenuManager.requestActiveMenuChange("GameOver")
+	MenuManager.requestActiveMenuChange("GameOverMenu")
+
+func restart()->void:
+	gameActive = false
+	MenuManager.requestActiveMenuChange("StartMenu")
+	pass
 
 #G	-summon funcs
 
@@ -48,7 +59,7 @@ func summonEntity(spawnPosition: Vector2, enemyType: String)-> Entity:
 		var newEntity: Entity = Global.entityList[enemyType].instantiate()
 		newEntity.name = "Entity#" + str(Global.entityCount)
 		Global.targetList.append(newEntity)
-		worldScene.entityContainer.add_child(newEntity)
+		worldScene.entityManager.add_child(newEntity)
 		newEntity.global_position = spawnPosition
 		return newEntity
 	return null
@@ -57,9 +68,14 @@ func summonEntity(spawnPosition: Vector2, enemyType: String)-> Entity:
 func _ready() -> void:
 	_loadProjectiles()
 	_loadEntities()
+	_loadItems()
+
 func _loadProjectiles()->void:
 	for projectile in projectileList:
 		projectileList[projectile]  = load(projectileList[projectile])
 func _loadEntities()->void:
 	for entity in entityList:
 		entityList[entity]  = load(entityList[entity])
+func _loadItems()->void:
+	for item in itemList:
+		itemList[item]  = load(itemList[item])

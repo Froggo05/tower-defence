@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://pv4rxr5mgvrp"]
+
+[ext_resource type="Script" uid="uid://cul5s04o256v1" path="res://Scenes/WorldElements/GUI/MenuManager/Inventory/Items/Wizard/basic_wizard_item.gd" id="1_v2utd"]
+[ext_resource type="Script" uid="uid://bet3qcju1ttno" path="res://Scenes/WorldElements/GUI/MenuManager/Inventory/TestItem/AttributesResource.gd" id="2_n3l37"]
+[ext_resource type="Texture2D" uid="uid://dfasslv2qbdd1" path="res://Assets/Sprites/Wizard/WizardPreview.png" id="3_gmf6p"]
+
+[sub_resource type="Resource" id="Resource_n3l37"]
+script = ExtResource("2_n3l37")
+texture = ExtResource("3_gmf6p")
+metadata/_custom_type_script = "uid://bet3qcju1ttno"
+
+[node name="BasicWizardItem" type="Control" unique_id=254146418 node_paths=PackedStringArray("sprite")]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 64.0
+offset_bottom = 64.0
+mouse_filter = 2
+script = ExtResource("1_v2utd")
+attributes = SubResource("Resource_n3l37")
+sprite = NodePath("TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=40857170]
+texture_filter = 1
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+scale = Vector2(2, 2)
+texture = ExtResource("3_gmf6p")
