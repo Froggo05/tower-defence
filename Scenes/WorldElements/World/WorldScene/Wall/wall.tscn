@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dxpsaw7cq4mkh"]
 
 [ext_resource type="Script" uid="uid://cujk43ecaiyh1" path="res://Scenes/WorldElements/World/WorldScene/Wall/wall.gd" id="1_yr834"]
+[ext_resource type="PackedScene" uid="uid://ca58k3igxmtes" path="res://Scenes/WorldElements/World/WorldScene/Wall/UnitPosition.tscn" id="2_ud4ua"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_egvxt"]
 size = Vector2(20, 7)
@@ -14,16 +15,11 @@ size = Vector2(20, 58)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ld0b8"]
 size = Vector2(20, 84)
 
-[node name="Wall" type="Node2D" unique_id=1913152320 node_paths=PackedStringArray("unitSpace")]
-script = ExtResource("1_yr834")
-unitSpace = NodePath("StandableSpace")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_axljd"]
 
-[node name="StandableSpace" type="ColorRect" parent="." unique_id=1482317461]
-offset_left = -7.0
-offset_top = -7.0
-offset_right = 7.0
-offset_bottom = 7.0
-color = Color(0.5529412, 0, 1, 0.4745098)
+[node name="Wall" type="StaticBody2D" unique_id=599084488 node_paths=PackedStringArray("collisionShape")]
+script = ExtResource("1_yr834")
+collisionShape = NodePath("CollisionShape2D")
 
 [node name="Button" type="Button" parent="." unique_id=887072926]
 anchors_preset = 15
@@ -66,3 +62,8 @@ debug_color = Color(0.99736506, 0, 0.1773471, 0.41960785)
 position = Vector2(0, -52)
 shape = SubResource("RectangleShape2D_ld0b8")
 debug_color = Color(0.99736506, 0, 0.1773471, 0.41960785)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1281914807]
+shape = SubResource("RectangleShape2D_axljd")
+
+[node name="ColorRect" parent="." unique_id=455320912 instance=ExtResource("2_ud4ua")]

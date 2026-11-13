@@ -88,3 +88,12 @@ autoplay = &"CampFlicker"
 
 [node name="GUI" parent="." unique_id=1095052953 instance=ExtResource("4_bvkne")]
 layout_mode = 1
+
+[node name="PauseTime" type="CheckButton" parent="." unique_id=2088373196]
+layout_mode = 0
+offset_left = 1718.0
+offset_right = 1919.0
+offset_bottom = 37.0
+text = "Time Paused"
+
+[connection signal="toggled" from="PauseTime" to="DayNightCycle" method="_on_check_button_toggled"]

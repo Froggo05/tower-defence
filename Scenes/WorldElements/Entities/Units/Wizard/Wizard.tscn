@@ -1,3 +1,57 @@
 [gd_scene format=3 uid="uid://cpnxxpnfuihfw"]
 
-[node name="Wizard" type="Node2D" unique_id=1941895292]
+[ext_resource type="Script" uid="uid://bpioadljcjrec" path="res://Scenes/WorldElements/Entities/Units/Wizard/wizard.gd" id="1_8v6ys"]
+[ext_resource type="Texture2D" uid="uid://dfasslv2qbdd1" path="res://Assets/Sprites/Wizard/WizardPreview.png" id="1_bbbga"]
+[ext_resource type="Shader" uid="uid://bktff25qsvypq" path="res://Modules/EffectsComponent/Shaders/flash.gdshader" id="2_qy0jr"]
+[ext_resource type="PackedScene" uid="uid://bvlag0gejjx7j" path="res://Modules/MotionComponent/motionCompontent.tscn" id="4_7smuf"]
+[ext_resource type="PackedScene" uid="uid://copg8g5t543od" path="res://Modules/HealthComponent/healthComponent.tscn" id="5_omdly"]
+[ext_resource type="PackedScene" uid="uid://8s768tmsdhc8" path="res://Modules/CollisionComponent/collisionComponent.tscn" id="6_qwye3"]
+[ext_resource type="PackedScene" uid="uid://cxybhb7f6kpnx" path="res://Modules/EffectsComponent/universalEffectsComponent.tscn" id="7_o5o2u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tbqvm"]
+shader = ExtResource("2_qy0jr")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_colour = Color(1, 0, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_axljd"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m8s3d"]
+radius = 8.0
+
+[node name="Wizard" type="Node2D" unique_id=1941895292 node_paths=PackedStringArray("motionComponent", "healthComponent", "collisionComponent", "universalEffectsComponent")]
+script = ExtResource("1_8v6ys")
+motionComponent = NodePath("MotionComponent")
+healthComponent = NodePath("HealthComponent")
+collisionComponent = NodePath("CollisionComponent")
+universalEffectsComponent = NodePath("UniversalEffectsComponent")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1080898584]
+texture_filter = 1
+material = SubResource("ShaderMaterial_tbqvm")
+texture = ExtResource("1_bbbga")
+
+[node name="MotionComponent" parent="." unique_id=1100529476 node_paths=PackedStringArray("parent") instance=ExtResource("4_7smuf")]
+parent = NodePath("..")
+
+[node name="HealthComponent" parent="." unique_id=1858486418 node_paths=PackedStringArray("Hitbox", "progressBar") instance=ExtResource("5_omdly")]
+Hitbox = NodePath("CollisionShape2D")
+progressBar = NodePath("../ProgressBar")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HealthComponent" unique_id=1204915492]
+shape = SubResource("CircleShape2D_axljd")
+
+[node name="CollisionComponent" parent="." unique_id=1774352897 node_paths=PackedStringArray("parent") instance=ExtResource("6_qwye3")]
+parent = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionComponent" unique_id=1422927034]
+shape = SubResource("CircleShape2D_m8s3d")
+
+[node name="UniversalEffectsComponent" parent="." unique_id=2044374402 instance=ExtResource("7_o5o2u")]
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=501155032]
+offset_left = -2.0
+offset_top = -28.0
+offset_right = 2.0
+offset_bottom = -1.0
+show_percentage = false

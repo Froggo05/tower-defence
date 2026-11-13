@@ -1,3 +1,24 @@
 [gd_scene format=3 uid="uid://dvnq8aqb5de7g"]
 
-[node name="Archer" type="Node2D" unique_id=1451644595]
+[ext_resource type="Script" uid="uid://crtow3aasct8h" path="res://Scenes/WorldElements/Entities/Units/Archer/archer.gd" id="1_bxvrx"]
+[ext_resource type="Texture2D" uid="uid://dshqsgq46sdvl" path="res://Assets/Sprites/Archer/ArcherPreview.png" id="1_saeo5"]
+[ext_resource type="PackedScene" uid="uid://copg8g5t543od" path="res://Modules/HealthComponent/healthComponent.tscn" id="3_f1r4k"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_axljd"]
+radius = 7.0
+
+[node name="Archer" type="Node2D" unique_id=1451644595 node_paths=PackedStringArray("healthComponent")]
+script = ExtResource("1_bxvrx")
+healthComponent = NodePath("HealthComponent")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=252532923]
+texture_filter = 1
+texture = ExtResource("1_saeo5")
+
+[node name="HealthComponent" parent="." unique_id=1858486418 node_paths=PackedStringArray("Hitbox") instance=ExtResource("3_f1r4k")]
+collision_layer = 0
+collision_mask = 0
+Hitbox = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HealthComponent" unique_id=1677402711]
+shape = SubResource("CircleShape2D_axljd")

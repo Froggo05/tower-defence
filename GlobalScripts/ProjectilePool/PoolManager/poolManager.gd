@@ -1,14 +1,11 @@
 extends Node
 
-var pool: Dictionary = {"basicProjectile" : [], "lightningProjectile" : []}
-#@onready var basicProjectileScene = preload("uid://0ax2j8etcyia")
-var projectileScenes: Dictionary = {"basicProjectile" : "uid://0ax2j8etcyia", "lightningProjectile" : "uid://csbu8ufgkguet" }
-#
-#func _ready() -> void:
-	#loadProjectileScenes()
-	#
-	#initialisePool(2000, "basicProjectile")
-	#initialisePool(2000, "lightningProjectile")
+var pool: Dictionary = {"basicProjectile" : []}
+var projectileScenes: Dictionary = {"basicProjectile" : "uid://bc0dee1tvmioh"}
+
+func _ready() -> void:
+	loadProjectileScenes()
+	initialisePool(2000, "basicProjectile")
 
 
 func loadProjectileScenes()->void:
@@ -16,44 +13,44 @@ func loadProjectileScenes()->void:
 		projectileScenes[child] = load(projectileScenes[child])
 		pool[child] = []
 
-#func initialisePool(amount: int, objectType: String)->void:
-	#for i in range(amount):
-		#var newProjectile: Projectile = projectileScenes[objectType].instantiate()
+func initialisePool(amount: int, projectileType: String)->void:
+	for i in range(amount):
+		var newProjectile: Projectile = projectileScenes[projectileType].instantiate()
 		
-		#newProjectile.name = str(Global.projectileCount) + "#basicProjectile"
-		#
-		#Global.projectileCount +=1
-		#
-		#newProjectile._reset()
-		#pool[objectType].append(newProjectile)
+		newProjectile.name = str(Global.projectileCount) + "#basicProjectile"
+		
+		Global.projectileCount += 1
+		
+		newProjectile.reset()
+		pool[projectileType].append(newProjectile)
 
 
-#func _getObject(objectType: String, damage: float, _direction: Vector2, spawnPosition: Vector2, target: Enemy) -> void:
-	#if pool[objectType] == []:
-		#printerr("Pool '%s' is empty. Creating a new one (the size may be too small)" % objectType)
-		#return
-	#var newProjectile:Projectile = pool[objectType].pop_back()
-	#newProjectile.hide()
-	#_activateObject.call_deferred(newProjectile, damage, _direction, spawnPosition, target)
+func _getObject(projectileType: String, direction: Vector2, spawnPosition: Vector2, target: Entity) -> void:
+	if pool[projectileType] == []:
+		printerr("Pool '%s' is empty. Creating a new one (the size may be too small)" % projectileType)
+		return
+	var newProjectile: Projectile = pool[projectileType].pop_back()
+	_activateObject.call_deferred(newProjectile, direction, spawnPosition, target)
 	
 
-#func _activateObject(object: Projectile,damage: float, _direction: Vector2, spawnPosition: Vector2, target: Enemy):
-	#add_child(object)
-	#_set_collisions(object, true)
-	#object._start(damage, target, spawnPosition)
-	#
-#func _returnObject(object: Projectile)->void:
-	#object._reset()
-	#_set_collisions(object, false)
-	#_disableObject.call_deferred(object)
+func _activateObject(projectile: Projectile, direction: Vector2, spawnPosition: Vector2, target: Entity):
+	Global.worldScene.add_child(projectile)
+	
+	_set_collisions(projectile, true)
+	projectile.start(direction, spawnPosition, target)
+	
+func _returnObject(projectile: Projectile)->void:
+	projectile.reset()
+	_set_collisions(projectile, false)
+	_disableObject.call_deferred(projectile)
 
-
-func _disableObject(object)->void:
-	remove_child.call_deferred(object)
-	pool[object.type].append(object)
+func _disableObject(projectile: Projectile)->void:
+	Global.worldScene.remove_child.call_deferred(projectile)
+	
+	pool[projectile.type].append(projectile)
 
 func _set_collisions(node: Node, disabled: bool) -> void:
 	for child in node.get_children():
-		if child is CollisionShape2D or child is CollisionShape3D:
+		if child is CollisionShape2D:
 			child.set_deferred("disabled", disabled)   # Deferred for safety during physics
 		_set_collisions(child, disabled) #recursive goes through children of childs to clear the whole tree

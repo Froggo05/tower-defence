@@ -28,9 +28,17 @@ func _physics_process(_delta: float) -> void:
 	if LeftclickPressed:
 		LeftclickPressed = false
 		for a in range(1):
-			Global.summonEntity(get_global_mouse_position(), "sgoblin")
+			var globMouse = get_global_mouse_position()
+			var goblin = Global.summonEntity(globMouse + Vector2(0,-300), "sgoblin")
+			PoolManager._getObject("basicProjectile",globMouse.direction_to(goblin.global_position), globMouse, goblin)
+			print("GlobMouse ",globMouse)
 	if RightclickPressed:
 		RightclickPressed = false
+		for a in range(1):
+			var globMouse = get_global_mouse_position()
+			var goblin = Global.summonEntity(globMouse + Vector2(0,300), "sgoblin")
+			PoolManager._getObject("basicProjectile",globMouse.direction_to(goblin.global_position), globMouse, goblin)
+			print("GlobMouse ",globMouse)
 		#Global.summonEnemy(get_global_mouse_position(), "smallOrc")
 
 func _unhandled_input(event: InputEvent) -> void:

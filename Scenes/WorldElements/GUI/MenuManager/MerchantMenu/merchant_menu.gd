@@ -3,8 +3,8 @@ class_name MerchantMenu extends Menu
 @export var merchantList: MerchantList
 
 var inventoryZIndex: int
-
-var itemDetailsList: Dictionary[String, Array] = {"basicArcher" : [0, 1]}
+#[0,1] Day =unlock, cost
+var itemDetailsList: Dictionary[String, Array] = {"basicArcher" : [0, 1], "basicFighter" : [1, 2], "basicWizard" : [2,3]}
 var itemsAvaliable: Array = []
 
 func updateDay()->void:

@@ -1,3 +1,11 @@
 [gd_scene format=3 uid="uid://ciotidqps4e60"]
 
+[ext_resource type="Script" uid="uid://b5vfsobj3r62q" path="res://Scenes/WorldElements/Entities/Units/Fighter/fighter.gd" id="1_1yf6y"]
+[ext_resource type="Texture2D" uid="uid://b7r52qq7241r4" path="res://Assets/Sprites/Fighter/FighterPreview.png" id="1_vsowt"]
+
 [node name="Fighter" type="Node2D" unique_id=1906691573]
+script = ExtResource("1_1yf6y")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=167193562]
+texture_filter = 1
+texture = ExtResource("1_vsowt")

@@ -9,7 +9,7 @@ enum CardRarity {
 }
 
 #loaders (places to look for enemys or units if i want to spawn stuff (maybe projectiles too))
-var entityList: Dictionary = {"rock" : "uid://dpa2vcpj3su4b", "sgoblin" : "uid://butihti083ds6"}
+var entityList: Dictionary = {"rock" : "uid://dpa2vcpj3su4b", "sgoblin" : "uid://butihti083ds6", "basicArcher" : "uid://dvnq8aqb5de7g"}
 var itemList: Dictionary = {"basicWizard" : "uid://pv4rxr5mgvrp", "basicFighter" : "uid://nlnbvl6s0w86", "basicArcher" : "uid://iximqptbajwr"}
 var projectileList: Dictionary = {}
 
@@ -18,7 +18,7 @@ var metaHealth: = 400 #kingdom health? you observe the core of each wall. zoom i
 var gold: = 0
 var food: = 500
 var entityCount: int = 0
-var entityCap: int = 500
+var entityCap: int = 300
 var projectileCount: int = 0
 
 var enemiesKilled: int = 0

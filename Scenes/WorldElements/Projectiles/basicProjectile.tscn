@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bc0dee1tvmioh"]
+
+[ext_resource type="Script" uid="uid://cy14c1bq7stoy" path="res://Scenes/WorldElements/Projectiles/firstProjectile.gd" id="1_ptvci"]
+[ext_resource type="Texture2D" uid="uid://j4ia1x7knvhy" path="res://icon.svg" id="2_ptvci"]
+
+[sub_resource type="Curve" id="Curve_f1r4k"]
+_data = [Vector2(0, 0), 0.0, 3.747779, 0, 0, Vector2(0.5046297, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -5.3093624, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m8s3d"]
+size = Vector2(128, 128)
+
+[node name="BasicProjectile" type="Area2D" unique_id=1121012050]
+collision_layer = 0
+script = ExtResource("1_ptvci")
+path = SubResource("Curve_f1r4k")
+metadata/_custom_type_script = "uid://doefq162ukqth"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=445807800]
+texture = ExtResource("2_ptvci")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2097076522]
+shape = SubResource("RectangleShape2D_m8s3d")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

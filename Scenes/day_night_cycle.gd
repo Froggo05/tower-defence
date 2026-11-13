@@ -81,3 +81,7 @@ func _resetTween()->void:
 		tween.kill()
 	tween = create_tween().bind_node(self)
 	tween.set_ease(Tween.EASE_IN_OUT)
+
+
+func _on_check_button_toggled(toggled_on: bool) -> void:
+	timePause = toggled_on
