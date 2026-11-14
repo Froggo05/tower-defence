@@ -8,3 +8,7 @@ func _ready() -> void:
 	#if area is HealthComponent:
 		#area.damage(damage)
 		#PoolManager._returnObject(self)
+
+
+func _on_area_entered(area: Area2D) -> void:
+	print(area)

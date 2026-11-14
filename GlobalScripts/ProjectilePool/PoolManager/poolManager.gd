@@ -36,12 +36,12 @@ func _getObject(projectileType: String, direction: Vector2, spawnPosition: Vecto
 func _activateObject(projectile: Projectile, direction: Vector2, spawnPosition: Vector2, target: Entity):
 	Global.worldScene.add_child(projectile)
 	
-	_set_collisions(projectile, true)
+	_set_collisions(projectile, false)
 	projectile.start(direction, spawnPosition, target)
 	
 func _returnObject(projectile: Projectile)->void:
 	projectile.reset()
-	_set_collisions(projectile, false)
+	_set_collisions(projectile, true)
 	_disableObject.call_deferred(projectile)
 
 func _disableObject(projectile: Projectile)->void:
@@ -49,7 +49,7 @@ func _disableObject(projectile: Projectile)->void:
 	
 	pool[projectile.type].append(projectile)
 
-func _set_collisions(node: Node, disabled: bool) -> void:
+func _set_collisions(node: Node, disabled: bool) -> void: #FUCK THIS METHOD GOD DAMN IT
 	for child in node.get_children():
 		if child is CollisionShape2D:
 			child.set_deferred("disabled", disabled)   # Deferred for safety during physics
