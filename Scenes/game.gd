@@ -29,16 +29,18 @@ func _physics_process(_delta: float) -> void:
 		LeftclickPressed = false
 		for a in range(1):
 			var globMouse = get_global_mouse_position()
-			var goblin = Global.summonEntity(globMouse + Vector2(0,-300), "sgoblin")
-			PoolManager._getObject("basicProjectile",globMouse.direction_to(goblin.global_position), globMouse, goblin)
+			var goblin = Global.summonEntity(globMouse + Vector2(300,-50), "sgoblin")
+			var archer = Global.summonEntity(globMouse, "basicArcher")
+			print("Archer: ", archer)
+			archer.setTarget(goblin)
+			#PoolManager._getObject("basicProjectile",globMouse.direction_to(goblin.global_position), globMouse, goblin)
 			print("GlobMouse ",globMouse)
 	if RightclickPressed:
 		RightclickPressed = false
-		for a in range(1):
-			var globMouse = get_global_mouse_position()
-			var goblin = Global.summonEntity(globMouse + Vector2(0,300), "sgoblin")
-			PoolManager._getObject("basicProjectile",globMouse.direction_to(goblin.global_position), globMouse, goblin)
-			print("GlobMouse ",globMouse)
+		#for a in range(1):
+			#var globMouse = get_global_mouse_position()
+			#var goblin = Global.summonEntity(globMouse + Vector2(0,300), "sgoblin")
+			#PoolManager._getObject("basicProjectile",globMouse.direction_to(goblin.global_position), globMouse, goblin)
 		#Global.summonEnemy(get_global_mouse_position(), "smallOrc")
 
 func _unhandled_input(event: InputEvent) -> void:

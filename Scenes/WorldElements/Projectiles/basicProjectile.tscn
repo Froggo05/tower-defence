@@ -1,25 +1,31 @@
 [gd_scene format=3 uid="uid://bc0dee1tvmioh"]
 
 [ext_resource type="Script" uid="uid://cy14c1bq7stoy" path="res://Scenes/WorldElements/Projectiles/firstProjectile.gd" id="1_ptvci"]
-[ext_resource type="Texture2D" uid="uid://j4ia1x7knvhy" path="res://icon.svg" id="2_ptvci"]
 
 [sub_resource type="Curve" id="Curve_f1r4k"]
 _data = [Vector2(0, 0), 0.0, 3.747779, 0, 0, Vector2(0.5046297, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -5.3093624, 0.0, 0, 0]
 point_count = 3
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pkfpr"]
+load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m8s3d"]
 size = Vector2(128, 128)
 
-[node name="BasicProjectile" type="Area2D" unique_id=1121012050]
+[node name="basicProjectile" type="Area2D" unique_id=1121012050 node_paths=PackedStringArray("sprite")]
 collision_layer = 0
 script = ExtResource("1_ptvci")
+sprite = NodePath("Sprite2D")
+damage = 10.0
+speed = 1.3
 path = SubResource("Curve_f1r4k")
+fadeSpeed = 5.0
 metadata/_custom_type_script = "uid://doefq162ukqth"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=445807800]
-texture = ExtResource("2_ptvci")
+scale = Vector2(0.25, 0.25)
+texture = SubResource("CompressedTexture2D_pkfpr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2097076522]
 shape = SubResource("RectangleShape2D_m8s3d")
-
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+debug_color = Color(0.9440774, 7.412136e-06, 0.6009741, 0.41960785)

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dnk8in1oxdoat"]
+
+[ext_resource type="Script" uid="uid://cavprs2oqle1e" path="res://Modules/MeleeAttackCompoennt/meleeAttackComponent.gd" id="1_ppua1"]
+
+[node name="MeleeAttackComponent" type="Area2D" unique_id=671198284]
+script = ExtResource("1_ppua1")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

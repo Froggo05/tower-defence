@@ -5,7 +5,36 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3tda2"]
 bg_color = Color(0, 0, 0, 0.18039216)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_og6cx"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4wsqb"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(1, 0, 0, 0.4)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 1
+
 [resource]
 default_font = ExtResource("1_2ufmn")
 default_font_size = 24
 Panel/styles/panel = SubResource("StyleBoxFlat_3tda2")
+ProgressBar/colors/font_color = Color(0.95, 0.95, 0.95, 1)
+ProgressBar/colors/font_outline_color = Color(0, 0, 0, 1)
+ProgressBar/constants/outline_size = 0
+ProgressBar/styles/background = SubResource("StyleBoxFlat_og6cx")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_4wsqb")

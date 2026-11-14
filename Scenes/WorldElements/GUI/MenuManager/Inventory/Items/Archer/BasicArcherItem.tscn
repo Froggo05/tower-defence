@@ -13,9 +13,6 @@ texture = SubResource("CompressedTexture2D_7vqir")
 unitSummon = ExtResource("3_7vqir")
 metadata/_custom_type_script = "uid://bet3qcju1ttno"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oc85a"]
-load_path = "res://.godot/imported/ArcherPreview.png-1aa5794b1025fd609453a6274109a42f.ctex"
-
 [node name="BasicArcherItem" type="Control" unique_id=1205104478 node_paths=PackedStringArray("sprite")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 3
@@ -35,4 +32,4 @@ offset_right = 32.0
 offset_bottom = 32.0
 scale = Vector2(2, 2)
 mouse_filter = 2
-texture = SubResource("CompressedTexture2D_oc85a")
+texture = SubResource("CompressedTexture2D_7vqir")

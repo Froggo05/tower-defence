@@ -2,54 +2,52 @@
 
 [ext_resource type="Script" uid="uid://cujk43ecaiyh1" path="res://Scenes/WorldElements/World/WorldScene/Wall/wall.gd" id="1_yr834"]
 [ext_resource type="PackedScene" uid="uid://ca58k3igxmtes" path="res://Scenes/WorldElements/World/WorldScene/Wall/UnitPosition.tscn" id="2_ud4ua"]
+[ext_resource type="Texture2D" uid="uid://j4ia1x7knvhy" path="res://icon.svg" id="3_bbdl4"]
+[ext_resource type="PackedScene" uid="uid://cy5m60gejc0t5" path="res://Scenes/WorldElements/World/WorldScene/Gate/Gate.tscn" id="3_hobgq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_egvxt"]
-size = Vector2(20, 7)
+size = Vector2(504, 310)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_plxga"]
-size = Vector2(20, 21)
+size = Vector2(503, 21)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sxg2m"]
-size = Vector2(20, 58)
+size = Vector2(504, 58)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ld0b8"]
-size = Vector2(20, 84)
+size = Vector2(504, 84)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_axljd"]
+size = Vector2(220, 59)
 
-[node name="Wall" type="StaticBody2D" unique_id=599084488 node_paths=PackedStringArray("collisionShape")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bbdl4"]
+size = Vector2(220, 58)
+
+[node name="Wall" type="Node2D" unique_id=1089236373 node_paths=PackedStringArray("rect")]
 script = ExtResource("1_yr834")
-collisionShape = NodePath("CollisionShape2D")
-
-[node name="Button" type="Button" parent="." unique_id=887072926]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -10.0
-offset_top = -10.0
-offset_right = 10.0
-offset_bottom = 10.0
-grow_horizontal = 2
-grow_vertical = 2
-button_mask = 2
+rect = NodePath("Texture")
 
 [node name="DetectionShells" type="Node2D" parent="." unique_id=1322554586]
+visible = false
 
 [node name="Shell0" type="Area2D" parent="DetectionShells" unique_id=1120912150]
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionShells/Shell0" unique_id=1695576610]
-position = Vector2(0, -13.5)
+position = Vector2(0, 138)
 shape = SubResource("RectangleShape2D_egvxt")
 debug_color = Color(0.99736506, 0, 0.1773471, 0.41960785)
 
 [node name="Shell1" type="Area2D" parent="DetectionShells" unique_id=987479605]
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionShells/Shell1" unique_id=645864683]
-position = Vector2(0, -20.5)
+position = Vector2(-0.5, -20.5)
 shape = SubResource("RectangleShape2D_plxga")
 debug_color = Color(0.99736506, 0, 0.1773471, 0.41960785)
 
 [node name="Shell2" type="Area2D" parent="DetectionShells" unique_id=933270906]
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionShells/Shell2" unique_id=1234397079]
 position = Vector2(0, -39)
@@ -57,13 +55,55 @@ shape = SubResource("RectangleShape2D_sxg2m")
 debug_color = Color(0.99736506, 0, 0.1773471, 0.41960785)
 
 [node name="Shell3" type="Area2D" parent="DetectionShells" unique_id=1251680441]
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionShells/Shell3" unique_id=929103582]
 position = Vector2(0, -52)
 shape = SubResource("RectangleShape2D_ld0b8")
 debug_color = Color(0.99736506, 0, 0.1773471, 0.41960785)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1281914807]
+[node name="ColorRect" parent="." unique_id=455320912 instance=ExtResource("2_ud4ua")]
+
+[node name="WallCollider" type="StaticBody2D" parent="." unique_id=1922730217]
+collision_layer = 32768
+collision_mask = 32768
+input_pickable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallCollider" unique_id=1281914807]
+position = Vector2(-142, -0.5)
 shape = SubResource("RectangleShape2D_axljd")
 
-[node name="ColorRect" parent="." unique_id=455320912 instance=ExtResource("2_ud4ua")]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WallCollider" unique_id=899934549]
+position = Vector2(142, 0)
+shape = SubResource("RectangleShape2D_bbdl4")
+
+[node name="Gate" parent="." unique_id=1189613304 instance=ExtResource("3_hobgq")]
+position = Vector2(0, 19)
+
+[node name="Texture" type="TextureRect" parent="." unique_id=166152422]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -252.0
+offset_top = -29.5
+offset_right = 252.0
+offset_bottom = 29.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_bbdl4")
+expand_mode = 1
+
+[node name="UnitManager" type="Node" parent="." unique_id=1801827613]
+
+[connection signal="area_entered" from="DetectionShells/Shell0" to="." method="_on_shell_0_area_entered"]
+[connection signal="area_exited" from="DetectionShells/Shell0" to="." method="_on_shell_0_area_exited"]
+[connection signal="area_entered" from="DetectionShells/Shell1" to="." method="_on_shell_1_area_entered"]
+[connection signal="area_exited" from="DetectionShells/Shell1" to="." method="_on_shell_1_area_exited"]
+[connection signal="area_entered" from="DetectionShells/Shell2" to="." method="_on_shell_2_area_entered"]
+[connection signal="area_exited" from="DetectionShells/Shell2" to="." method="_on_shell_2_area_exited"]
+[connection signal="area_entered" from="DetectionShells/Shell3" to="." method="_on_shell_3_area_entered"]
+[connection signal="area_exited" from="DetectionShells/Shell3" to="." method="_on_shell_3_area_exited"]
+[connection signal="mouse_entered" from="WallCollider" to="." method="_on_wall_collider_mouse_entered"]
+[connection signal="mouse_exited" from="WallCollider" to="." method="_on_wall_collider_mouse_exited"]

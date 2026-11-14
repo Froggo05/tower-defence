@@ -7,9 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://61pdejn67wdo" path="res://Assets/Sprites/SmallGoblin/SmallGoblinIdle.png" id="3_n7rjp"]
 [ext_resource type="PackedScene" uid="uid://bvlag0gejjx7j" path="res://Modules/MotionComponent/motionCompontent.tscn" id="3_vk6mk"]
 [ext_resource type="Texture2D" uid="uid://f5w4rl0arx6m" path="res://Assets/HealthBarGreyScale.png" id="3_ywwg3"]
+[ext_resource type="Theme" uid="uid://v1ubk6fnbab2" path="res://Assets/Theme/Theme.tres" id="5_5xwrd"]
 [ext_resource type="PackedScene" uid="uid://8s768tmsdhc8" path="res://Modules/CollisionComponent/collisionComponent.tscn" id="7_1pbg5"]
 [ext_resource type="PackedScene" uid="uid://cxybhb7f6kpnx" path="res://Modules/EffectsComponent/universalEffectsComponent.tscn" id="7_rv58r"]
-[ext_resource type="PackedScene" uid="uid://dnk8in1oxdoat" path="res://Modules/AttackCompoennt/AttackComponent.tscn" id="8_1pbg5"]
+[ext_resource type="PackedScene" uid="uid://dnk8in1oxdoat" path="res://Modules/MeleeAttackCompoennt/meleeAttackComponent.tscn" id="8_1pbg5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xs0s8"]
 atlas = ExtResource("2_mu4l2")
@@ -208,6 +209,8 @@ radius = 22.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ropfv"]
 
 [node name="SmallGoblin" type="RigidBody2D" unique_id=664506044 node_paths=PackedStringArray("attackComponent", "sprite", "motionComponent", "healthComponent", "collisionComponent", "universalEffectsComponent")]
+collision_layer = 32769
+collision_mask = 32769
 gravity_scale = 0.0
 script = ExtResource("1_anstl")
 attackComponent = NodePath("AttackComponent")
@@ -227,15 +230,18 @@ frame = 7
 frame_progress = 1.0
 
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=572477028]
-visible = false
 offset_right = 4.0
-offset_bottom = 27.0
+offset_bottom = 12.0
+theme = ExtResource("5_5xwrd")
+max_value = 25.0
 show_percentage = false
 
 [node name="HealthComponent" parent="." unique_id=1858486418 node_paths=PackedStringArray("Hitbox", "progressBar") instance=ExtResource("2_456sv")]
+collision_mask = 0
 Hitbox = NodePath("CollisionShape2D")
 progressBar = NodePath("../HealthBar")
 barTexture = ExtResource("3_ywwg3")
+MaxHealth = 25.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HealthComponent" unique_id=1672993111]
 shape = SubResource("CircleShape2D_axljd")

@@ -44,6 +44,8 @@ stretch_mode = 4
 
 [node name="Moat" type="StaticBody2D" parent="." unique_id=470079231]
 scale = Vector2(1.32, 1.32)
+collision_layer = 32768
+collision_mask = 0
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Moat" unique_id=1412460096]
 position = Vector2(-321.2121, -149.99998)
@@ -60,14 +62,14 @@ rotation = -1.5627044
 polygon = PackedVector2Array(77.239685, 320.6015, 48.928955, 345.99188, 42.55902, 387.97906, 65.47418, 421.3421, 99.1358, 435.32782, 137.59186, 419.91986, 159.17297, 392.0677, 285.83728, 394.39764, 288.12128, 496.92722, 255.68405, 607.7993, 147.30782, 696.55804, -3.414093, 701.5656, -126.51126, 656.3481, -169.63556, 476.38818, -120.59256, 170.67833, -124.127075, -172.48605, -80.163666, -356.93872, 148.32861, -394.3949, 261.1695, -305.9112, 278.47583, -204.38297, 277.13776, -162.43652, 279.22913, -111.29205, 153.55493, -112.376724, 140.13599, -131.66647, 103.23389, -147.60147, 52.91284, -131.66647, 38.65512, -68.76517, 73.04123, -33.540436)
 
 [node name="WallN" parent="." unique_id=1913152320 instance=ExtResource("3_ahliy")]
-position = Vector2(-20, -299)
+position = Vector2(-21, -304)
 
 [node name="WallE" parent="." unique_id=1839063467 instance=ExtResource("3_ahliy")]
-position = Vector2(304, 4)
+position = Vector2(305, 5)
 rotation = 1.5707964
 
 [node name="WallW" parent="." unique_id=966260945 instance=ExtResource("3_ahliy")]
-position = Vector2(-300, 9)
+position = Vector2(-308, 6)
 rotation = -1.5707964
 
 [node name="Core" parent="." unique_id=1175429500 instance=ExtResource("4_u175n")]

@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cy5m60gejc0t5"]
+
+[ext_resource type="Script" uid="uid://c5unc0mx3qwpo" path="res://Scenes/WorldElements/World/WorldScene/Gate/gate.gd" id="1_l25nx"]
+[ext_resource type="Script" uid="uid://dlubjeq05atp" path="res://Modules/HealthComponent/healthComponent.gd" id="2_35fdb"]
+[ext_resource type="Texture2D" uid="uid://c6wa016j0tv2i" path="res://Assets/Theme/GoldButtonPressed.png" id="2_47vy0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_axljd"]
+size = Vector2(62, 59)
+
+[node name="Gate" type="StaticBody2D" unique_id=1189613304 node_paths=PackedStringArray("healthComponent")]
+script = ExtResource("1_l25nx")
+healthComponent = NodePath("HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=753795573]
+shape = SubResource("RectangleShape2D_axljd")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1453902025]
+texture = ExtResource("2_47vy0")
+
+[node name="HealthComponent" type="Area2D" parent="." unique_id=2007673047 node_paths=PackedStringArray("Hitbox", "progressBar")]
+collision_layer = 2
+script = ExtResource("2_35fdb")
+Hitbox = NodePath("CollisionShape2D")
+progressBar = NodePath("ProgressBar")
+metadata/_custom_type_script = "uid://dlubjeq05atp"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HealthComponent" unique_id=992592540]
+shape = SubResource("RectangleShape2D_axljd")
+
+[node name="ProgressBar" type="ProgressBar" parent="HealthComponent" unique_id=1717640750]
+offset_right = 4.0
+offset_bottom = 27.0
+show_percentage = false

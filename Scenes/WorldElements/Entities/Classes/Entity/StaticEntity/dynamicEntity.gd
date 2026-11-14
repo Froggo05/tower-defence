@@ -11,9 +11,14 @@ enum STATE{
 	ATTACK,
 }
 
+func _ready() -> void:
+	healthComponent.damaged.connect(_on_damaged)
+	healthComponent.healed.connect(_on_healed)
+	healthComponent.died.connect(_on_died)
 
 func _on_died() -> void:
 	Global.entityCount -= 1
+	print("Died: ", name)
 	queue_free()
 
 @warning_ignore("unused_parameter")

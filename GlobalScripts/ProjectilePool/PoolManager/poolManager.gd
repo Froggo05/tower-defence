@@ -5,7 +5,7 @@ var projectileScenes: Dictionary = {"basicProjectile" : "uid://bc0dee1tvmioh"}
 
 func _ready() -> void:
 	loadProjectileScenes()
-	initialisePool(2000, "basicProjectile")
+	initialisePool(200, "basicProjectile")
 
 
 func loadProjectileScenes()->void:

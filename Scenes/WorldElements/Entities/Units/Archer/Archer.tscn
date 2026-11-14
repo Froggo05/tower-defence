@@ -13,6 +13,7 @@ healthComponent = NodePath("HealthComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=252532923]
 texture_filter = 1
+rotation = 1.5707964
 texture = ExtResource("1_saeo5")
 
 [node name="HealthComponent" parent="." unique_id=1858486418 node_paths=PackedStringArray("Hitbox") instance=ExtResource("3_f1r4k")]
