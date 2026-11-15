@@ -56,3 +56,10 @@ func _healthbarInterp(delta)->void:
 
 func queryHealth()->float:
 	return health
+
+func reset()->void:
+	health = MaxHealth
+	if progressBar != null:
+		print(progressBar)
+		progressBar.value = health
+	isDead = false

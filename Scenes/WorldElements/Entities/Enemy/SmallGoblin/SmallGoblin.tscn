@@ -253,6 +253,8 @@ parent = NodePath("..")
 
 [node name="CollisionComponent" parent="." unique_id=1774352897 node_paths=PackedStringArray("parent") instance=ExtResource("7_1pbg5")]
 parent = NodePath("..")
+pushable = false
+canPush = false
 pushFactor = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionComponent" unique_id=1932786408]

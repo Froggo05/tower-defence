@@ -119,6 +119,16 @@ func enable()->void:
 	show()
 	self.process_mode = Node.PROCESS_MODE_INHERIT
 
+func reset()->void:
+	enable()
+	for y in range(inventorySize.y):
+		for x in range(inventorySize.x):
+			inventoryGrid[x][y].reset()
+	
+	for child in get_children():
+		if child is Item:
+			child.queue_free()
+	
 #-----signal responses-----
 func _on_mouse_entered() -> void:
 	INVGLOBAL.mouseIsHovering = true

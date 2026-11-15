@@ -31,6 +31,7 @@ var worldScene: WorldScene
 var core: CastleCore
 var game: Game
 var enemyManager: EnemyManager
+var dayNightCycle: DayNightManager
 #units
 var targetList: Array = []
 
@@ -48,9 +49,11 @@ func gameOver()->void:
 
 func restart()->void:
 	gameActive = false
-	enemyManager.reset()
 	MenuManager.requestActiveMenuChange("StartMenu")
-	pass
+	worldScene.reset()
+	dayNightCycle.reset()
+	core.reset()
+	MenuManager.getPlayerInventory().reset()
 
 #G	-summon funcs
 

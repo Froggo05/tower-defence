@@ -34,7 +34,7 @@ func _getObject(projectileType: String, direction: Vector2, spawnPosition: Vecto
 	
 
 func _activateObject(projectile: Projectile, direction: Vector2, spawnPosition: Vector2, target: Entity):
-	Global.worldScene.add_child(projectile)
+	Global.worldScene.entityManager.add_child(projectile)
 	
 	_set_collisions(projectile, false)
 	projectile.start(direction, spawnPosition, target)
@@ -45,7 +45,7 @@ func _returnObject(projectile: Projectile)->void:
 	_disableObject.call_deferred(projectile)
 
 func _disableObject(projectile: Projectile)->void:
-	Global.worldScene.remove_child.call_deferred(projectile)
+	Global.worldScene.entityManager.remove_child.call_deferred(projectile)
 	
 	pool[projectile.type].append(projectile)
 

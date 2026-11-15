@@ -64,7 +64,8 @@ func endDrag()->void:
 		@warning_ignore("narrowing_conversion")
 		MenuManager.getInventoryManager(INVGLOBAL.hoveredIUID).placeItem(getHoveredCellPlusInventoryOffset(), item)
 	else:
-		item.queue_free()
+		
+		item.play()
 		#MenuManager.getInventoryManager(initialIUID).placeItem(initialItemInvPos, item) #return it to its original pos
 	_resetSlotHighlight()
 

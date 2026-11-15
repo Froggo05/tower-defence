@@ -5,7 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://c6wa016j0tv2i" path="res://Assets/Theme/GoldButtonPressed.png" id="2_47vy0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_axljd"]
-size = Vector2(62, 59)
+size = Vector2(62, 60)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_m8s3d"]
+cull_mode = 1
+polygon = PackedVector2Array(-31, -29, 31, -29, 31, -20, -31, -20)
 
 [node name="Gate" type="StaticBody2D" unique_id=1189613304 node_paths=PackedStringArray("healthComponent")]
 script = ExtResource("1_l25nx")
@@ -15,6 +19,7 @@ healthComponent = NodePath("HealthComponent")
 shape = SubResource("RectangleShape2D_axljd")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1453902025]
+visible = false
 texture = ExtResource("2_47vy0")
 
 [node name="HealthComponent" type="Area2D" parent="." unique_id=2007673047 node_paths=PackedStringArray("Hitbox", "progressBar")]
@@ -25,9 +30,14 @@ progressBar = NodePath("ProgressBar")
 metadata/_custom_type_script = "uid://dlubjeq05atp"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HealthComponent" unique_id=992592540]
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_axljd")
 
 [node name="ProgressBar" type="ProgressBar" parent="HealthComponent" unique_id=1717640750]
 offset_right = 4.0
 offset_bottom = 27.0
 show_percentage = false
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=227821338]
+position = Vector2(0, -2)
+occluder = SubResource("OccluderPolygon2D_m8s3d")

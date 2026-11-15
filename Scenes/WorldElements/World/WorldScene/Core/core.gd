@@ -3,14 +3,15 @@ class_name CastleCore extends StaticEntity
 
 func _ready() -> void:
 	Global.core = self
-	healthComponent.progressBar = MenuManager.coreHealthBar
+	healthComponent.progressBar = MenuManager.theCoreHealthBar
+	healthComponent.died.connect(_hasDied)
 
 func getClosestPos(entityPos: Vector2)->Vector2:
 	var rad = collision_shape_2d.shape.get("radius")
 	return global_position + (rad * -(global_position - entityPos).normalized())
 
-@warning_ignore("unused_parameter")
-func _physics_process(delta: float) -> void:
-	if healthComponent.health <= 0:
-		if Global.gameActive:
-			Global.gameOver()
+func reset()->void:
+	healthComponent.reset()
+
+func _hasDied()->void:
+	Global.gameOver()

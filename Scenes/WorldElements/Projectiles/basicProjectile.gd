@@ -70,3 +70,7 @@ func _fadeOut(delta)->void:
 func _resetFade()->void:
 	isFading = false
 	modulate = Color(1.0, 1.0, 1.0, 1.0)
+
+func _on_area_entered(area: Area2D) -> void:
+	if area is HealthComponent && px >= 0.8:
+		area.damage(damage)

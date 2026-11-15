@@ -116,6 +116,10 @@ func _resetTween()->void:
 	tween.set_ease(Tween.EASE_IN_OUT)
 
 #-----public-----
+func reset()->void:
+	itemContained = null
+	updateTexture(inventoryCoordinate, MenuManager.getInventoryManager(IUID).inventorySize)
+
 func updateTexture(slotPosition: Vector2i, itemSize:Vector2i)->void:
 	var textureIndex: int = _getTextureType(slotPosition, itemSize)
 	setSprite(textureIndex)

@@ -7,8 +7,7 @@ class_name MenuManager extends Control
 @export var inventory: InventoryManager
 @export var defaultMenu: Menu
 @export var startMenu: Menu
-
-static var coreHealthBar: CoreHealthBar
+@export var coreHealthBar: CoreHealthBar
 
 #-----variables-----
 var menuDict: Dictionary = {}
@@ -19,10 +18,11 @@ static var avaliableInventories: Dictionary[int, InventoryManager] = {}
 static var playerInventoryIUID: int
 static var activeMenu: Menu
 static var inventoryMoveFactor: float = 10.0
+static var theCoreHealthBar: CoreHealthBar
 #-----private-----
 func _ready() -> void:
 	_establishScene()
-	coreHealthBar = %CoreHealthBar
+	theCoreHealthBar = coreHealthBar
 
 func _process(delta: float) -> void:
 	activeMenu.update(delta)

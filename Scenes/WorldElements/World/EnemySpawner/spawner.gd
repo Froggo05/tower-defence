@@ -21,6 +21,9 @@ func startSpawning()->void:
 	spawning = true
 func stopSpawning()->void:
 	spawning = false
+func reset()->void:
+	spawning = false
+	clock = 0.0
 
 func _physics_process(delta: float) -> void:
 	if Global.enemyManager.waveActive:

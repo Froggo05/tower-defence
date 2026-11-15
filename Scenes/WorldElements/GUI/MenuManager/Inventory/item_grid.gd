@@ -13,12 +13,13 @@ var InventoryGrid: Array = []
 
 #-----public-----
 func generateGrid(inventorySize: Vector2i, IUID: int)->void:
+	var newInventoryGrid = []
 	self.columns = inventorySize.x 
-	InventoryGrid.resize(inventorySize.x)
+	newInventoryGrid.resize(inventorySize.x)
 	
 	for x in range(inventorySize.x):
-		InventoryGrid[x] = []
-		InventoryGrid[x].resize(inventorySize.y)
+		newInventoryGrid[x] = []
+		newInventoryGrid[x].resize(inventorySize.y)
 	
 	for y in range(inventorySize.y):
 		for x in range(inventorySize.x):
@@ -32,8 +33,11 @@ func generateGrid(inventorySize: Vector2i, IUID: int)->void:
 				pass
 			else:
 				slot.slotHovered.connect(INVGLOBAL.updateHoveredCell)
-			InventoryGrid[x][y] = slot
+			newInventoryGrid[x][y] = slot
 			add_child(slot)
+	
+	InventoryGrid = newInventoryGrid
 	#print(InventoryGrid)
+
 
 #-----signal responses-----

@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bkt037ltaye2g" path="res://Scenes/WorldElements/GUI/MenuManager/ForgeMenu/forge_menu.tscn" id="9_k0p76"]
 [ext_resource type="Script" uid="uid://b6javx34p1gu8" path="res://Scenes/WorldElements/GUI/MenuManager/core_health_bar.gd" id="10_k0p76"]
 
-[node name="MenuManager" type="Control" unique_id=1690813115 node_paths=PackedStringArray("menuResourceContainer", "inventory", "defaultMenu", "startMenu")]
+[node name="MenuManager" type="Control" unique_id=1690813115 node_paths=PackedStringArray("menuResourceContainer", "inventory", "defaultMenu", "startMenu", "coreHealthBar")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,6 +26,7 @@ menuResourceContainer = NodePath("MenuResourcesContainer")
 inventory = NodePath("MenuResourcesContainer/PlayerInventory")
 defaultMenu = NodePath("GameplayGUI")
 startMenu = NodePath("StartMenu")
+coreHealthBar = NodePath("MenuResourcesContainer/CoreHealthBar")
 metadata/_edit_use_anchors_ = true
 
 [node name="GameplayGUI" parent="." unique_id=1534566029 instance=ExtResource("4_5qr3h")]
@@ -72,10 +73,9 @@ offset_bottom = 0.15991211
 grow_horizontal = 2
 grow_vertical = 0
 offset_transform_enabled = true
-IUID = 2976788209
+IUID = 1104667727
 
 [node name="CoreHealthBar" type="ProgressBar" parent="MenuResourcesContainer" unique_id=1253212220]
-unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(0, 45)
 layout_mode = 1

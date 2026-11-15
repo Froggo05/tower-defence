@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c3rhc3wgqj1w7" path="res://Scenes/WorldElements/World/WorldScene/world_scene.gd" id="1_he56u"]
 [ext_resource type="PackedScene" uid="uid://irnobd2ndlgt" path="res://Scenes/WorldElements/World/WorldScene/Background/background.tscn" id="2_hxu1i"]
+[ext_resource type="Script" uid="uid://y3yrp7nj48l2" path="res://Scenes/WorldElements/World/WorldScene/entity_container.gd" id="3_1i642"]
 [ext_resource type="PackedScene" uid="uid://bbl4fqahrns72" path="res://Scenes/WorldElements/World/EnemySpawner/spawner.tscn" id="4_0pyd3"]
 [ext_resource type="Script" uid="uid://c5lu4k1st24va" path="res://Scenes/WorldElements/World/EnemySpawner/enemy_manager.gd" id="4_bcrb4"]
 
@@ -42,6 +43,7 @@ navigation_polygon = SubResource("NavigationPolygon_eslcc")
 [node name="EntityContainer" type="Node2D" parent="Scale" unique_id=171685134]
 position = Vector2(-6.1035156e-05, -6.1035156e-05)
 scale = Vector2(1.0000001, 1.0000001)
+script = ExtResource("3_1i642")
 
 [node name="EnemyManager" type="Node2D" parent="Scale/EntityContainer" unique_id=1993562750]
 position = Vector2(6.103515e-05, 6.103515e-05)

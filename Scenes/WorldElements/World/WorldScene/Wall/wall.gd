@@ -1,5 +1,5 @@
 class_name wall extends Node2D
-@export var rect: TextureRect
+@export var sprite: Sprite2D
 @export var maxUnits: int ##not currently in use.
 var unitList: Array = []
 var listShells = [[],[],[],[]]
@@ -7,7 +7,7 @@ var mouseHovering = false
 
 @warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:
-	if mouseHovering && INVGLOBAL.mouseIsHovering:
+	if mouseHovering:
 		modulate = Color.GREEN
 	else:
 		modulate = Color.WHITE
@@ -58,7 +58,5 @@ func _on_shell_3_area_exited(area: Area2D) -> void:
 func _on_wall_collider_mouse_entered() -> void:
 	mouseHovering = true
 	print(mouseHovering)
-
-
 func _on_wall_collider_mouse_exited() -> void:
 	mouseHovering = false

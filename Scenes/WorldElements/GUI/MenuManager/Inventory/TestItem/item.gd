@@ -38,6 +38,10 @@ func setTarget(newPosition: Vector2)->void:
 	#global_position = newPosition
 	#print(newPosition)
 
+func play()->void:
+	print("playing ", self, " at ", global_position)
+	queue_free()
+
 #-----public-----
 func getTags()-> Dictionary:
 	var tagDict: Dictionary = {}
@@ -51,4 +55,5 @@ func calculateItemPositionInSlots(slotSize: Vector2)->Vector2:
 	var CentrePos: Vector2 = MenuManager.getInventoryManager(IUID).position + avgPos
 	#invetnory pos (for offset) + avg position of first and last cell for center point
 	return CentrePos
+
 #-----signal responses-----

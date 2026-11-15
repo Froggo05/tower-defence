@@ -3,8 +3,8 @@ class_name EnemyManager extends Node2D
 @export var intervalSize: float = 1.0
 
 var spawners: Array = []
-var wavePoints = 1000
-var wavePointsRemaining: float = 1000
+var wavePoints = 100
+var wavePointsRemaining: float = 100
 var waveActive: bool = false
 #"name" : [unlockDay, cost]
 var enemyDetailsList: Dictionary[String, Array] = {"sgoblin" : [0, 1]}
@@ -25,7 +25,7 @@ func _physics_process(delta: float) -> void:
 			
 
 func updateDay()->void:
-	wavePoints = 1.1 * wavePoints
+	wavePoints = (1.1 * Global.dayCount + 1) * 100
 	wavePointsRemaining = wavePoints + wavePointsRemaining
 	for enemy in enemyDetailsList.keys():
 		if enemyDetailsList[enemy][0] <= Global.dayCount:
@@ -33,7 +33,10 @@ func updateDay()->void:
 			#enemiesAvaliable.sort_custom(func (a,b)->bool: return a[1] > b[1])
 
 func reset()->void:
-	pass
+	waveActive = false
+	wavePoints = 1000
+	for spawner in spawners:
+		spawner.reset()
 
 func getRandomEnemyForDay()->String: #CRASHING HERE FOR SOME REASON
 	print(enemiesAvaliable)
