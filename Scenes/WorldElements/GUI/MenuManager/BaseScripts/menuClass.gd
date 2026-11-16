@@ -17,6 +17,7 @@ signal change_menu(menuName: String)
 @warning_ignore("unused_parameter")
 func update(delta: float)->void:
 	pass
+
 func activate()->void:
 	show()
 	process_mode = Node.PROCESS_MODE_INHERIT
@@ -31,6 +32,9 @@ func menuChangeRequest(menu: String)->void:
 #PrivateMethods - only used within this node(class) - shown with an _ prefix
 func _ready() -> void:
 	deactivate()
+
+func updateDay()->void:
+	pass
 
 func _moveToTarget(delta)->void:
 	global_position = lerp(global_position, targetPosition, delta * MenuMovementFactor)

@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b7r52qq7241r4" path="res://Assets/Sprites/Fighter/FighterPreview.png" id="3_2mipj"]
 
 [sub_resource type="Resource" id="Resource_4uqva"]
+resource_local_to_scene = true
 script = ExtResource("2_rlrbx")
 value = 12
 texture = ExtResource("3_2mipj")
@@ -27,4 +28,5 @@ layout_mode = 0
 offset_right = 32.0
 offset_bottom = 32.0
 scale = Vector2(2, 2)
+mouse_filter = 2
 texture = ExtResource("3_2mipj")

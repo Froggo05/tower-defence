@@ -5,7 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://dfasslv2qbdd1" path="res://Assets/Sprites/Wizard/WizardPreview.png" id="3_gmf6p"]
 
 [sub_resource type="Resource" id="Resource_n3l37"]
+resource_local_to_scene = true
 script = ExtResource("2_n3l37")
+value = 5
 texture = ExtResource("3_gmf6p")
 metadata/_custom_type_script = "uid://bet3qcju1ttno"
 

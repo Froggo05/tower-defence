@@ -10,7 +10,7 @@ class_name MenuManager extends Control
 @export var coreHealthBar: CoreHealthBar
 
 #-----variables-----
-var menuDict: Dictionary = {}
+var menuDict: Dictionary[String, Menu] = {}
 var dragInstance: Drag
 var leftclickActive: bool = false
 var rightclickActive: bool = false
@@ -54,9 +54,9 @@ func _setMenu(menu: Menu)->void:
 	activeMenu = menu
 	activeMenu.activate()
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if leftclickActive:
-		_updateDrag()
+		_updateDrag(delta)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Rightclick"):
@@ -70,10 +70,10 @@ func _input(event: InputEvent) -> void:
 		leftclickActive = false
 		_endDrag()
 
-func _updateDrag()->void:
+func _updateDrag(delta: float)->void:
 	if dragInstance == null:
 		return
-	dragInstance.update(get_global_mouse_position() - dragInstance.initialClickOffset)
+	dragInstance.update(delta, get_global_mouse_position())
 
 func _startDrag()->void:
 	if dragInstance != null:
@@ -111,7 +111,8 @@ func _endDrag()->void:
 #-----public------
 
 func updateDay()->void:
-	menuDict["MerchantMenu"].updateDay()
+	for menuName in menuDict.keys():
+		menuDict[menuName].updateDay()
 
 #-----signals------
 func _return()->void:
@@ -145,7 +146,9 @@ func _on_button_pressed() -> void:
 	var keys =  Global.itemList.keys()
 	print(keys)
 	var packedItem: PackedScene = Global.itemList.get(keys[randi_range(0, keys.size() - 1)])
-	inventory.addItemToInventory(packedItem.instantiate())
+	var item:Item = packedItem.instantiate()
+	item.name = item.name + str(item.ITEMUID)
+	inventory.addItemToInventory(item)
 
 func _on_button_2_pressed() -> void:
 	var item: Item = testItemTwoPacked.instantiate()

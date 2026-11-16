@@ -29,7 +29,8 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
-[node name="MerchantMenu" type="Control" unique_id=1036665437 node_paths=PackedStringArray("merchantList")]
+[node name="MerchantMenu" type="Control" unique_id=1036665437 node_paths=PackedStringArray("merchantList", "goldCount")]
+z_index = 20
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,6 +40,7 @@ grow_vertical = 2
 theme = ExtResource("1_w6pl3")
 script = ExtResource("2_g3a88")
 merchantList = NodePath("Background/TextureRect/MarginContainer/MerchantList")
+goldCount = NodePath("Background/TextureRect/GoldCount")
 
 [node name="Background" type="Panel" parent="." unique_id=102026836]
 layout_mode = 1
@@ -84,11 +86,25 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 
 [node name="MerchantList" type="ItemList" parent="Background/TextureRect/MarginContainer" unique_id=1637669433]
 layout_mode = 2
+select_mode = 2
+allow_rmb_select = true
 max_columns = 3
 fixed_column_width = 128
 icon_mode = 0
 fixed_icon_size = Vector2i(64, 64)
 script = ExtResource("7_y4bkt")
+
+[node name="GoldCount" type="Label" parent="Background/TextureRect" unique_id=1682236597]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -9.0
+offset_top = 194.0
+offset_right = -8.0
+offset_bottom = 223.0
+grow_horizontal = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
 
 [node name="ButtonMargins" type="MarginContainer" parent="Background" unique_id=2084811107]
 layout_mode = 1

@@ -13,10 +13,12 @@ class_name Item extends Control
 @export var moveFactor: float = 300.0
 var invPosition : Vector2i = -1.0 * Vector2i.ONE
 var IUID: int
+var ITEMUID: int
 var targetPosition: Vector2
 
 #-----private-----
 func _ready() -> void:
+	ITEMUID = UID.GENERATEUINIQUEIDENTIFIER()
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	sprite.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	sprite.texture = attributes.texture
@@ -26,15 +28,16 @@ func _ready() -> void:
 	self.custom_minimum_size = sprite.size * sprite.scale
 	pass
 
-func _physics_process(delta: float) -> void:
-	_updatePosition(delta)
+#func _physics_process(delta: float) -> void:
+	#_updatePosition(delta)
 
 func _updatePosition(_delta)->void:
 	global_position = targetPosition
 	#makes no sense RAHH
+	pass
 
 func setTarget(newPosition: Vector2)->void:
-	targetPosition = newPosition
+	global_position = newPosition
 	#global_position = newPosition
 	#print(newPosition)
 

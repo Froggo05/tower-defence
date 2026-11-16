@@ -26,7 +26,7 @@ var inventoryGrid: Array[Array]:
 		return inventorySlotGridContainer.InventoryGrid
 #-----private-----
 func _ready() -> void:
-	IUID = UID.GENERATEINVENTORYINDEX()
+	IUID = UID.GENERATEUINIQUEIDENTIFIER()
 	inventorySlotGridContainer.generateGrid(inventorySize, IUID)
 
 #-----public-----
@@ -44,7 +44,7 @@ func placeItem(inventoryPos: Vector2i, item: Item)->void:
 	if cellCheck == SLOTCHECK.EMPTY:
 		item.invPosition = inventoryPos
 		item.IUID = IUID
-		item.targetPosition = item.calculateItemPositionInSlots(inventoryGrid[inventoryPos.x][inventoryPos.y].sizePixels)
+		item.global_position = item.calculateItemPositionInSlots(inventoryGrid[inventoryPos.x][inventoryPos.y].sizePixels)
 		#print("Place item of size: ", item.invSize)
 		
 		var itemBounds: Vector2i = Vector2i(inventoryPos.x + item.invSize.x, inventoryPos.y + item.invSize.y)
