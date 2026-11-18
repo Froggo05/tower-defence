@@ -33,19 +33,23 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 1
 
 [node name="StartMenu" parent="." unique_id=783130587 instance=ExtResource("5_f4a2y")]
+visible = false
 layout_mode = 1
 
 [node name="MerchantMenu" parent="." unique_id=1036665437 instance=ExtResource("1_xkxm8")]
+visible = false
 layout_mode = 1
-mouse_filter = 1
 
 [node name="CampMenu" parent="." unique_id=1147653994 instance=ExtResource("8_gkyad")]
+visible = false
 layout_mode = 1
 
 [node name="ForgeMenu" parent="." unique_id=2098623128 instance=ExtResource("9_k0p76")]
+visible = false
 layout_mode = 1
 
 [node name="GameOverMenu" parent="." unique_id=61577780 instance=ExtResource("8_u2afq")]
+visible = false
 layout_mode = 1
 
 [node name="MenuResourcesContainer" type="Control" parent="." unique_id=826891072]
@@ -73,7 +77,6 @@ offset_bottom = 0.15991211
 grow_horizontal = 2
 grow_vertical = 0
 offset_transform_enabled = true
-IUID = 1104667727
 
 [node name="CoreHealthBar" type="ProgressBar" parent="MenuResourcesContainer" unique_id=1253212220]
 visible = false

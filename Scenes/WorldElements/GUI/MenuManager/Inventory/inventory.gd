@@ -36,7 +36,7 @@ func addItemToInventory(item: Item)->void:
 			if checkItemDropPosition(Vector2i(x,y), item) == SLOTCHECK.EMPTY:
 				add_child(item)
 				placeItem(Vector2i(x,y), item)
-				print("AddAdded item to: ", Vector2i(x, y))
+				print("Added item to: ", Vector2i(x, y))
 				return #exit the loop as has placed one item
 
 func placeItem(inventoryPos: Vector2i, item: Item)->void:

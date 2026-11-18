@@ -27,6 +27,7 @@ func _init(targetItem: Item, clickPosition: Vector2, dragType: String = "") -> v
 	initialPosition = item.global_position
 	initialClickOffset = clickPosition - initialPosition
 	initialIUID = item.IUID
+	#item.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	MenuManager.getInventoryManager(initialIUID).removeItem(initialItemInvPos, item)
 	#need to store the item slot relative to the item size clicked
 
@@ -63,13 +64,16 @@ func endDrag()->void:
 	if INVGLOBAL.mouseIsHovering:
 		@warning_ignore("narrowing_conversion")
 		MenuManager.getInventoryManager(INVGLOBAL.hoveredIUID).placeItem(getHoveredCellPlusInventoryOffset(), item)
+	elif INVGLOBAL.wallHovered:
+		var itemAttributes = item.getTags()
+		if itemAttributes["playable"]:
+			item.play(INVGLOBAL.wallHovered)
 	else:
-		item.play()
-		#MenuManager.getInventoryManager(initialIUID).placeItem(initialItemInvPos, item) #return it to its original pos
+		MenuManager.getInventoryManager(INVGLOBAL.hoveredIUID).placeItem(initialItemInvPos, item)
+	#MenuManager.getInventoryManager(initialIUID).placeItem(initialItemInvPos, item) #return it to its original pos
 	_resetSlotHighlight()
 
-func update(delta: float, newMousePosition: Vector2)->void:
-	
+func update(_delta: float, newMousePosition: Vector2)->void:
 	item.setTarget(newMousePosition - initialClickOffset)
 	if INVGLOBAL.mouseIsHovering:
 		_resetSlotHighlight()

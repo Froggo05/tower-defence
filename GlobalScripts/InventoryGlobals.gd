@@ -14,6 +14,8 @@ var hoveredIUID: int
 var uiScale: Vector2 = Vector2(8.0,8.0)
 var mouseIsHovering: bool = false
 
+var wallHovered: Wall
+
 const invCellPixelSize: float = 8.0
 
 #-----private-----

@@ -18,6 +18,7 @@ var targetPosition: Vector2
 
 #-----private-----
 func _ready() -> void:
+	self.z_index = 1000
 	ITEMUID = UID.GENERATEUINIQUEIDENTIFIER()
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	sprite.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -41,7 +42,9 @@ func setTarget(newPosition: Vector2)->void:
 	#global_position = newPosition
 	#print(newPosition)
 
-func play()->void:
+func play(wall: Wall)->void:
+	wall.addUnit(attributes.unitSummon)
+	MenuManager.getInventoryManager(IUID).removeItem(invPosition, self)
 	print("playing ", self, " at ", global_position)
 	queue_free()
 

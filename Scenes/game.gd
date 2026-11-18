@@ -24,29 +24,27 @@ func _process(_delta: float) -> void:
 	pass
 
 func _physics_process(_delta: float) -> void:
+	pass
 	#print("L: ",LeftclickPressed, " R: ", RightclickPressed)
-	if LeftclickPressed:
-		LeftclickPressed = false
-		for a in range(1):
-			var globMouse = get_global_mouse_position()
-			var goblin = Global.summonEntity(globMouse + Vector2(300,-50), "sgoblin")
-			var archer = Global.summonEntity(globMouse, "basicArcher")
-			print("Archer: ", archer)
-			archer.setTarget(goblin)
-			#PoolManager._getObject("basicProjectile",globMouse.direction_to(goblin.global_position), globMouse, goblin)
-			print("GlobMouse ",globMouse)
-	if RightclickPressed:
-		RightclickPressed = false
+	#if LeftclickPressed:
+		#LeftclickPressed = false
+		#for a in range(1):
+			#var globMouse = get_global_mouse_position()
+			#var goblin = Global.summonEntity(globMouse + Vector2(300,-50), "sgoblin")
+			#var archer = Global.summonEntity(globMouse, "basicArcher")
+			#print("Archer: ", archer)
+			#archer.setTarget(goblin)
+			##PoolManager._getObject("basicProjectile",globMouse.direction_to(goblin.global_position), globMouse, goblin)
+			#print("GlobMouse ",globMouse)
+	#if RightclickPressed:
+		#RightclickPressed = false
 		#for a in range(1):
 			#var globMouse = get_global_mouse_position()
 			#var goblin = Global.summonEntity(globMouse + Vector2(0,300), "sgoblin")
 			#PoolManager._getObject("basicProjectile",globMouse.direction_to(goblin.global_position), globMouse, goblin)
 		#Global.summonEnemy(get_global_mouse_position(), "smallOrc")
 
-func _unhandled_input(event: InputEvent) -> void:
-	mouseInput(event)
-
-func mouseInput(event: InputEvent)->void:
+func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Leftclick"):
 		LeftclickPressed = true
 	if event.is_action_released("Leftclick"):

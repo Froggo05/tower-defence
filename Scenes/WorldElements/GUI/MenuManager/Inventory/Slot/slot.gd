@@ -168,7 +168,7 @@ func visualiseCheck(slotCheck: int)->void:
 #-----signal responses-----
 func on_mouse_entered() -> void:
 	slotHovered.emit(inventoryCoordinate, IUID)
-	animateHover()
+	#animateHover()
 
 func on_mouse_exited() -> void:
 	animateHoverDisolve()

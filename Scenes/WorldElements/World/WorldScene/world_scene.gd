@@ -12,7 +12,7 @@ func updateDay()->void:
 
 func _ready() -> void:
 	Global.worldScene = self
-
+	InputEvent
 
 func _on_merchant_button_pressed() -> void:
 	MenuManager.requestActiveMenuChange("MerchantMenu")

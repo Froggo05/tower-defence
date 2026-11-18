@@ -46,20 +46,35 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 1
 theme = ExtResource("1_7kj4d")
 script = ExtResource("1_bvkne")
-worldScene = NodePath("DayNightCycle/WorldScene")
-GUI = NodePath("GUI")
+worldScene = NodePath("SubViewportContainer/SubViewport/DayNightCycle/WorldScene")
+GUI = NodePath("SubViewportContainer/SubViewport/GUI")
 metadata/_edit_use_anchors_ = true
 
-[node name="DayNightCycle" type="CanvasModulate" parent="." unique_id=1611915610 node_paths=PackedStringArray("timeBar")]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=2114884920]
+layout_mode = 1
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_target = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1203306362]
+physics_interpolation_mode = 2
+disable_3d = true
+handle_input_locally = false
+screen_space_aa = 2
+physics_object_picking = true
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="DayNightCycle" type="CanvasModulate" parent="SubViewportContainer/SubViewport" unique_id=1611915610 node_paths=PackedStringArray("timeBar")]
 script = ExtResource("4_b2bpf")
 secondsPerHour = 0.1
 startingHour = 0.0
-nightColour = Color(0.3284335, 0.45705426, 0.7960183, 1)
-timeBar = NodePath("../TimeBar")
+nightColour = Color(0.55475014, 0.6615171, 0.91352093, 1)
+timeBar = NodePath("../../../TimeBar")
 
-[node name="WorldScene" parent="DayNightCycle" unique_id=495325210 instance=ExtResource("3_bvkne")]
+[node name="WorldScene" parent="SubViewportContainer/SubViewport/DayNightCycle" unique_id=495325210 instance=ExtResource("3_bvkne")]
 
-[node name="GateLight1" type="PointLight2D" parent="DayNightCycle" unique_id=84544716]
+[node name="GateLight1" type="PointLight2D" parent="SubViewportContainer/SubViewport/DayNightCycle" unique_id=84544716]
 position = Vector2(957, 301)
 color = Color(1, 1, 1, 0)
 range_z_min = 0
@@ -67,16 +82,16 @@ range_z_max = 9
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_b2bpf")
 
-[node name="LightOccluder2D2" type="LightOccluder2D" parent="DayNightCycle/GateLight1" unique_id=1742955707]
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="SubViewportContainer/SubViewport/DayNightCycle/GateLight1" unique_id=1742955707]
 position = Vector2(-8, -8)
 rotation = -3.1415925
 occluder = SubResource("OccluderPolygon2D_7lihs")
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="DayNightCycle/GateLight1" unique_id=520394966]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="SubViewportContainer/SubViewport/DayNightCycle/GateLight1" unique_id=520394966]
 position = Vector2(8, 8)
 occluder = SubResource("OccluderPolygon2D_7lihs")
 
-[node name="GateLight2" type="PointLight2D" parent="DayNightCycle" unique_id=594307135]
+[node name="GateLight2" type="PointLight2D" parent="SubViewportContainer/SubViewport/DayNightCycle" unique_id=594307135]
 position = Vector2(741, 534)
 rotation = 1.5707964
 color = Color(1, 1, 1, 0)
@@ -85,16 +100,16 @@ range_z_max = 9
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_b2bpf")
 
-[node name="LightOccluder2D2" type="LightOccluder2D" parent="DayNightCycle/GateLight2" unique_id=1591136924]
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="SubViewportContainer/SubViewport/DayNightCycle/GateLight2" unique_id=1591136924]
 position = Vector2(-8, -8)
 rotation = -3.1415925
 occluder = SubResource("OccluderPolygon2D_7lihs")
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="DayNightCycle/GateLight2" unique_id=673844207]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="SubViewportContainer/SubViewport/DayNightCycle/GateLight2" unique_id=673844207]
 position = Vector2(8, 8)
 occluder = SubResource("OccluderPolygon2D_7lihs")
 
-[node name="GateLight3" type="PointLight2D" parent="DayNightCycle" unique_id=526094134]
+[node name="GateLight3" type="PointLight2D" parent="SubViewportContainer/SubViewport/DayNightCycle" unique_id=526094134]
 position = Vector2(1200, 533)
 rotation = 1.5707964
 color = Color(1, 1, 1, 0)
@@ -103,21 +118,20 @@ range_z_max = 9
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_b2bpf")
 
-[node name="LightOccluder2D2" type="LightOccluder2D" parent="DayNightCycle/GateLight3" unique_id=847118099]
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="SubViewportContainer/SubViewport/DayNightCycle/GateLight3" unique_id=847118099]
 position = Vector2(-8, -8)
 rotation = -3.1415925
 occluder = SubResource("OccluderPolygon2D_7lihs")
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="DayNightCycle/GateLight3" unique_id=534144136]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="SubViewportContainer/SubViewport/DayNightCycle/GateLight3" unique_id=534144136]
 position = Vector2(8, 8)
 occluder = SubResource("OccluderPolygon2D_7lihs")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="DayNightCycle" unique_id=371072480]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewportContainer/SubViewport/DayNightCycle" unique_id=371072480]
 libraries/ = SubResource("AnimationLibrary_fgofq")
 autoplay = &"CampFlicker"
 
-[node name="GUI" parent="." unique_id=1095052953 instance=ExtResource("4_bvkne")]
-layout_mode = 1
+[node name="GUI" parent="SubViewportContainer/SubViewport" unique_id=1095052953 instance=ExtResource("4_bvkne")]
 
 [node name="PauseTime" type="CheckButton" parent="." unique_id=2088373196]
 layout_mode = 0
@@ -133,4 +147,4 @@ offset_top = 2.0
 offset_right = 1710.0
 offset_bottom = 35.0
 
-[connection signal="toggled" from="PauseTime" to="DayNightCycle" method="_on_check_button_toggled"]
+[connection signal="toggled" from="PauseTime" to="SubViewportContainer/SubViewport/DayNightCycle" method="_on_check_button_toggled"]

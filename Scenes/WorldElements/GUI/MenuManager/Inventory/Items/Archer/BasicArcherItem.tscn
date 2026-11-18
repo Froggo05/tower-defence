@@ -28,6 +28,7 @@ sprite = NodePath("TextureRect")
 invSize = Vector2i(2, 1)
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=535247724]
+z_index = 1000
 texture_filter = 1
 layout_mode = 0
 offset_right = 32.0

@@ -13,7 +13,6 @@ load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.cte
 size = Vector2(32, 32)
 
 [node name="basicProjectile" type="Area2D" unique_id=1121012050 node_paths=PackedStringArray("sprite")]
-collision_mask = 4294967295
 input_pickable = false
 script = ExtResource("1_ptvci")
 sprite = NodePath("Sprite2D")

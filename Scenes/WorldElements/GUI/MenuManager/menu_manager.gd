@@ -69,6 +69,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_released("Leftclick"):
 		leftclickActive = false
 		_endDrag()
+	
 
 func _updateDrag(delta: float)->void:
 	if dragInstance == null:
