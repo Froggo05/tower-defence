@@ -12,7 +12,11 @@ value = 15
 texture = SubResource("CompressedTexture2D_gh7jy")
 metadata/_custom_type_script = "uid://bet3qcju1ttno"
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ir71"]
+size = Vector2(64, 64)
+
 [node name="TestItem" type="Control" unique_id=2137495195 node_paths=PackedStringArray("sprite")]
+z_index = 1000
 texture_filter = 1
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 3
@@ -35,3 +39,11 @@ offset_bottom = 128.0
 scale = Vector2(0.5, 0.5)
 mouse_filter = 2
 texture = SubResource("CompressedTexture2D_gh7jy")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1762890535]
+collision_layer = 0
+collision_mask = 32768
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=15895421]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_3ir71")

@@ -39,13 +39,15 @@ offset_right = 500.0
 offset_bottom = 500.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+mouse_behavior_recursive = 1
 texture = ExtResource("2_ekf4o")
 stretch_mode = 4
 
 [node name="Moat" type="StaticBody2D" parent="." unique_id=470079231]
 scale = Vector2(1.32, 1.32)
-collision_layer = 32768
-collision_mask = 0
+collision_layer = 0
+collision_mask = 512
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Moat" unique_id=1412460096]
 position = Vector2(-321.2121, -149.99998)

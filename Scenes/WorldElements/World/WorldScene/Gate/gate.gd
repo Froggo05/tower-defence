@@ -1,1 +1,1 @@
-extends StaticEntity
+class_name Gate extends StaticEntity

@@ -3,23 +3,24 @@
 [ext_resource type="Script" uid="uid://ph4xplmwr7vj" path="res://Scenes/WorldElements/GUI/MenuManager/Inventory/Items/Fighter/basic_fighter_item.gd" id="1_a412x"]
 [ext_resource type="Script" uid="uid://bet3qcju1ttno" path="res://Scenes/WorldElements/GUI/MenuManager/Inventory/TestItem/AttributesResource.gd" id="2_rlrbx"]
 [ext_resource type="Texture2D" uid="uid://b7r52qq7241r4" path="res://Assets/Sprites/Fighter/FighterPreview.png" id="3_2mipj"]
+[ext_resource type="PackedScene" uid="uid://ciotidqps4e60" path="res://Scenes/WorldElements/Entities/Units/Fighter/Fighter.tscn" id="4_2mipj"]
 
-[sub_resource type="Resource" id="Resource_4uqva"]
+[sub_resource type="Resource" id="Resource_rlrbx"]
 resource_local_to_scene = true
 script = ExtResource("2_rlrbx")
-value = 12
+playable = true
 texture = ExtResource("3_2mipj")
+unitSummon = ExtResource("4_2mipj")
 metadata/_custom_type_script = "uid://bet3qcju1ttno"
 
-[node name="BasicFighterItem" type="Control" unique_id=112468971 node_paths=PackedStringArray("sprite")]
-custom_minimum_size = Vector2(64, 64)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rlrbx"]
+size = Vector2(64, 64)
+
+[node name="BasicFighterItem" type="Control" unique_id=932470924 node_paths=PackedStringArray("sprite")]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 64.0
-offset_bottom = 64.0
-mouse_filter = 2
 script = ExtResource("1_a412x")
-attributes = SubResource("Resource_4uqva")
+attributes = SubResource("Resource_rlrbx")
 sprite = NodePath("TextureRect")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1353646446]
@@ -30,3 +31,14 @@ offset_bottom = 32.0
 scale = Vector2(2, 2)
 mouse_filter = 2
 texture = ExtResource("3_2mipj")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=735268678]
+collision_layer = 0
+collision_mask = 32768
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=435308781]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_rlrbx")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

@@ -36,6 +36,8 @@ shape = SubResource("RectangleShape2D_axljd")
 [node name="ProgressBar" type="ProgressBar" parent="HealthComponent" unique_id=1717640750]
 offset_right = 4.0
 offset_bottom = 27.0
+mouse_filter = 2
+mouse_behavior_recursive = 1
 show_percentage = false
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=227821338]

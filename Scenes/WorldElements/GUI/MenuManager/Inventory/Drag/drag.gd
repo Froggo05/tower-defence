@@ -16,7 +16,6 @@ var uiRef: MenuManager
 var initialItemInvPos: Vector2i
 var initialIUID: int
 var initialClickOffset: Vector2
-
 var lastSlotsCheckedArray: Array[Slot] = []
 
 #-----private-----
@@ -30,6 +29,7 @@ func _init(targetItem: Item, clickPosition: Vector2, dragType: String = "") -> v
 	#item.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	MenuManager.getInventoryManager(initialIUID).removeItem(initialItemInvPos, item)
 	#need to store the item slot relative to the item size clicked
+
 
 func _visualiseCheck(hoveredInvIUID: int, inventoryPos: Vector2i)->void:
 	var check = MenuManager.getInventoryManager(hoveredInvIUID).checkItemDropPosition(inventoryPos, item)
@@ -60,18 +60,20 @@ func _resetSlotHighlight()->void:
 		lastSlotsCheckedArray = []
 
 #-----public-----
-func endDrag()->void:
+func drop()->void:
 	if INVGLOBAL.mouseIsHovering:
 		@warning_ignore("narrowing_conversion")
 		MenuManager.getInventoryManager(INVGLOBAL.hoveredIUID).placeItem(getHoveredCellPlusInventoryOffset(), item)
-	elif INVGLOBAL.wallHovered:
-		var itemAttributes = item.getTags()
-		if itemAttributes["playable"]:
-			item.play(INVGLOBAL.wallHovered)
+	elif INVGLOBAL.wallHovered != null:
+		if item.attributes.playable:
+			await INVGLOBAL.wallHovered.call_deferred("addUnit", item.attributes.unitSummon)
+			item.play()
+			pass
 	else:
 		MenuManager.getInventoryManager(INVGLOBAL.hoveredIUID).placeItem(initialItemInvPos, item)
 	#MenuManager.getInventoryManager(initialIUID).placeItem(initialItemInvPos, item) #return it to its original pos
 	_resetSlotHighlight()
+	
 
 func update(_delta: float, newMousePosition: Vector2)->void:
 	item.setTarget(newMousePosition - initialClickOffset)
@@ -79,8 +81,8 @@ func update(_delta: float, newMousePosition: Vector2)->void:
 		_resetSlotHighlight()
 		@warning_ignore("narrowing_conversion")
 		_visualiseCheck(INVGLOBAL.hoveredIUID, getHoveredCellPlusInventoryOffset())
-	else:
-		_resetSlotHighlight()
+		return
+	_resetSlotHighlight()
 
 func getHoveredCellPlusInventoryOffset()-> Vector2i:
 	

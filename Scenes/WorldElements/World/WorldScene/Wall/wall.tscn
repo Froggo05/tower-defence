@@ -23,10 +23,10 @@ size = Vector2(220, 59)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bbdl4"]
 size = Vector2(220, 58)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8b4rf"]
-size = Vector2(508, 67)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m8s3d"]
+size = Vector2(522, 84)
 
-[node name="Wall" type="Node2D" unique_id=1089236373 node_paths=PackedStringArray("sprite")]
+[node name="Wall" type="Node2D" unique_id=1089236373 node_paths=PackedStringArray("sprite") groups=["droppables"]]
 z_index = 10
 script = ExtResource("1_yr834")
 sprite = NodePath("Texture")
@@ -67,6 +67,7 @@ shape = SubResource("RectangleShape2D_ld0b8")
 debug_color = Color(0.99736506, 0, 0.1773471, 0.41960785)
 
 [node name="WallCollider" type="StaticBody2D" parent="." unique_id=1922730217]
+collision_layer = 32769
 input_pickable = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallCollider" unique_id=1281914807]
@@ -76,13 +77,6 @@ shape = SubResource("RectangleShape2D_axljd")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WallCollider" unique_id=899934549]
 position = Vector2(142, 0)
 shape = SubResource("RectangleShape2D_bbdl4")
-
-[node name="MouseCollider" type="StaticBody2D" parent="." unique_id=871906044]
-collision_layer = 32768
-collision_mask = 32768
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="MouseCollider" unique_id=1249209059]
-shape = SubResource("RectangleShape2D_8b4rf")
 
 [node name="Gate" parent="." unique_id=1189613304 instance=ExtResource("3_hobgq")]
 position = Vector2(0, 19)
@@ -101,6 +95,14 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="HoverCollider" type="StaticBody2D" parent="." unique_id=1865028846]
+collision_layer = 32768
+collision_mask = 32768
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HoverCollider" unique_id=655644861]
+shape = SubResource("RectangleShape2D_m8s3d")
+debug_color = Color(0.6315766, 0.52939856, 3.85046e-07, 0.41960785)
+
 [connection signal="area_entered" from="DetectionShells/Shell0" to="." method="_on_shell_0_area_entered"]
 [connection signal="area_exited" from="DetectionShells/Shell0" to="." method="_on_shell_0_area_exited"]
 [connection signal="area_entered" from="DetectionShells/Shell1" to="." method="_on_shell_1_area_entered"]
@@ -109,5 +111,3 @@ grow_vertical = 2
 [connection signal="area_exited" from="DetectionShells/Shell2" to="." method="_on_shell_2_area_exited"]
 [connection signal="area_entered" from="DetectionShells/Shell3" to="." method="_on_shell_3_area_entered"]
 [connection signal="area_exited" from="DetectionShells/Shell3" to="." method="_on_shell_3_area_exited"]
-[connection signal="mouse_entered" from="MouseCollider" to="." method="_on_wall_collider_mouse_entered"]
-[connection signal="mouse_exited" from="MouseCollider" to="." method="_on_wall_collider_mouse_exited"]

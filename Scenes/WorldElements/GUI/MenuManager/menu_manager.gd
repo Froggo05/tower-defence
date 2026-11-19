@@ -11,7 +11,7 @@ class_name MenuManager extends Control
 
 #-----variables-----
 var menuDict: Dictionary[String, Menu] = {}
-var dragInstance: Drag
+static var dragInstance: Drag
 var leftclickActive: bool = false
 var rightclickActive: bool = false
 static var avaliableInventories: Dictionary[int, InventoryManager] = {}
@@ -66,9 +66,11 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Leftclick"):
 		leftclickActive = true
 		_startDrag()
+
+			
 	if event.is_action_released("Leftclick"):
 		leftclickActive = false
-		_endDrag()
+		_drop()
 	
 
 func _updateDrag(delta: float)->void:
@@ -95,6 +97,7 @@ func _startDrag()->void:
 	#print("Starting Drag")
 	dragInstance = Drag.new(item, get_global_mouse_position())
 
+
 func _getInventorySlotHovered()->Slot:
 	if !INVGLOBAL.mouseIsHovering:
 		#push_warning("No Inventory Hovered")
@@ -104,11 +107,11 @@ func _getInventorySlotHovered()->Slot:
 	
 	return inventorySlot
 
-func _endDrag()->void:
+func _drop()->void:
 	if dragInstance == null:
 		return
-	dragInstance.endDrag()
-
+	dragInstance.drop()
+	 
 #-----public------
 
 func updateDay()->void:

@@ -12,10 +12,15 @@ resource_local_to_scene = true
 script = ExtResource("2_7sp7i")
 value = 3
 texture = SubResource("CompressedTexture2D_7vqir")
+name = null
 unitSummon = ExtResource("3_7vqir")
 metadata/_custom_type_script = "uid://bet3qcju1ttno"
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_axljd"]
+size = Vector2(64, 64)
+
 [node name="BasicArcherItem" type="Control" unique_id=1205104478 node_paths=PackedStringArray("sprite")]
+z_index = 1000
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 3
 anchors_preset = 0
@@ -36,3 +41,14 @@ offset_bottom = 32.0
 scale = Vector2(2, 2)
 mouse_filter = 2
 texture = SubResource("CompressedTexture2D_7vqir")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=400502591]
+collision_layer = 0
+collision_mask = 32768
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2030139200]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_axljd")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

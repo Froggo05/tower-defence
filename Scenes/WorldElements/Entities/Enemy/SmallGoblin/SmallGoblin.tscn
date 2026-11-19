@@ -209,8 +209,8 @@ radius = 22.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ropfv"]
 
 [node name="SmallGoblin" type="RigidBody2D" unique_id=664506044 node_paths=PackedStringArray("attackComponent", "sprite", "motionComponent", "healthComponent", "collisionComponent", "universalEffectsComponent")]
-collision_layer = 32769
-collision_mask = 32769
+collision_layer = 513
+collision_mask = 513
 gravity_scale = 0.0
 script = ExtResource("1_anstl")
 attackComponent = NodePath("AttackComponent")

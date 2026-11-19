@@ -48,6 +48,10 @@ folder_colors={
 "res://Test Scene/": "purple"
 }
 
+[global_group]
+
+droppables="Used for the playable items to the overlapping of shells with any of these entities"
+
 [input]
 
 Leftclick={

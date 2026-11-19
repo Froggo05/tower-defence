@@ -11,10 +11,16 @@ class_name Item extends Control
 @export var sprite: TextureRect
 @export var invSize: Vector2i = Vector2i(1,1)
 @export var moveFactor: float = 300.0
+
 var invPosition : Vector2i = -1.0 * Vector2i.ONE
 var IUID: int
 var ITEMUID: int
 var targetPosition: Vector2
+
+var entered: bool = false
+var bodyQueue: Array = []
+
+
 
 #-----private-----
 func _ready() -> void:
@@ -42,8 +48,8 @@ func setTarget(newPosition: Vector2)->void:
 	#global_position = newPosition
 	#print(newPosition)
 
-func play(wall: Wall)->void:
-	wall.addUnit(attributes.unitSummon)
+func play()->void:
+	#wall.addUnit(attributes.unitSummon)
 	MenuManager.getInventoryManager(IUID).removeItem(invPosition, self)
 	print("playing ", self, " at ", global_position)
 	queue_free()
@@ -63,3 +69,26 @@ func calculateItemPositionInSlots(slotSize: Vector2)->Vector2:
 	return CentrePos
 
 #-----signal responses-----
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	
+	var entity = body.get_parent()
+	if !entered:
+		entered = true
+		print(entity)
+		INVGLOBAL.wallHovered = entity
+	else:
+		bodyQueue.push_back(body)
+
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	var entity = body.get_parent()
+	if INVGLOBAL.wallHovered == entity:
+		if bodyQueue == []:
+			entered = false
+			INVGLOBAL.wallHovered = null
+			return
+			
+		INVGLOBAL.wallHovered = bodyQueue.pop_front().get_parent()
+		return
+	
+	bodyQueue.erase(body)
