@@ -1,18 +1,36 @@
 class_name Wall extends Node2D
+
 @export var sprite: Sprite2D
-@export var maxUnits: int ##not currently in use.
+@export var maxUnits: int
+@export var unitManager: Node2D
 var unitList: Array = []
 var listShells = [[],[],[],[]]
 
-func addUnit(newUnitName: String)->void:
-	var newUnitPosition = updateUnitDistribution(unitList.size() + 1)
-	var unit = 	Global.summonEntity(newUnitPosition, newUnitName)
-	unitList.append(unit) 
+func addUnit(newEntityName: String)->void:
+	if unitList.size() < maxUnits:
+		var unit = Global.generateEntity(newEntityName)
+		unitList.append(unit) 
+		#unitManager.add_child(unit)
+		updateUnitDistribution()
+		return
+	
+	push_warning("Trying to add to a full wall.")
 
-func updateUnitDistribution(amount: int)->Vector2:
-	#var center = 0 #cant figure it out rn. ive done it before but its slipped my mind. something about finding the distribution if points by fraction of length and then multiply by i to get the intervals. After just return an array of all of the positions. or just update the units in the forloop
-	#sprite.get_rect() /2
-	return Vector2.ZERO
+func updateUnitDistribution()->void:
+	var rect: Rect2 = Rect2(sprite.global_position, sprite.texture.get_size())
+	var x
+	var y
+	var i = 0
+	for unit in unitList:
+		if rect.size.x > rect.size.y:
+			x = i* rect.size.x/unitList.size()
+			y =  0.0 #rect.size.x / 2
+		else:
+			x =  0.0 #rect.size.x / 2
+			y = i* rect.size.y/unitList.size()
+			
+		unit.global_position = to_global(Vector2(x,y)) 
+		i += 1
 
 func updateUnitTarget()->void:
 	for unit: Entity in unitList:
@@ -28,6 +46,7 @@ func updateUnitTarget()->void:
 		for shellList in listShells:
 			if shellList != []:
 				unit.setTarget(shellList[randi_range(0, shellList.size() - 1)])
+				break
 
 @warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:
@@ -35,6 +54,7 @@ func _physics_process(delta: float) -> void:
 		modulate = Color.GREEN
 	else:
 		modulate = Color.WHITE
+		
 	updateUnitTarget()
 	
 

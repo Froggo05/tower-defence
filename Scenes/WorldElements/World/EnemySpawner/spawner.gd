@@ -7,7 +7,7 @@ var spawnInverval: float = 0.0
 var clock: float = 0.0
 
 func _ready()->void:
-	spawnArea.position = self.position
+	spawnArea.position = self.global_position
 	spawnArea.size = self.size
 
 

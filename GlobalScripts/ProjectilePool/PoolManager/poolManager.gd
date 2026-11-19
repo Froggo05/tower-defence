@@ -25,7 +25,7 @@ func initialisePool(amount: int, projectileType: String)->void:
 		pool[projectileType].append(newProjectile)
 
 
-func _getObject(projectileType: String, direction: Vector2, spawnPosition: Vector2, target: Entity) -> void:
+func _getObject(projectileType: String, direction: Vector2, spawnPosition: Vector2, target: Node2D) -> void:
 	if pool[projectileType] == []:
 		printerr("Pool '%s' is empty. Creating a new one (the size may be too small)" % projectileType)
 		return
@@ -33,7 +33,7 @@ func _getObject(projectileType: String, direction: Vector2, spawnPosition: Vecto
 	_activateObject.call_deferred(newProjectile, direction, spawnPosition, target)
 	
 
-func _activateObject(projectile: Projectile, direction: Vector2, spawnPosition: Vector2, target: Entity):
+func _activateObject(projectile: Projectile, direction: Vector2, spawnPosition: Vector2, target: Node2D):
 	Global.worldScene.entityManager.add_child(projectile)
 	
 	_set_collisions(projectile, false)

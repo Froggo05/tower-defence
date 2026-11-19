@@ -54,10 +54,10 @@ script = ExtResource("4_bcrb4")
 
 [node name="Spawner" parent="Scale/EntityContainer/EnemyManager" unique_id=950099987 instance=ExtResource("4_0pyd3")]
 texture_filter = 1
-offset_left = -1288.0
-offset_top = -1158.6667
-offset_right = 1276.0
-offset_bottom = -716.00006
+offset_left = -1305.3334
+offset_top = -1270.6666
+offset_right = 1258.6666
+offset_bottom = -827.99994
 patch_margin_left = 3
 patch_margin_top = 2
 patch_margin_right = 2
@@ -65,10 +65,10 @@ patch_margin_bottom = 2
 
 [node name="Spawner2" parent="Scale/EntityContainer/EnemyManager" unique_id=1381633671 instance=ExtResource("4_0pyd3")]
 texture_filter = 1
-offset_left = -1621.3333
-offset_top = -718.6667
-offset_right = -1287.3333
-offset_bottom = 726.6667
+offset_left = -1739.9999
+offset_top = -705.3334
+offset_right = -1405.9999
+offset_bottom = 740.0
 patch_margin_left = 2
 patch_margin_top = 2
 patch_margin_right = 2
@@ -76,10 +76,10 @@ patch_margin_bottom = 2
 
 [node name="Spawner3" parent="Scale/EntityContainer/EnemyManager" unique_id=1119181690 instance=ExtResource("4_0pyd3")]
 texture_filter = 1
-offset_left = 1276.0002
-offset_top = -714.6667
-offset_right = 1648.0002
-offset_bottom = 726.6667
+offset_left = 1349.3333
+offset_top = -701.3334
+offset_right = 1721.3333
+offset_bottom = 740.0
 region_rect = Rect2(0, 0, 64, 64)
 patch_margin_left = 2
 patch_margin_top = 2
@@ -88,10 +88,10 @@ patch_margin_bottom = 2
 
 [node name="Spawner4" parent="Scale/EntityContainer/EnemyManager" unique_id=1317329464 instance=ExtResource("4_0pyd3")]
 texture_filter = 1
-offset_left = -1285.3333
-offset_top = 728.00006
-offset_right = 1272.0
-offset_bottom = 1023.99994
+offset_left = -1234.6666
+offset_top = 854.66675
+offset_right = 1322.6666
+offset_bottom = 1150.6666
 region_rect = Rect2(0, 0, 64, 64)
 patch_margin_left = 2
 patch_margin_top = 2

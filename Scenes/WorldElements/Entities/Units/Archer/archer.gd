@@ -1,12 +1,12 @@
 class_name ArcherUnit extends StaticEntity
 
-var target: Entity
+var target: Node2D
 
 @export var attackSpeed: float = 1.0
 var clock: float = 0.0
 var inDrag: bool = false
 
-func setTarget(newTarget: Entity)->void:
+func setTarget(newTarget: Node2D)->void:
 	target = newTarget
 
 func shootAtTarget()->void:

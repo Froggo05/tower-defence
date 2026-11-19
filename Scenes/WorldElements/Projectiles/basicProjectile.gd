@@ -4,7 +4,7 @@ class_name Projectile extends Area2D
 @export var damage: float = 1.0
 @export var speed: float = 1.0
 @export var path: Curve
-var target: Entity
+var target: Node2D
 var px: float = 0.0
 var py: float = 1.0
 var pyMod: float = 0.0
@@ -19,7 +19,7 @@ func returnSelf()->void:
 	print("Returning: ", name)
 	PoolManager._returnObject(self)
 
-func start(direction: Vector2, newSpawnPosition: Vector2, newTarget: Entity)->void:
+func start(direction: Vector2, newSpawnPosition: Vector2, newTarget: Node2D)->void:
 	show()
 	rotation = direction.angle()
 	spawnPosition = newSpawnPosition
@@ -46,8 +46,8 @@ func reset()->void:
 
 func _physics_process(delta: float) -> void:
 	if px == 1.0:
-		if target != null && !isFading:
-			target.healthComponent.damage(damage)
+		#if target != null && !isFading:
+			#target.healthComponent.damage(damage)
 		_fadeOut(delta)
 		return
 	

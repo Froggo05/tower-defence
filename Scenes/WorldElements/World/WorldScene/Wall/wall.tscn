@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://dxpsaw7cq4mkh"]
 
 [ext_resource type="Script" uid="uid://cujk43ecaiyh1" path="res://Scenes/WorldElements/World/WorldScene/Wall/wall.gd" id="1_yr834"]
-[ext_resource type="PackedScene" uid="uid://ca58k3igxmtes" path="res://Scenes/WorldElements/World/WorldScene/Wall/UnitPosition.tscn" id="2_ud4ua"]
 [ext_resource type="PackedScene" uid="uid://cy5m60gejc0t5" path="res://Scenes/WorldElements/World/WorldScene/Gate/Gate.tscn" id="3_hobgq"]
 [ext_resource type="Texture2D" uid="uid://cjjgxit3flkml" path="res://Assets/Wall/Wall-export.png" id="4_bbdl4"]
 
@@ -9,13 +8,13 @@
 size = Vector2(504, 310)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_plxga"]
-size = Vector2(503, 21)
+size = Vector2(503, 46)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sxg2m"]
-size = Vector2(504, 58)
+size = Vector2(504, 185)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ld0b8"]
-size = Vector2(504, 84)
+size = Vector2(504, 407)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_axljd"]
 size = Vector2(220, 59)
@@ -26,13 +25,14 @@ size = Vector2(220, 58)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m8s3d"]
 size = Vector2(522, 84)
 
-[node name="Wall" type="Node2D" unique_id=1089236373 node_paths=PackedStringArray("sprite") groups=["droppables"]]
+[node name="Wall" type="Node2D" unique_id=1089236373 node_paths=PackedStringArray("sprite", "unitManager") groups=["droppables"]]
 z_index = 10
 script = ExtResource("1_yr834")
 sprite = NodePath("Texture")
+maxUnits = 10
+unitManager = NodePath("")
 
 [node name="DetectionShells" type="Node2D" parent="." unique_id=1322554586]
-visible = false
 
 [node name="Shell0" type="Area2D" parent="DetectionShells" unique_id=1120912150]
 collision_layer = 0
@@ -46,7 +46,7 @@ debug_color = Color(0.99736506, 0, 0.1773471, 0.41960785)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionShells/Shell1" unique_id=645864683]
-position = Vector2(-0.5, -20.5)
+position = Vector2(-0.5, -33)
 shape = SubResource("RectangleShape2D_plxga")
 debug_color = Color(0.99736506, 0, 0.1773471, 0.41960785)
 
@@ -54,7 +54,7 @@ debug_color = Color(0.99736506, 0, 0.1773471, 0.41960785)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionShells/Shell2" unique_id=1234397079]
-position = Vector2(0, -39)
+position = Vector2(0, -102.5)
 shape = SubResource("RectangleShape2D_sxg2m")
 debug_color = Color(0.99736506, 0, 0.1773471, 0.41960785)
 
@@ -62,7 +62,7 @@ debug_color = Color(0.99736506, 0, 0.1773471, 0.41960785)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionShells/Shell3" unique_id=929103582]
-position = Vector2(0, -52)
+position = Vector2(0, -213.5)
 shape = SubResource("RectangleShape2D_ld0b8")
 debug_color = Color(0.99736506, 0, 0.1773471, 0.41960785)
 
@@ -83,17 +83,6 @@ position = Vector2(0, 19)
 
 [node name="Texture" type="Sprite2D" parent="." unique_id=887076559]
 texture = ExtResource("4_bbdl4")
-
-[node name="UnitManager" type="Node" parent="." unique_id=1801827613]
-
-[node name="ColorRect" parent="." unique_id=455320912 instance=ExtResource("2_ud4ua")]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="HoverCollider" type="StaticBody2D" parent="." unique_id=1865028846]
 collision_layer = 32768

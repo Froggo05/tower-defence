@@ -12,7 +12,6 @@ var initialPosition: Vector2
 var offset: Vector2
 var dragSmoothing: float = 25.0
 var targetinitialPos: Vector2
-var uiRef: MenuManager
 var initialItemInvPos: Vector2i
 var initialIUID: int
 var initialClickOffset: Vector2
@@ -64,11 +63,9 @@ func drop()->void:
 	if INVGLOBAL.mouseIsHovering:
 		@warning_ignore("narrowing_conversion")
 		MenuManager.getInventoryManager(INVGLOBAL.hoveredIUID).placeItem(getHoveredCellPlusInventoryOffset(), item)
-	elif INVGLOBAL.wallHovered != null:
-		if item.attributes.playable:
-			await INVGLOBAL.wallHovered.call_deferred("addUnit", item.attributes.unitSummon)
-			item.play()
-			pass
+	elif INVGLOBAL.wallHovered != null and item.attributes.playable:
+		INVGLOBAL.wallHovered.addUnit(item.attributes.entityName)
+		item.play() # used to play animations?
 	else:
 		MenuManager.getInventoryManager(INVGLOBAL.hoveredIUID).placeItem(initialItemInvPos, item)
 	#MenuManager.getInventoryManager(initialIUID).placeItem(initialItemInvPos, item) #return it to its original pos
@@ -85,7 +82,6 @@ func update(_delta: float, newMousePosition: Vector2)->void:
 	_resetSlotHighlight()
 
 func getHoveredCellPlusInventoryOffset()-> Vector2i:
-	
 	var offsetCoords = Vector2i(round(initialClickOffset.x / Slot.sizePixels.x), round(initialClickOffset.y / Slot.sizePixels.y))
 	var hoveredCoords = INVGLOBAL.hoveredCellCoordinate
 	if item.invSize.x > Vector2i.ONE.x: #annoying >:( plus im tired

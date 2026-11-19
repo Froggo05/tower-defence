@@ -33,7 +33,6 @@ var game: Game
 var enemyManager: EnemyManager
 var dayNightCycle: DayNightManager
 #units
-var targetList: Array = []
 
 #global funcs
 
@@ -63,11 +62,22 @@ func summonEntity(spawnPosition: Vector2, enemyType: String)-> Entity:
 		Global.entityCount += 1
 		var newEntity: Entity = Global.entityList[enemyType].instantiate()
 		newEntity.name = "Entity#" + str(Global.entityCount)
-		Global.targetList.append(newEntity)
 		worldScene.entityManager.add_child(newEntity)
 		newEntity.global_position = spawnPosition
 		return newEntity
 	return null
+
+ #Adds entities to the tree just but returns a instantiated instance without needing a position
+func generateEntity(enemyType: String)-> Entity:
+	if entityCount < entityCap:
+		Global.entityCount += 1
+		var newEntity: Entity = Global.entityList[enemyType].instantiate()
+		newEntity.name = "Entity#" + str(Global.entityCount)
+		worldScene.entityManager.add_child(newEntity)
+		return newEntity
+	push_warning("Tried to generate unit at unit cap. Maybe increase the cap.")
+	return null
+
 
 #privateFuncs
 func _ready() -> void:
