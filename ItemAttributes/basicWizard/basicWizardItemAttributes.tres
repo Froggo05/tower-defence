@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_o44qu")
+playable = true
 texture = ExtResource("2_3fn1t")
 entityName = "basicWizard"
 metadata/_custom_type_script = "uid://bet3qcju1ttno"

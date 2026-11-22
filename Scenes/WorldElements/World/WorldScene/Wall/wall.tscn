@@ -88,6 +88,7 @@ scale = Vector2(1.9687499, 1.84375)
 texture = ExtResource("3_bbdl4")
 
 [node name="HoverCollider" type="StaticBody2D" parent="." unique_id=1865028846]
+visible = false
 collision_layer = 32768
 collision_mask = 32768
 

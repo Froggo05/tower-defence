@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cia8w25ymff0y" path="res://Modules/RangedAttackComponent/rangedAttackComponent.tscn" id="8_bp4p6"]
 [ext_resource type="PackedScene" uid="uid://bvlag0gejjx7j" path="res://Modules/MotionComponent/motionComponent.tscn" id="9_3kucc"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3xjiq"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3kucc"]
 shader = ExtResource("3_kja6i")
 shader_parameter/flash_amount = 0.0
 shader_parameter/flash_colour = Color(1, 0, 0, 1)
@@ -22,6 +22,7 @@ radius = 8.0
 radius = 8.0
 
 [node name="basicWizard" type="Node2D" unique_id=1941895292 node_paths=PackedStringArray("rangedAttackComponent", "healthComponent")]
+z_index = 20
 script = ExtResource("1_bp4p6")
 rangedAttackComponent = NodePath("RangedAttackComponent")
 healthComponent = NodePath("HealthComponent")
@@ -29,7 +30,7 @@ attributes = ExtResource("2_3kucc")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1080898584]
 texture_filter = 1
-material = SubResource("ShaderMaterial_3xjiq")
+material = SubResource("ShaderMaterial_3kucc")
 texture = ExtResource("4_7hv8t")
 
 [node name="HealthComponent" parent="." unique_id=1858486418 node_paths=PackedStringArray("Hitbox", "progressBar") instance=ExtResource("6_ahgjw")]

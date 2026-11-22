@@ -63,14 +63,15 @@ func drop()->void:
 	if INVGLOBAL.mouseIsHovering:
 		@warning_ignore("narrowing_conversion")
 		MenuManager.getInventoryManager(INVGLOBAL.hoveredIUID).placeItem(getHoveredCellPlusInventoryOffset(), item)
+		_resetSlotHighlight()
+		return
 	elif INVGLOBAL.wallHovered != null and item.attributes.playable:
 		if INVGLOBAL.wallHovered.addUnit(item.attributes.entityName):
 			item.play() # used to play animations?
-		else:
-			pass
-			#if playing item fails ->
-	else:
-		MenuManager.getInventoryManager(INVGLOBAL.hoveredIUID).placeItem(initialItemInvPos, item)
+			_resetSlotHighlight()
+			return
+	
+	MenuManager.getInventoryManager(INVGLOBAL.hoveredIUID).placeItem(initialItemInvPos, item)
 	#MenuManager.getInventoryManager(initialIUID).placeItem(initialItemInvPos, item) #return it to its original pos
 	_resetSlotHighlight()
 	

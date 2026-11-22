@@ -30,7 +30,7 @@ func updateUnitDistribution()->void:
 	var i = 0
 	for unit in unitList:
 		if unitList.size() == 1:
-			unit.global_position = Vector2.ZERO
+			unit.global_position = to_global(Vector2.ZERO)
 			return
 		
 		var a = spriteSize.x / (unitList.size() - 1)
@@ -40,23 +40,21 @@ func updateUnitDistribution()->void:
 		unit.global_position = to_global(Vector2(x,y))
 		i += 1
 
-func updateUnitTarget()->void:
+func updateUnitsTarget()->void:
+	if unitList == []:
+		return
+	
 	for unit: Entity in unitList:
-		if unitList == []:
-			return
-		if unit is not RangedEntity:
-			return
-			
 		if unit.rangedAttackComponent.target != null: #might need to change to healthComponent.isDead
 			return
 		
 		##	for enemy add a count of whos targeting to that enemy and if its too high 
 		##	try a different one but if the other ones are too high just dont worry?
-		
-		for shellList in listShells:
-			if shellList != []:
-				unit.rangedAttackComponent.setTarget(shellList[randi_range(0, shellList.size() - 1)])
-				break
+		if unit is RangedEntity:
+			for shellList in listShells:
+				if shellList != []:
+					unit.rangedAttackComponent.setTarget(shellList[randi_range(0, shellList.size() - 1)])
+					return
 
 @warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:
@@ -65,7 +63,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		modulate = Color.WHITE
 		
-	updateUnitTarget()
+	updateUnitsTarget()
 	
 
 
