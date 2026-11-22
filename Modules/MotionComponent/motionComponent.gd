@@ -7,7 +7,7 @@ enum TARGETMOVEMENT{
 
 #-----sub-components-----
 @export var navAgent: NavigationAgent2D
-@export var parent: Entity
+
 @export var motionAnimationTree: AnimationTree
 
 #debug
@@ -35,7 +35,7 @@ func _setVelocity()->void:
 	velocity = targetDirection * speed
 
 func _rotateToTarget(_delta: float)->void:
-	parent.global_rotation_degrees = targetDirection.angle()#rotate_toward(parent.global_rotation, deg_to_rad(), delta * rotationSpeed)
+	owner.global_rotation_degrees = targetDirection.angle()#rotate_toward(owner.global_rotation, deg_to_rad(), delta * rotationSpeed)
 
 @warning_ignore("unused_parameter")
 func _updateVelocity(delta)->void:
@@ -50,15 +50,13 @@ func _updateAnimations()->void:
 	#print(motionAnimationTree.get("parameters/MotionSpace/blend_position"))
 
 func _physics_process(delta: float) -> void:
-	
-
 	animationBlend = animationBlend.lerp(velocity, delta * 10.0)
 	if motionAnimationTree != null:
 		motionAnimationTree.set("parameters/MotionSpace/blend_position", animationBlend)
 	if !atTarget:
 		nextNavPoint = navAgent.get_next_path_position()
-		targetDirection = parent.global_position.direction_to(nextNavPoint)
-		parent.rotation = targetDirection.angle()
+		targetDirection = owner.global_position.direction_to(nextNavPoint)
+		owner.rotation = targetDirection.angle()
 		velocity = targetDirection * speed
 		
 	if atTarget:
@@ -68,7 +66,7 @@ func _physics_process(delta: float) -> void:
 	currentTargetPosition.set_point_position(1, to_local(navAgent.target_position))
 	
 
-	parent.global_position += velocity * delta
+	owner.global_position += velocity * delta
 
 #-----public-----
 func setTarget(point: Vector2)->void: ##GlobalPosition

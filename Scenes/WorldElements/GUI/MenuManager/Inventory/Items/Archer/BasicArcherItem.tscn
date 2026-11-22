@@ -1,19 +1,10 @@
 [gd_scene format=3 uid="uid://iximqptbajwr"]
 
 [ext_resource type="Script" uid="uid://bmadw3shliba4" path="res://Scenes/WorldElements/GUI/MenuManager/Inventory/Items/Archer/basic_archer_item.gd" id="1_7vqir"]
-[ext_resource type="Script" uid="uid://bet3qcju1ttno" path="res://Scenes/WorldElements/GUI/MenuManager/Inventory/TestItem/AttributesResource.gd" id="2_7sp7i"]
+[ext_resource type="Resource" uid="uid://snjph4sxcpqm" path="res://ItemAttributes/basicArcher/BasicArcherItemAttributes.tres" id="2_oc85a"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7vqir"]
 load_path = "res://.godot/imported/ArcherPreview.png-1aa5794b1025fd609453a6274109a42f.ctex"
-
-[sub_resource type="Resource" id="Resource_7sp7i"]
-resource_local_to_scene = true
-script = ExtResource("2_7sp7i")
-value = 3
-playable = true
-texture = SubResource("CompressedTexture2D_7vqir")
-entityName = "basicArcher"
-metadata/_custom_type_script = "uid://bet3qcju1ttno"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_axljd"]
 size = Vector2(64, 64)
@@ -27,7 +18,7 @@ offset_right = 64.0
 offset_bottom = 64.0
 mouse_filter = 2
 script = ExtResource("1_7vqir")
-attributes = SubResource("Resource_7sp7i")
+attributes = ExtResource("2_oc85a")
 sprite = NodePath("TextureRect")
 invSize = Vector2i(2, 1)
 

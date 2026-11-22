@@ -1,7 +1,7 @@
-class_name AttackComponent extends Area2D
+class_name MeleeAttackComponent extends Area2D
 
 var enemyInRange: bool = false
-var target: HealthComponent
+var target: Node2D
 
 @export var timer: float = 0.0
 @export var attackCooldown: float = 1.0/12 * 8.0

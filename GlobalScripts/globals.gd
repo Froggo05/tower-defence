@@ -9,7 +9,7 @@ enum CardRarity {
 }
 
 #loaders (places to look for enemys or units if i want to spawn stuff (maybe projectiles too))
-var entityList: Dictionary = {"rock" : "uid://dpa2vcpj3su4b", "sgoblin" : "uid://butihti083ds6", "basicArcher" : "uid://dvnq8aqb5de7g"}
+var entityList: Dictionary = {"rock" : "uid://dpa2vcpj3su4b", "sgoblin" : "uid://butihti083ds6", "basicArcher" : "uid://dvnq8aqb5de7g", "basicWizard" : "uid://cpnxxpnfuihfw", "basicFighter" : "uid://ciotidqps4e60"}
 var itemList: Dictionary = {"basicWizard" : "uid://pv4rxr5mgvrp", "basicFighter" : "uid://nlnbvl6s0w86", "basicArcher" : "uid://iximqptbajwr"}
 var projectileList: Dictionary = {}
 
@@ -61,7 +61,7 @@ func summonEntity(spawnPosition: Vector2, enemyType: String)-> Entity:
 	if entityCount < entityCap:
 		Global.entityCount += 1
 		var newEntity: Entity = Global.entityList[enemyType].instantiate()
-		newEntity.name = "Entity#" + str(Global.entityCount)
+		newEntity.name = newEntity.attributes.entityName + "#"
 		worldScene.entityManager.add_child(newEntity)
 		newEntity.global_position = spawnPosition
 		return newEntity
@@ -72,7 +72,7 @@ func generateEntity(enemyType: String)-> Entity:
 	if entityCount < entityCap:
 		Global.entityCount += 1
 		var newEntity: Entity = Global.entityList[enemyType].instantiate()
-		newEntity.name = "Entity#" + str(Global.entityCount)
+		newEntity.name = newEntity.attributes.entityName + "#"
 		worldScene.entityManager.add_child(newEntity)
 		return newEntity
 	push_warning("Tried to generate unit at unit cap. Maybe increase the cap.")

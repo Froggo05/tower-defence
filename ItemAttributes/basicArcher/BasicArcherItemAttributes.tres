@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemAttributes" format=3 uid="uid://snjph4sxcpqm"]
+
+[ext_resource type="Script" uid="uid://bet3qcju1ttno" path="res://Scenes/WorldElements/GUI/MenuManager/Inventory/TestItem/AttributesResource.gd" id="1_yr641"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7vqir"]
+load_path = "res://.godot/imported/ArcherPreview.png-1aa5794b1025fd609453a6274109a42f.ctex"
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_yr641")
+value = 3
+playable = true
+texture = SubResource("CompressedTexture2D_7vqir")
+entityName = "basicArcher"
+metadata/_custom_type_script = "uid://bet3qcju1ttno"

@@ -5,7 +5,7 @@
 [ext_resource type="Shader" uid="uid://bktff25qsvypq" path="res://Modules/EffectsComponent/Shaders/flash.gdshader" id="3_5gxm3"]
 [ext_resource type="Texture2D" uid="uid://bwva3sda02rew" path="res://Scenes/WorldElements/Entities/Rock/Rocky.png" id="4_5gxm3"]
 [ext_resource type="PackedScene" uid="uid://cxybhb7f6kpnx" path="res://Modules/EffectsComponent/universalEffectsComponent.tscn" id="4_5ir74"]
-[ext_resource type="PackedScene" uid="uid://bvlag0gejjx7j" path="res://Modules/MotionComponent/motionCompontent.tscn" id="6_1maoq"]
+[ext_resource type="PackedScene" uid="uid://bvlag0gejjx7j" path="res://Modules/MotionComponent/motionComponent.tscn" id="6_1maoq"]
 [ext_resource type="PackedScene" uid="uid://8s768tmsdhc8" path="res://Modules/CollisionComponent/collisionComponent.tscn" id="7_o5ppc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wrvu4"]

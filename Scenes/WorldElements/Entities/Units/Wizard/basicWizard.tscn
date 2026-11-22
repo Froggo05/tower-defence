@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://cpnxxpnfuihfw"]
+
+[ext_resource type="Script" uid="uid://bpioadljcjrec" path="res://Scenes/WorldElements/Entities/Units/Wizard/basicWizard.gd" id="1_bp4p6"]
+[ext_resource type="Resource" uid="uid://d1qpd63uxj8la" path="res://ItemAttributes/basicWizard/basicWizardItemAttributes.tres" id="2_3kucc"]
+[ext_resource type="Shader" uid="uid://bktff25qsvypq" path="res://Modules/EffectsComponent/Shaders/flash.gdshader" id="3_kja6i"]
+[ext_resource type="Texture2D" uid="uid://dfasslv2qbdd1" path="res://Assets/Sprites/Wizard/WizardPreview.png" id="4_7hv8t"]
+[ext_resource type="PackedScene" uid="uid://copg8g5t543od" path="res://Modules/HealthComponent/healthComponent.tscn" id="6_ahgjw"]
+[ext_resource type="PackedScene" uid="uid://8s768tmsdhc8" path="res://Modules/CollisionComponent/collisionComponent.tscn" id="7_6fxtu"]
+[ext_resource type="PackedScene" uid="uid://cxybhb7f6kpnx" path="res://Modules/EffectsComponent/universalEffectsComponent.tscn" id="8_0rbbr"]
+[ext_resource type="PackedScene" uid="uid://cia8w25ymff0y" path="res://Modules/RangedAttackComponent/rangedAttackComponent.tscn" id="8_bp4p6"]
+[ext_resource type="PackedScene" uid="uid://bvlag0gejjx7j" path="res://Modules/MotionComponent/motionComponent.tscn" id="9_3kucc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3xjiq"]
+shader = ExtResource("3_kja6i")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_colour = Color(1, 0, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_axljd"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m8s3d"]
+radius = 8.0
+
+[node name="basicWizard" type="Node2D" unique_id=1941895292 node_paths=PackedStringArray("rangedAttackComponent", "healthComponent")]
+script = ExtResource("1_bp4p6")
+rangedAttackComponent = NodePath("RangedAttackComponent")
+healthComponent = NodePath("HealthComponent")
+attributes = ExtResource("2_3kucc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1080898584]
+texture_filter = 1
+material = SubResource("ShaderMaterial_3xjiq")
+texture = ExtResource("4_7hv8t")
+
+[node name="HealthComponent" parent="." unique_id=1858486418 node_paths=PackedStringArray("Hitbox", "progressBar") instance=ExtResource("6_ahgjw")]
+Hitbox = NodePath("CollisionShape2D")
+progressBar = NodePath("../ProgressBar")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HealthComponent" unique_id=1204915492]
+shape = SubResource("CircleShape2D_axljd")
+
+[node name="CollisionComponent" parent="." unique_id=1774352897 node_paths=PackedStringArray("parent") instance=ExtResource("7_6fxtu")]
+parent = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionComponent" unique_id=1422927034]
+shape = SubResource("CircleShape2D_m8s3d")
+
+[node name="UniversalEffectsComponent" parent="." unique_id=2044374402 instance=ExtResource("8_0rbbr")]
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=501155032]
+offset_left = -2.0
+offset_top = -28.0
+offset_right = 2.0
+offset_bottom = -1.0
+show_percentage = false
+
+[node name="RangedAttackComponent" parent="." unique_id=14384976 instance=ExtResource("8_bp4p6")]
+
+[node name="MotionComponent" parent="." unique_id=1100529476 instance=ExtResource("9_3kucc")]

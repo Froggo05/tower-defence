@@ -1,16 +1,22 @@
 [gd_scene format=3 uid="uid://butihti083ds6"]
 
 [ext_resource type="Script" uid="uid://bc7cwbpiu8ddr" path="res://Scenes/WorldElements/Entities/Enemy/SmallGoblin/small_goblin.gd" id="1_anstl"]
+[ext_resource type="Script" uid="uid://bet3qcju1ttno" path="res://Scenes/WorldElements/GUI/MenuManager/Inventory/TestItem/AttributesResource.gd" id="2_3p6se"]
 [ext_resource type="PackedScene" uid="uid://copg8g5t543od" path="res://Modules/HealthComponent/healthComponent.tscn" id="2_456sv"]
 [ext_resource type="Texture2D" uid="uid://bah7r3ks6dsv3" path="res://Assets/Sprites/SmallGoblin/SmallGoblinAttack.png" id="2_mu4l2"]
 [ext_resource type="Texture2D" uid="uid://cp6eer7dy2h4i" path="res://Assets/Sprites/SmallGoblin/SmallGoblinWalk.png" id="2_olfdp"]
 [ext_resource type="Texture2D" uid="uid://61pdejn67wdo" path="res://Assets/Sprites/SmallGoblin/SmallGoblinIdle.png" id="3_n7rjp"]
-[ext_resource type="PackedScene" uid="uid://bvlag0gejjx7j" path="res://Modules/MotionComponent/motionCompontent.tscn" id="3_vk6mk"]
+[ext_resource type="PackedScene" uid="uid://bvlag0gejjx7j" path="res://Modules/MotionComponent/motionComponent.tscn" id="3_vk6mk"]
 [ext_resource type="Texture2D" uid="uid://f5w4rl0arx6m" path="res://Assets/HealthBarGreyScale.png" id="3_ywwg3"]
 [ext_resource type="Theme" uid="uid://v1ubk6fnbab2" path="res://Assets/Theme/Theme.tres" id="5_5xwrd"]
 [ext_resource type="PackedScene" uid="uid://8s768tmsdhc8" path="res://Modules/CollisionComponent/collisionComponent.tscn" id="7_1pbg5"]
 [ext_resource type="PackedScene" uid="uid://cxybhb7f6kpnx" path="res://Modules/EffectsComponent/universalEffectsComponent.tscn" id="7_rv58r"]
 [ext_resource type="PackedScene" uid="uid://dnk8in1oxdoat" path="res://Modules/MeleeAttackCompoennt/meleeAttackComponent.tscn" id="8_1pbg5"]
+
+[sub_resource type="Resource" id="Resource_f1r4k"]
+script = ExtResource("2_3p6se")
+entityName = "smallGoblin"
+metadata/_custom_type_script = "uid://bet3qcju1ttno"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xs0s8"]
 atlas = ExtResource("2_mu4l2")
@@ -219,6 +225,7 @@ motionComponent = NodePath("MotionComponent")
 healthComponent = NodePath("HealthComponent")
 collisionComponent = NodePath("CollisionComponent")
 universalEffectsComponent = NodePath("UniversalEffectsComponent")
+attributes = SubResource("Resource_f1r4k")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=714320751]
 texture_filter = 1

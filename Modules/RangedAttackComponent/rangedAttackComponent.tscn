@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cia8w25ymff0y"]
+
+[ext_resource type="Script" uid="uid://b3e8o6lj3jhog" path="res://Modules/RangedAttackComponent/rangedAttackComponent.gd" id="1_dv3x3"]
+
+[node name="RangedAttackComponent" type="Node2D" unique_id=14384976]
+script = ExtResource("1_dv3x3")

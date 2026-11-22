@@ -67,7 +67,7 @@ Rightclick={
 
 [navigation]
 
-2d/merge_rasterizer_cell_scale=0.00999999999999999
+2d/merge_rasterizer_cell_scale=0.001
 
 [physics]
 

@@ -2,42 +2,52 @@ class_name Wall extends Node2D
 
 @export var sprite: Sprite2D
 @export var maxUnits: int
-@export var unitManager: Node2D
 var unitList: Array = []
 var listShells = [[],[],[],[]]
 
-func addUnit(newEntityName: String)->void:
+func addUnit(newEntityName: String)->bool:
 	if unitList.size() < maxUnits:
 		var unit = Global.generateEntity(newEntityName)
+		
+		if unit is not RangedEntity:
+			# theoretically should kill the entity but is fine because no reference it gets freed anyway
+			unit.queue_free()
+			return false
+		
 		unitList.append(unit) 
 		#unitManager.add_child(unit)
 		updateUnitDistribution()
-		return
+		return true
 	
 	push_warning("Trying to add to a full wall.")
+	return false
 
 func updateUnitDistribution()->void:
-	var rect: Rect2 = Rect2(sprite.global_position, sprite.texture.get_size())
 	var x
 	var y
+	var spriteSize = sprite.texture.get_size()
+	var xoffset = spriteSize.x / 2
 	var i = 0
 	for unit in unitList:
-		if rect.size.x > rect.size.y:
-			x = i* rect.size.x/unitList.size()
-			y =  0.0 #rect.size.x / 2
-		else:
-			x =  0.0 #rect.size.x / 2
-			y = i* rect.size.y/unitList.size()
+		if unitList.size() == 1:
+			unit.global_position = Vector2.ZERO
+			return
+		
+		var a = spriteSize.x / (unitList.size() - 1)
+		x = a * i - xoffset
+		y = 0 
 			
-		unit.global_position = to_global(Vector2(x,y)) 
+		unit.global_position = to_global(Vector2(x,y))
 		i += 1
 
 func updateUnitTarget()->void:
 	for unit: Entity in unitList:
 		if unitList == []:
 			return
-		
-		if unit.target != null: #might need to change to healthComponent.isDead
+		if unit is not RangedEntity:
+			return
+			
+		if unit.rangedAttackComponent.target != null: #might need to change to healthComponent.isDead
 			return
 		
 		##	for enemy add a count of whos targeting to that enemy and if its too high 
@@ -45,7 +55,7 @@ func updateUnitTarget()->void:
 		
 		for shellList in listShells:
 			if shellList != []:
-				unit.setTarget(shellList[randi_range(0, shellList.size() - 1)])
+				unit.rangedAttackComponent.setTarget(shellList[randi_range(0, shellList.size() - 1)])
 				break
 
 @warning_ignore("unused_parameter")

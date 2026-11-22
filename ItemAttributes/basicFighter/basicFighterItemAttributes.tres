@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemAttributes" format=3 uid="uid://i3aswpwkp5m3"]
+
+[ext_resource type="Script" uid="uid://bet3qcju1ttno" path="res://Scenes/WorldElements/GUI/MenuManager/Inventory/TestItem/AttributesResource.gd" id="1_idf4y"]
+[ext_resource type="Texture2D" uid="uid://b7r52qq7241r4" path="res://Assets/Sprites/Fighter/FighterPreview.png" id="2_ahfjo"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_idf4y")
+playable = true
+texture = ExtResource("2_ahfjo")
+entityName = "basicFighter"
+metadata/_custom_type_script = "uid://bet3qcju1ttno"

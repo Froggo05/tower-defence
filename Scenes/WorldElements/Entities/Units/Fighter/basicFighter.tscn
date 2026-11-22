@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://ciotidqps4e60"]
+
+[ext_resource type="Script" uid="uid://b5vfsobj3r62q" path="res://Scenes/WorldElements/Entities/Units/Fighter/basicFighter.gd" id="1_erif0"]
+[ext_resource type="Resource" uid="uid://i3aswpwkp5m3" path="res://ItemAttributes/basicFighter/basicFighterItemAttributes.tres" id="2_56oqy"]
+[ext_resource type="Shader" uid="uid://bktff25qsvypq" path="res://Modules/EffectsComponent/Shaders/flash.gdshader" id="3_bv0g0"]
+[ext_resource type="Texture2D" uid="uid://b7r52qq7241r4" path="res://Assets/Sprites/Fighter/FighterPreview.png" id="3_ec54r"]
+[ext_resource type="PackedScene" uid="uid://bvlag0gejjx7j" path="res://Modules/MotionComponent/motionComponent.tscn" id="5_7ri6c"]
+[ext_resource type="PackedScene" uid="uid://copg8g5t543od" path="res://Modules/HealthComponent/healthComponent.tscn" id="6_jqmf4"]
+[ext_resource type="PackedScene" uid="uid://dnk8in1oxdoat" path="res://Modules/MeleeAttackCompoennt/meleeAttackComponent.tscn" id="7_131gy"]
+[ext_resource type="PackedScene" uid="uid://cxybhb7f6kpnx" path="res://Modules/EffectsComponent/universalEffectsComponent.tscn" id="8_4tld5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j2j2g"]
+shader = ExtResource("3_bv0g0")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_colour = Color(1, 0, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bv0g0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m8s3d"]
+radius = 23.086792
+
+[node name="basicFighter" type="Node2D" unique_id=1944358477 node_paths=PackedStringArray("meleeComponent", "healthComponent", "universalEffectsComponent")]
+script = ExtResource("1_erif0")
+meleeComponent = NodePath("MeleeAttackComponent")
+healthComponent = NodePath("HealthComponent")
+universalEffectsComponent = NodePath("UniversalEffectsComponent")
+attributes = ExtResource("2_56oqy")
+metadata/_custom_type_script = "uid://b5vfsobj3r62q"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=167193562]
+texture_filter = 1
+material = SubResource("ShaderMaterial_j2j2g")
+texture = ExtResource("3_ec54r")
+
+[node name="HealthComponent" parent="." unique_id=1858486418 node_paths=PackedStringArray("Hitbox") instance=ExtResource("6_jqmf4")]
+Hitbox = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HealthComponent" unique_id=993389571]
+shape = SubResource("CircleShape2D_bv0g0")
+
+[node name="MeleeAttackComponent" parent="." unique_id=671198284 instance=ExtResource("7_131gy")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeAttackComponent" unique_id=342231458]
+position = Vector2(23, 0)
+shape = SubResource("CircleShape2D_m8s3d")
+debug_color = Color(0.9703122, 0, 0.45873904, 0.41960785)
+
+[node name="UniversalEffectsComponent" parent="." unique_id=2044374402 instance=ExtResource("8_4tld5")]
+
+[node name="MotionComponent" parent="." unique_id=1100529476 instance=ExtResource("5_7ri6c")]

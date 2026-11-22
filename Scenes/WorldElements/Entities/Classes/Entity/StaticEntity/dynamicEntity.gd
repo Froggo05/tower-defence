@@ -4,6 +4,7 @@ class_name DynamicEntity extends Entity
 @export var healthComponent: HealthComponent
 @export var collisionComponent: CollisionComponent
 @export var universalEffectsComponent: AnimationPlayer
+
 var state: STATE = STATE.IDLE
 enum STATE{
 	IDLE,
@@ -15,6 +16,9 @@ func _ready() -> void:
 	healthComponent.damaged.connect(_on_damaged)
 	healthComponent.healed.connect(_on_healed)
 	healthComponent.died.connect(_on_died)
+
+func setState(newstate: STATE)->void:
+	state = newstate
 
 func _on_died() -> void:
 	Global.entityCount -= 1

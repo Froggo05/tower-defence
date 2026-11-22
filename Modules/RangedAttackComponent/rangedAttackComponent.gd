@@ -1,8 +1,10 @@
-class_name ArcherUnit extends StaticEntity
+class_name RangedAttackComponent extends Node2D
 
 var target: Node2D
 
 @export var attackSpeed: float = 1.0
+@export var projectileName: String = ""
+
 var clock: float = 0.0
 var inDrag: bool = false
 

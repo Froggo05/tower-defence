@@ -1,13 +1,12 @@
 class_name SmallGoblin extends DynamicEntity
 
-@export var attackComponent: AttackComponent
+@export var MeleeattackComponent: MeleeAttackComponent
 @export var sprite: AnimatedSprite2D
 
 func _physics_process(_delta: float) -> void:
 	_queryState()
 
-func setState(newstate: STATE)->void:
-	state = newstate
+
 
 func _queryState()->void:
 	match state:
