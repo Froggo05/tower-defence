@@ -4,6 +4,9 @@ class_name StaticEntity extends Entity
 
 
 func _ready() -> void:
+	if healthComponent == null:
+		return
+	
 	healthComponent.died.connect(_hasDied)
 
 func reset()->void:
@@ -13,4 +16,3 @@ func reset()->void:
 func _hasDied()->void:
 	hide()
 	self.process_mode = Node.PROCESS_MODE_DISABLED
-	

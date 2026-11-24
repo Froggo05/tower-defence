@@ -3,11 +3,10 @@
 [ext_resource type="Script" uid="uid://crtow3aasct8h" path="res://Scenes/WorldElements/Entities/Units/Archer/basicArcher.gd" id="1_y2sow"]
 [ext_resource type="Resource" uid="uid://snjph4sxcpqm" path="res://ItemAttributes/basicArcher/BasicArcherItemAttributes.tres" id="2_y2sow"]
 [ext_resource type="Texture2D" uid="uid://dshqsgq46sdvl" path="res://Assets/Sprites/Archer/ArcherPreview.png" id="3_3lldu"]
-[ext_resource type="PackedScene" uid="uid://copg8g5t543od" path="res://Modules/HealthComponent/healthComponent.tscn" id="4_4e3i6"]
+[ext_resource type="PackedScene" uid="uid://copg8g5t543od" path="res://Modules/HealthComponent/healthComponent.tscn" id="5_3lldu"]
 [ext_resource type="PackedScene" uid="uid://cia8w25ymff0y" path="res://Modules/RangedAttackComponent/rangedAttackComponent.tscn" id="5_4aqr2"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_axljd"]
-radius = 7.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_axljd"]
 
 [node name="basicArcher" type="Node2D" unique_id=1451644595 node_paths=PackedStringArray("rangedAttackComponent", "healthComponent")]
 z_index = 20
@@ -21,12 +20,13 @@ texture_filter = 1
 rotation = 1.5707964
 texture = ExtResource("3_3lldu")
 
-[node name="HealthComponent" parent="." unique_id=1858486418 node_paths=PackedStringArray("Hitbox") instance=ExtResource("4_4e3i6")]
+[node name="RangedAttackComponent" parent="." unique_id=14384976 instance=ExtResource("5_4aqr2")]
+projectileName = "basicArrow"
+
+[node name="HealthComponent" parent="." unique_id=1858486418 node_paths=PackedStringArray("Hitbox") instance=ExtResource("5_3lldu")]
 collision_layer = 0
 collision_mask = 0
 Hitbox = NodePath("CollisionShape2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HealthComponent" unique_id=1677402711]
-shape = SubResource("CircleShape2D_axljd")
-
-[node name="RangedAttackComponent" parent="." unique_id=14384976 instance=ExtResource("5_4aqr2")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HealthComponent" unique_id=1411399401]
+shape = SubResource("RectangleShape2D_axljd")

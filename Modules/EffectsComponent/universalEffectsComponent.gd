@@ -2,10 +2,14 @@
 
 const FLASH_SHADER: = preload("uid://bktff25qsvypq")
 
-var _sprites: Array[Sprite2D] = []
+var _sprites: Array[AnimatedSprite2D] = []
 var _flash_amount: float = 0.0
 var _flash_colour: Color = Color.RED
+@export var animations: Dictionary[String,Node2D]
 
+func restart(animation: String)->void:
+	for child in animations[animation].get_children():
+		child.restart()
 
 @export_range(0.0, 1.0) var flash_amount: float:
 	set(value):
@@ -28,8 +32,8 @@ var _flash_colour: Color = Color.RED
 @export var animationPlayer: AnimationPlayer
 
 func _ready() -> void:
-	for node in animationPlayer.get_parent().find_children("*", "Sprite2D", true, false):
-		var sprite: Sprite2D = node as Sprite2D
+	for node in animationPlayer.get_parent().find_children("*", "AnimatedSprite2D", true, false):
+		var sprite: AnimatedSprite2D = node as AnimatedSprite2D
 		var shaderMaterial: ShaderMaterial = ShaderMaterial.new()
 		shaderMaterial.shader = FLASH_SHADER
 		shaderMaterial.set_shader_parameter("flash_amount", _flash_amount)

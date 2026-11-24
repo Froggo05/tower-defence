@@ -14,7 +14,9 @@ func setTarget(newTarget: Node2D)->void:
 func shootAtTarget()->void:
 	print("shooting")
 	rotation = (target.global_position - global_position).angle()
-	PoolManager._getObject("basicProjectile", global_position.direction_to(target.global_position), global_position, target)
+	if projectileName == "":
+		return
+	PoolManager._getObject(projectileName, global_position.direction_to(target.global_position), global_position, target)
 
 func _physics_process(delta: float) -> void:
 	if !attackTimer(delta):

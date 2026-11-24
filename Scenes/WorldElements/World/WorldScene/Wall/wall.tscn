@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cy5m60gejc0t5" path="res://Scenes/WorldElements/World/WorldScene/Gate/Gate.tscn" id="3_hobgq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_egvxt"]
-size = Vector2(504, 310)
+size = Vector2(504, 603)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_plxga"]
 size = Vector2(503, 46)
@@ -38,7 +38,7 @@ visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionShells/Shell0" unique_id=1695576610]
-position = Vector2(0, 138)
+position = Vector2(0, 284.5)
 shape = SubResource("RectangleShape2D_egvxt")
 debug_color = Color(0.99736506, 0, 0.1773471, 0.41960785)
 

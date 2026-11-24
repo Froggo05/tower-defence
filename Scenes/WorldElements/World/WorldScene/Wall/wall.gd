@@ -46,15 +46,17 @@ func updateUnitsTarget()->void:
 	
 	for unit: Entity in unitList:
 		if unit.rangedAttackComponent.target != null: #might need to change to healthComponent.isDead
-			return
-		
+			continue
 		##	for enemy add a count of whos targeting to that enemy and if its too high 
 		##	try a different one but if the other ones are too high just dont worry?
-		if unit is RangedEntity:
-			for shellList in listShells:
-				if shellList != []:
-					unit.rangedAttackComponent.setTarget(shellList[randi_range(0, shellList.size() - 1)])
-					return
+		if unit is not RangedEntity:
+			continue 
+	
+		for shellList in listShells:
+			if shellList == []:
+				continue
+			
+			unit.rangedAttackComponent.setTarget(shellList[randi_range(0, shellList.size() - 1)])
 
 @warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:

@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://b6javx34p1gu8" path="res://Scenes/WorldElements/GUI/MenuManager/core_health_bar.gd" id="10_k0p76"]
 
 [node name="MenuManager" type="Control" unique_id=1690813115 node_paths=PackedStringArray("menuResourceContainer", "inventory", "defaultMenu", "startMenu", "coreHealthBar")]
+z_index = 100
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

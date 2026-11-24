@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dr8ou7f4t8y50"]
+
+[ext_resource type="Script" uid="uid://cjrpte1hsvown" path="res://Scenes/WorldElements/Projectiles/Arrow/basic_arrow.gd" id="1_qftto"]
+[ext_resource type="Texture2D" uid="uid://nc7t0iorqfgo" path="res://Assets/Sprites/Archer/Arrow.png" id="2_nhak1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m8s3d"]
+size = Vector2(16, 6)
+
+[node name="Arrow" type="Area2D" unique_id=1341233102 node_paths=PackedStringArray("sprite")]
+z_index = 30
+collision_layer = 0
+script = ExtResource("1_qftto")
+sprite = NodePath("Sprite")
+damage = 5.0
+speed = 500.0
+maxRange = 500.0
+metadata/_custom_type_script = "uid://doefq162ukqth"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1187909405]
+shape = SubResource("RectangleShape2D_m8s3d")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1593906909]
+texture_filter = 1
+texture = ExtResource("2_nhak1")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
